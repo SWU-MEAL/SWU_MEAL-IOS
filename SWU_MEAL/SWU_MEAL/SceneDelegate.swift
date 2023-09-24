@@ -22,6 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           
           window?.rootViewController = rootNavigationVC
           window?.makeKeyAndVisible()
+        
+        if #available(iOS 13.0, *) {
+          self.window?.overrideUserInterfaceStyle = .light
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

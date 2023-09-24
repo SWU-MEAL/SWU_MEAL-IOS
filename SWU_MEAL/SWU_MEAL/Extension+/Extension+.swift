@@ -46,12 +46,12 @@ extension UIImage {
 // MARK: - UIFont
 
 extension UIFont {
-    static func pyeongChangLight(size: CGFloat) -> UIFont? {
-        return UIFont(name: "PyeongChangPeace-Light", size: size)
+    static func uhbee(size: CGFloat) -> UIFont? {
+        return UIFont(name: "UhBeeSe_hyun", size: size)
     }
     
-    static func pyeongChangBold(size: CGFloat) -> UIFont? {
-        return UIFont(name: "PyeongChangPeace-Bold", size: size)
+    static func uhbeeBold(size: CGFloat) -> UIFont? {
+        return UIFont(name: "UhBeeSe_hyunBold", size: size)
     }
 }
 

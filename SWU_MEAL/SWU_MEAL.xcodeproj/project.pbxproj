@@ -22,10 +22,16 @@
 		51331ECE2AC04B85006CA899 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ECC2AC04B85006CA899 /* DividerView.swift */; };
 		51331ED32AC04BA7006CA899 /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ECF2AC04BA7006CA899 /* Extension+.swift */; };
 		51331ED42AC04BA7006CA899 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ED02AC04BA7006CA899 /* Color+.swift */; };
-		51331ED52AC04BA7006CA899 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ED12AC04BA7006CA899 /* TextFieldWithPadding.swift */; };
-		51331ED62AC04BA7006CA899 /* ButtonPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ED22AC04BA7006CA899 /* ButtonPadding.swift */; };
 		51331EDA2AC05136006CA899 /* UhBee Se_hyun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51331ED82AC05136006CA899 /* UhBee Se_hyun.ttf */; };
 		51331EDB2AC05136006CA899 /* UhBee Se_hyun Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51331ED92AC05136006CA899 /* UhBee Se_hyun Bold.ttf */; };
+		51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EDF2AC052BA006CA899 /* TodayTabBarController.swift */; };
+		51331EE32AC0633A006CA899 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 51331EE22AC0633A006CA899 /* Tabman */; };
+		51331EE52AC06A33006CA899 /* TodayBreakfastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EE42AC06A33006CA899 /* TodayBreakfastViewController.swift */; };
+		51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EE62AC06A76006CA899 /* TodayLunchViewController.swift */; };
+		51331EE92AC06A7E006CA899 /* TodayDinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EE82AC06A7E006CA899 /* TodayDinnerViewController.swift */; };
+		51331EEB2AC0A53B006CA899 /* TodayBreakfastTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EEA2AC0A53B006CA899 /* TodayBreakfastTableView.swift */; };
+		51331EED2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EEC2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift */; };
+		51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +71,15 @@
 		51331ECC2AC04B85006CA899 /* DividerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		51331ECF2AC04BA7006CA899 /* Extension+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+.swift"; sourceTree = "<group>"; };
 		51331ED02AC04BA7006CA899 /* Color+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		51331ED12AC04BA7006CA899 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
-		51331ED22AC04BA7006CA899 /* ButtonPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPadding.swift; sourceTree = "<group>"; };
 		51331ED82AC05136006CA899 /* UhBee Se_hyun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun.ttf"; sourceTree = "<group>"; };
 		51331ED92AC05136006CA899 /* UhBee Se_hyun Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun Bold.ttf"; sourceTree = "<group>"; };
+		51331EDF2AC052BA006CA899 /* TodayTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTabBarController.swift; sourceTree = "<group>"; };
+		51331EE42AC06A33006CA899 /* TodayBreakfastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBreakfastViewController.swift; sourceTree = "<group>"; };
+		51331EE62AC06A76006CA899 /* TodayLunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLunchViewController.swift; sourceTree = "<group>"; };
+		51331EE82AC06A7E006CA899 /* TodayDinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDinnerViewController.swift; sourceTree = "<group>"; };
+		51331EEA2AC0A53B006CA899 /* TodayBreakfastTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBreakfastTableView.swift; sourceTree = "<group>"; };
+		51331EEC2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBreakfastTableViewCell.swift; sourceTree = "<group>"; };
+		51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMealModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51331EE32AC0633A006CA899 /* Tabman in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,9 +131,9 @@
 		51331E892AC02AA1006CA899 /* SWU_MEAL */ = {
 			isa = PBXGroup;
 			children = (
-				51331ED72AC05136006CA899 /* UhBeeSe_hyun */,
 				51331E8A2AC02AA1006CA899 /* AppDelegate.swift */,
 				51331E8C2AC02AA1006CA899 /* SceneDelegate.swift */,
+				51331ED72AC05136006CA899 /* UhBeeSe_hyun */,
 				51331ECA2AC04B6B006CA899 /* Component */,
 				51331EC62AC04B27006CA899 /* Extension+ */,
 				51331EC72AC04B2F006CA899 /* Utility */,
@@ -156,7 +168,11 @@
 		51331EBC2AC047B7006CA899 /* 오늘의슈밥 */ = {
 			isa = PBXGroup;
 			children = (
+				51331EDF2AC052BA006CA899 /* TodayTabBarController.swift */,
 				51331EBA2AC047B4006CA899 /* TodayViewController.swift */,
+				51331EDE2AC0528D006CA899 /* 석식 */,
+				51331EDD2AC05284006CA899 /* 중식 */,
+				51331EDC2AC05211006CA899 /* 조식 */,
 			);
 			name = "오늘의슈밥";
 			path = "오늘의슈밥";
@@ -192,10 +208,8 @@
 		51331EC62AC04B27006CA899 /* Extension+ */ = {
 			isa = PBXGroup;
 			children = (
-				51331ED22AC04BA7006CA899 /* ButtonPadding.swift */,
 				51331ED02AC04BA7006CA899 /* Color+.swift */,
 				51331ECF2AC04BA7006CA899 /* Extension+.swift */,
-				51331ED12AC04BA7006CA899 /* TextFieldWithPadding.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -225,6 +239,36 @@
 			path = UhBeeSe_hyun;
 			sourceTree = "<group>";
 		};
+		51331EDC2AC05211006CA899 /* 조식 */ = {
+			isa = PBXGroup;
+			children = (
+				51331EE42AC06A33006CA899 /* TodayBreakfastViewController.swift */,
+				51331EEA2AC0A53B006CA899 /* TodayBreakfastTableView.swift */,
+				51331EEC2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift */,
+				51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */,
+			);
+			name = "조식";
+			path = "조식";
+			sourceTree = "<group>";
+		};
+		51331EDD2AC05284006CA899 /* 중식 */ = {
+			isa = PBXGroup;
+			children = (
+				51331EE62AC06A76006CA899 /* TodayLunchViewController.swift */,
+			);
+			name = "중식";
+			path = "중식";
+			sourceTree = "<group>";
+		};
+		51331EDE2AC0528D006CA899 /* 석식 */ = {
+			isa = PBXGroup;
+			children = (
+				51331EE82AC06A7E006CA899 /* TodayDinnerViewController.swift */,
+			);
+			name = "석식";
+			path = "석식";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -241,6 +285,9 @@
 			dependencies = (
 			);
 			name = SWU_MEAL;
+			packageProductDependencies = (
+				51331EE22AC0633A006CA899 /* Tabman */,
+			);
 			productName = SWU_MEAL;
 			productReference = 51331E872AC02AA1006CA899 /* SWU_MEAL.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +360,9 @@
 				Base,
 			);
 			mainGroup = 51331E7E2AC02AA0006CA899;
+			packageReferences = (
+				51331EE12AC0633A006CA899 /* XCRemoteSwiftPackageReference "Tabman" */,
+			);
 			productRefGroup = 51331E882AC02AA1006CA899 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -358,16 +408,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				51331ECE2AC04B85006CA899 /* DividerView.swift in Sources */,
+				51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */,
+				51331EEB2AC0A53B006CA899 /* TodayBreakfastTableView.swift in Sources */,
 				51331ED42AC04BA7006CA899 /* Color+.swift in Sources */,
+				51331EED2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift in Sources */,
 				51331ECD2AC04B85006CA899 /* CustomBackButton.swift in Sources */,
 				51331EC32AC04AB7006CA899 /* WeekViewController.swift in Sources */,
 				51331EC52AC04ABF006CA899 /* MyPageViewController.swift in Sources */,
 				51331EBB2AC047B4006CA899 /* TodayViewController.swift in Sources */,
+				51331EE52AC06A33006CA899 /* TodayBreakfastViewController.swift in Sources */,
 				51331EBF2AC04A68006CA899 /* TabBarController.swift in Sources */,
-				51331ED52AC04BA7006CA899 /* TextFieldWithPadding.swift in Sources */,
 				51331E8B2AC02AA1006CA899 /* AppDelegate.swift in Sources */,
-				51331ED62AC04BA7006CA899 /* ButtonPadding.swift in Sources */,
+				51331EE92AC06A7E006CA899 /* TodayDinnerViewController.swift in Sources */,
+				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
+				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,
 				51331ED32AC04BA7006CA899 /* Extension+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,6 +757,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		51331EE12AC0633A006CA899 /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		51331EE22AC0633A006CA899 /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51331EE12AC0633A006CA899 /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 51331E7F2AC02AA1006CA899 /* Project object */;
 }
