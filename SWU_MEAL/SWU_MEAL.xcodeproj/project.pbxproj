@@ -24,6 +24,8 @@
 		51331ED42AC04BA7006CA899 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ED02AC04BA7006CA899 /* Color+.swift */; };
 		51331ED52AC04BA7006CA899 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ED12AC04BA7006CA899 /* TextFieldWithPadding.swift */; };
 		51331ED62AC04BA7006CA899 /* ButtonPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331ED22AC04BA7006CA899 /* ButtonPadding.swift */; };
+		51331EDA2AC05136006CA899 /* UhBee Se_hyun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51331ED82AC05136006CA899 /* UhBee Se_hyun.ttf */; };
+		51331EDB2AC05136006CA899 /* UhBee Se_hyun Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51331ED92AC05136006CA899 /* UhBee Se_hyun Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		51331ED02AC04BA7006CA899 /* Color+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		51331ED12AC04BA7006CA899 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		51331ED22AC04BA7006CA899 /* ButtonPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPadding.swift; sourceTree = "<group>"; };
+		51331ED82AC05136006CA899 /* UhBee Se_hyun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun.ttf"; sourceTree = "<group>"; };
+		51331ED92AC05136006CA899 /* UhBee Se_hyun Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 		51331E892AC02AA1006CA899 /* SWU_MEAL */ = {
 			isa = PBXGroup;
 			children = (
+				51331ED72AC05136006CA899 /* UhBeeSe_hyun */,
 				51331E8A2AC02AA1006CA899 /* AppDelegate.swift */,
 				51331E8C2AC02AA1006CA899 /* SceneDelegate.swift */,
 				51331ECA2AC04B6B006CA899 /* Component */,
@@ -209,6 +214,15 @@
 				51331ECC2AC04B85006CA899 /* DividerView.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		51331ED72AC05136006CA899 /* UhBeeSe_hyun */ = {
+			isa = PBXGroup;
+			children = (
+				51331ED82AC05136006CA899 /* UhBee Se_hyun.ttf */,
+				51331ED92AC05136006CA899 /* UhBee Se_hyun Bold.ttf */,
+			);
+			path = UhBeeSe_hyun;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +331,8 @@
 			files = (
 				51331E972AC02AA2006CA899 /* LaunchScreen.storyboard in Resources */,
 				51331E942AC02AA2006CA899 /* Assets.xcassets in Resources */,
+				51331EDA2AC05136006CA899 /* UhBee Se_hyun.ttf in Resources */,
+				51331EDB2AC05136006CA899 /* UhBee Se_hyun Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
