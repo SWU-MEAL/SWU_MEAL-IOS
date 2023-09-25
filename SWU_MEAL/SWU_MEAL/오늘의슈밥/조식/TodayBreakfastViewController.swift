@@ -52,10 +52,9 @@ private extension TodayBreakfastViewController {
         
         menuTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            menuTableView.topAnchor.constraint(equalTo: menuView.topAnchor),
+            menuTableView.centerYAnchor.constraint(equalTo: menuView.centerYAnchor),
             menuTableView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
             menuTableView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
-            menuTableView.bottomAnchor.constraint(equalTo: menuView.bottomAnchor)
         ])
     }
     

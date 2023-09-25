@@ -1,44 +1,37 @@
 //
-//  TodayBreakfastTableView.swift
+//  TodayLunchTableView.swift
 //  SWU_MEAL
 //
-//  Created by 목정아 on 2023/09/25.
+//  Created by 목정아 on 2023/09/26.
 //
 
 import UIKit
 
-final class TodayBreakfastTableView: UITableView {
+final class TodayLunchTableView: UITableView {
     
     // MARK: - Properties
 
     private let cellHeight: CGFloat = 32.0
     
     private let todayMeal: [TodayMealModel] = [
-        TodayMealModel(content: "야채죽"),
-        TodayMealModel(content: "셀프 시리얼"),
-        TodayMealModel(content: "계란후라이(1인 1개씩)"),
-        TodayMealModel(content: "구운 소세지 & 케찹"),
-        TodayMealModel(content: "우유&주스"),
+        TodayMealModel(content: "햄김치볶음밥"),
+        TodayMealModel(content: "고로케&케찹"),
+        TodayMealModel(content: "self 우동국물"),
+        TodayMealModel(content: "단무지"),
         TodayMealModel(content: "배추김치")
     ]
     
-    // MARK: - init
-
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
-        self.setupLayout()
+        setupTableView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-// MARK: - Extension
-
-private extension TodayBreakfastTableView {
     
-    func setupLayout() {
+    private func setupTableView() {
+        self.dataSource = self
         self.isScrollEnabled = false
         self.separatorStyle = .none
         self.layer.cornerRadius = 10.0
@@ -47,26 +40,24 @@ private extension TodayBreakfastTableView {
             equalToConstant: cellHeight * CGFloat(todayMeal.count)
         ).isActive = true
         
-        self.dataSource = self
         self.register(
-            TodayBreakfastTableViewCell.self,
-            forCellReuseIdentifier: TodayBreakfastTableViewCell.identifier
+            TodayLunchTableViewCell.self,
+            forCellReuseIdentifier: TodayLunchTableViewCell.identifier
         )
     }
     
 }
 
-extension TodayBreakfastTableView: UITableViewDataSource {
-    
+extension TodayLunchTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todayMeal.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: TodayBreakfastTableViewCell.identifier,
+            withIdentifier: TodayLunchTableViewCell.identifier,
             for: indexPath
-        ) as? TodayBreakfastTableViewCell else { return UITableViewCell() }
+        ) as? TodayLunchTableViewCell else { return UITableViewCell() }
         
         let model = todayMeal[indexPath.row]
         cell.setup(model: model)
@@ -74,6 +65,4 @@ extension TodayBreakfastTableView: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }

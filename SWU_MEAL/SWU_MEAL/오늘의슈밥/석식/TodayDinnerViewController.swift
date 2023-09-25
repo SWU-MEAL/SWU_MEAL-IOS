@@ -8,9 +8,9 @@
 import UIKit
 
 final class TodayDinnerViewController: UIViewController {
-    
+
     // MARK: - Views
-    
+
     private lazy var menuView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -18,24 +18,26 @@ final class TodayDinnerViewController: UIViewController {
         
         return view
     }()
+
+    private let dinnerTableView = TodayDinnerTableView(frame: .zero)
     
     // MARK: - LifeCycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#F6F6F6")
         self.setupLayout()
     }
-    
 }
 
 // MARK: - Extension
 
 private extension TodayDinnerViewController {
-    
+
     func setupLayout() {
         [
-            menuView
+            menuView,
+            dinnerTableView
         ].forEach { view.addSubview($0) }
         
         menuView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +47,12 @@ private extension TodayDinnerViewController {
             menuView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0),
             menuView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -72.0)
         ])
+        
+        dinnerTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dinnerTableView.centerYAnchor.constraint(equalTo: menuView.centerYAnchor),
+            dinnerTableView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
+            dinnerTableView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+        ])
     }
-    
 }
