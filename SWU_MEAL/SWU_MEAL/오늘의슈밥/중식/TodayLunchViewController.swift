@@ -24,6 +24,8 @@ final class TodayLunchViewController: UIViewController {
     private let button3 = TagButton(frame: .zero, title: "스낵코너")
     private let button4 = TagButton(frame: .zero, title: "교직원")
     
+    private var buttonBundle: [TagButton] = []
+    
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 4.0
@@ -47,6 +49,13 @@ final class TodayLunchViewController: UIViewController {
         view.backgroundColor = UIColor(hex: "#F6F6F6")
         self.setupLayout()
         self.buttonFunction()
+        
+        buttonBundle = [
+            button1, 
+            button2,
+            button3,
+            button4
+        ]
     }
 }
 
@@ -98,22 +107,28 @@ private extension TodayLunchViewController {
         self.button1.backgroundColor = .black
         self.button1.setTitleColor(.white, for: .normal)
         self.button1.titleLabel?.font = .systemFont(ofSize: 13.0, weight: .semibold)
+    
     }
+    
+    func checkButtonTag(tag: Int) {
+        for button in buttonBundle {
+            if button.tag == tag {
+                button.backgroundColor = .black
+                button.setTitleColor(.white, for: .normal)
+                button.titleLabel?.font = .systemFont(ofSize: 13.0, weight: .semibold)
+            } else {
+                button.setTitleColor(UIColor(hex: "#B3B3B3"), for: .normal)
+                button.titleLabel?.font = .systemFont(ofSize: 13.0, weight: .regular)
+                button.backgroundColor = UIColor(hex: "#F6F6F6")
+            }
+        }
+    }
+   
 }
 
 extension TodayLunchViewController: TagButtonProtocol {
     func didTapTagButton(buttonTag: UIButton) {
-        switch buttonTag.tag {
-        case 1001:
-            print("button1")
-        case 1002:
-            print("button2")
-        case 1003:
-            print("button3")
-        case 1004:
-            print("button4")
-        default:
-            print("ERROR")
-        }
+        self.checkButtonTag(tag: buttonTag.tag)
+        print("TagButton Tag : \(buttonTag.tag)")
     }
 }
