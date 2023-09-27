@@ -37,6 +37,9 @@
 		51331EED2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EEC2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift */; };
 		51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */; };
 		51331EF12AC0AC2B006CA899 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51331EF02AC0AC2B006CA899 /* TagButton.swift */; };
+		51383F142AC2C9F200866891 /* MypageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51383F132AC2C9F200866891 /* MypageTableView.swift */; };
+		51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51383F152AC2CA0700866891 /* MypageTableViewCell.swift */; };
+		51383F182AC2CB6300866891 /* MypageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51383F172AC2CB6300866891 /* MypageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,9 @@
 		51331EEC2AC0A59D006CA899 /* TodayBreakfastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBreakfastTableViewCell.swift; sourceTree = "<group>"; };
 		51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMealModel.swift; sourceTree = "<group>"; };
 		51331EF02AC0AC2B006CA899 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		51383F132AC2C9F200866891 /* MypageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableView.swift; sourceTree = "<group>"; };
+		51383F152AC2CA0700866891 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
+		51383F172AC2CB6300866891 /* MypageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +242,9 @@
 			isa = PBXGroup;
 			children = (
 				51331EC42AC04ABF006CA899 /* MyPageViewController.swift */,
+				51383F132AC2C9F200866891 /* MypageTableView.swift */,
+				51383F152AC2CA0700866891 /* MypageTableViewCell.swift */,
+				51383F172AC2CB6300866891 /* MypageModel.swift */,
 			);
 			name = "마이페이지";
 			path = "마이페이지";
@@ -456,6 +465,7 @@
 			files = (
 				51331EF12AC0AC2B006CA899 /* TagButton.swift in Sources */,
 				51331ECE2AC04B85006CA899 /* DividerView.swift in Sources */,
+				51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */,
 				51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */,
 				511D53402AC1F99E00A688F4 /* TodayLunchTableView.swift in Sources */,
 				51331ED42AC04BA7006CA899 /* Color+.swift in Sources */,
@@ -469,9 +479,11 @@
 				51331EC52AC04ABF006CA899 /* MyPageViewController.swift in Sources */,
 				51331EBB2AC047B4006CA899 /* TodayViewController.swift in Sources */,
 				51331EE52AC06A33006CA899 /* TodayBreakfastViewController.swift in Sources */,
+				51383F142AC2C9F200866891 /* MypageTableView.swift in Sources */,
 				51331EBF2AC04A68006CA899 /* TabBarController.swift in Sources */,
 				51331E8B2AC02AA1006CA899 /* AppDelegate.swift in Sources */,
 				51331EE92AC06A7E006CA899 /* TodayDinnerViewController.swift in Sources */,
+				51383F182AC2CB6300866891 /* MypageModel.swift in Sources */,
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
 				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,
