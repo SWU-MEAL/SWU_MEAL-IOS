@@ -49,8 +49,8 @@ private extension TodayBreakfastTableView {
         
         self.dataSource = self
         self.register(
-            TodayBreakfastTableViewCell.self,
-            forCellReuseIdentifier: TodayBreakfastTableViewCell.identifier
+            TodayTableViewCell.self,
+            forCellReuseIdentifier: TodayTableViewCell.identifier
         )
     }
     
@@ -64,9 +64,9 @@ extension TodayBreakfastTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: TodayBreakfastTableViewCell.identifier,
+            withIdentifier: TodayTableViewCell.identifier,
             for: indexPath
-        ) as? TodayBreakfastTableViewCell else { return UITableViewCell() }
+        ) as? TodayTableViewCell else { return UITableViewCell() }
         
         let model = todayMeal[indexPath.row]
         cell.setup(model: model)

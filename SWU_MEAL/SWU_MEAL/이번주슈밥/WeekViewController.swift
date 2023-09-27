@@ -9,6 +9,8 @@ import UIKit
 
 final class WeekViewController: UIViewController {
     
+    // MARK: - Properties
+    
     // MARK: - Views
 
     private lazy var titleLabel: UILabel = {
@@ -35,6 +37,7 @@ final class WeekViewController: UIViewController {
         
         return view
     }()
+    
     
     // MARK: - LifeCycle
 
@@ -70,4 +73,3 @@ private extension WeekViewController {
     }
     
 }
-

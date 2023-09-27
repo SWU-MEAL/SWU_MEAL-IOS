@@ -42,8 +42,8 @@ final class TodayDinnerTableView: UITableView {
         ).isActive = true
         
         self.register(
-            TodayDinnerTableViewCell.self,
-            forCellReuseIdentifier: TodayDinnerTableViewCell.identifier
+            TodayTableViewCell.self,
+            forCellReuseIdentifier: TodayTableViewCell.identifier
         )
     }
     
@@ -56,9 +56,9 @@ extension TodayDinnerTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: TodayDinnerTableViewCell.identifier,
+            withIdentifier: TodayTableViewCell.identifier,
             for: indexPath
-        ) as? TodayDinnerTableViewCell else { return UITableViewCell() }
+        ) as? TodayTableViewCell else { return UITableViewCell() }
         
         let model = todayMeal[indexPath.row]
         cell.setup(model: model)

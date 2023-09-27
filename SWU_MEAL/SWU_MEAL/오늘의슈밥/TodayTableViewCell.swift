@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TodayBreakfastTableViewCell: UITableViewCell {
+final class TodayTableViewCell: UITableViewCell {
     
     // MARK: - Properties
 
@@ -35,7 +35,7 @@ final class TodayBreakfastTableViewCell: UITableViewCell {
     
 }
 
-private extension TodayBreakfastTableViewCell {
+private extension TodayTableViewCell {
     
     func setupLayout() {
         addSubview(contentLabel)

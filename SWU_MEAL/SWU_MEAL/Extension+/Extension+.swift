@@ -82,8 +82,7 @@ extension UIView{
         case bottomRight
         case bottomLeft
     }
-    
-        //multiple corners using CACornerMask
+
     func roundCorners(corners:[RoundCornersAt], radius: CGFloat) {
         self.layer.cornerRadius = radius
         self.layer.maskedCorners = [
