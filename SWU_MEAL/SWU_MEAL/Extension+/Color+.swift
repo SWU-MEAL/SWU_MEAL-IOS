@@ -17,5 +17,7 @@ extension UIColor {
     static let mainOrangeColor = UIColor(hex: "#FF5A00")
     static let mainGrayColor = UIColor(hex: "#2D3F51")
     
+    static let reportActiveColor = UIColor.black
+    static let reportUnActiveColor = UIColor(hex: "#BCBCBC")
 }
 

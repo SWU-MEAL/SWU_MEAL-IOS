@@ -12,6 +12,9 @@ final class WeekViewController: UIViewController {
     // MARK: - Properties
     
     // MARK: - Views
+    
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -38,12 +41,16 @@ final class WeekViewController: UIViewController {
         return view
     }()
     
+    private let scheduleView = WeekdayView(frame: .zero)
     
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
+        
+        scheduleView.setupDelegate(self)
+        self.scrollView.bounces = false
         self.setupLayout()
     }
     
@@ -54,15 +61,37 @@ final class WeekViewController: UIViewController {
 private extension WeekViewController {
     
     func setupLayout() {
+        
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
+            contentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height + 320)
+        ])
+
         [
             titleLabel,
             highLightView,
-        ].forEach { view.addSubview($0) }
+            scheduleView
+        ].forEach { contentView.addSubview($0) }
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0)
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24.0)
         ])
         
         highLightView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +99,21 @@ private extension WeekViewController {
             highLightView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 27.0),
             highLightView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -2.0)
         ])
+        
+        scheduleView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scheduleView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 101.0),
+            scheduleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            scheduleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            scheduleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
     
+}
+
+extension WeekViewController: WeekdayViewProtocol {
+    func didTapInfoReport() {
+        let vc = MenuReportViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

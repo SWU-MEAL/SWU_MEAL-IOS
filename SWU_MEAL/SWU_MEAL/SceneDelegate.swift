@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           window = UIWindow(windowScene: scene)
           window?.backgroundColor = .systemBackground
           
-          let rootVC = TabBarController()
+          let rootVC = MenuReportViewController()
           let rootNavigationVC = UINavigationController(rootViewController: rootVC)
           
           window?.rootViewController = rootNavigationVC
