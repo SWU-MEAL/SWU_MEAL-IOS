@@ -11,6 +11,13 @@ final class MenuReportViewController: UIViewController {
     
     // MARK: - Views
     
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hex: "#F6F6F6")
+        
+        return view
+    }()
+    
     private lazy var xmarkButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -22,13 +29,7 @@ final class MenuReportViewController: UIViewController {
         return button
     }()
     
-    private lazy var dateView: WhiteView = {
-        let view = WhiteView(frame: .zero, height: 52.0)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapDateViewButton))
-        view.addGestureRecognizer(tapGesture)
-        
-        return view
-    }()
+    private lazy var dateView = WhiteView(frame: .zero, height: 52.0)
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
@@ -44,9 +45,18 @@ final class MenuReportViewController: UIViewController {
         button.setTitle("2023.09.20(수)", for: .normal)
         button.setTitleColor(UIColor(hex: "#191919"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15.54)
-        button.addTarget(self, action: #selector(didTapDateViewButton), for: .touchUpInside)
         
         return button
+    }()
+    
+    private lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.backgroundColor = .white
+        datePicker.datePickerMode = .date
+        datePicker.locale = Locale(identifier: "ko_KR")
+        datePicker.preferredDatePickerStyle = .automatic
+        
+        return datePicker
     }()
     
     private lazy var dateStackView: UIStackView = {
@@ -55,27 +65,35 @@ final class MenuReportViewController: UIViewController {
         stackView.spacing = 26.0
         [
             dateLabel,
-            dateChooseButton
+            datePicker
         ].forEach { stackView.addArrangedSubview($0) }
         
         return stackView
     }()
     
-    private lazy var dateToggleButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "Toggle")?
-            .resize(to: CGSize(width: 28.0, height: 28.0)), for: .normal)
-        button.addTarget(self, action: #selector(didTapDateViewButton), for: .touchUpInside)
+    private lazy var dateMenu: UIMenu = {
+        let morningMenu = UIAction(title: "아침식사") { action in
+            self.timeChooseButton.setTitle("아침식사", for: .normal)
+        }
         
-        return button
+        let launchMenu = UIAction(title: "점심식사") { action in
+            self.timeChooseButton.setTitle("점심식사", for: .normal)
+        }
+        
+        let dinnerMenu = UIAction(title: "저녁식사") { action in
+            self.timeChooseButton.setTitle("저녁식사", for: .normal)
+        }
+        
+        let menuElement: [UIAction] = [
+            morningMenu,
+            launchMenu,
+            dinnerMenu
+        ]
+        
+        return UIMenu(title: "", children: menuElement)
     }()
     
-    private lazy var timeView: WhiteView = {
-        let view = WhiteView(frame: .zero, height: 52.0)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTimeViewButton))
-        view.addGestureRecognizer(tapGesture)
-        return view
-    }()
+    private lazy var timeView = WhiteView(frame: .zero, height: 52.0)
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
@@ -91,7 +109,8 @@ final class MenuReportViewController: UIViewController {
         button.setTitle("점심식사", for: .normal)
         button.setTitleColor(UIColor(hex: "#191919"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15.54)
-        button.addTarget(self, action: #selector(didTapTimeViewButton), for: .touchUpInside)
+        button.showsMenuAsPrimaryAction = true
+        button.menu = dateMenu
         
         return button
     }()
@@ -106,15 +125,6 @@ final class MenuReportViewController: UIViewController {
         ].forEach { stackView.addArrangedSubview($0) }
         
         return stackView
-    }()
-    
-    private lazy var timeToggleButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "Toggle")?
-            .resize(to: CGSize(width: 28.0, height: 28.0)), for: .normal)
-        button.addTarget(self, action: #selector(didTapTimeViewButton), for: .touchUpInside)
-        
-        return button
     }()
     
     private let textFieldView = WhiteView(frame: .zero, height: 364.0)
@@ -146,13 +156,13 @@ final class MenuReportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hex: "#F6F6F6")
+        view.backgroundColor = .white
         self.setupNavigation()
         self.setupLayout()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-      self.view.endEditing(true)
+        self.view.endEditing(true)
     }
 }
 
@@ -171,13 +181,21 @@ private extension MenuReportViewController {
     }
     
     func setupLayout() {
+        
+        view.addSubview(backgroundView)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
         [
             dateView,
             dateStackView,
-            dateToggleButton,
             timeView,
             timeStackView,
-            timeToggleButton,
             textFieldView,
             reportTextView,
             reportButton
@@ -196,12 +214,6 @@ private extension MenuReportViewController {
             dateStackView.centerYAnchor.constraint(equalTo: dateView.centerYAnchor),
         ])
         
-        dateToggleButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            dateToggleButton.centerYAnchor.constraint(equalTo: dateStackView.centerYAnchor),
-            dateToggleButton.trailingAnchor.constraint(equalTo: dateView.trailingAnchor, constant: -12.0)
-        ])
-        
         timeView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             timeView.topAnchor.constraint(equalTo: dateView.bottomAnchor, constant: 14.0),
@@ -213,12 +225,6 @@ private extension MenuReportViewController {
         NSLayoutConstraint.activate([
             timeStackView.leadingAnchor.constraint(equalTo: timeView.leadingAnchor, constant: 16.0),
             timeStackView.centerYAnchor.constraint(equalTo: timeView.centerYAnchor)
-        ])
-        
-        timeToggleButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            timeToggleButton.trailingAnchor.constraint(equalTo: timeView.trailingAnchor, constant: -12.0),
-            timeToggleButton.centerYAnchor.constraint(equalTo: timeStackView.centerYAnchor)
         ])
         
         reportTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -253,14 +259,6 @@ private extension MenuReportViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func didTapTimeViewButton() {
-        print("didTapTimeButton")
-    }
-    
-    @objc func didTapDateViewButton() {
-        print("didTapdateButton")
-    }
-    
 }
 
 // MARK: - UITextViewDelegate
@@ -271,5 +269,15 @@ extension MenuReportViewController : UITextViewDelegate {
         guard textView.textColor == UIColor(hex: "#BCBCBC") else {return }
         textView.text = nil
         textView.textColor  = .black
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            self.reportButton.isEnabled = false
+            self.reportButton.backgroundColor = .reportUnActiveColor
+        } else {
+            self.reportButton.isEnabled = true
+            self.reportButton.backgroundColor = .reportActiveColor
+        }
     }
 }
