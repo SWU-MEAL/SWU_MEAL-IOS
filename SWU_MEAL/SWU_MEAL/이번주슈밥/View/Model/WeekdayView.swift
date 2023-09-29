@@ -36,9 +36,7 @@ final class WeekdayView: UIView {
         
         return label
     }()
-    
-    
-    
+
     private lazy var morningStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -61,7 +59,9 @@ final class WeekdayView: UIView {
         return view
     }()
     
-    private lazy var launchLabel: UILabel = {
+    private let morningTableView = WeekMorningTableView()
+    
+    private lazy var lunchLabel: UILabel = {
         let label = UILabel()
         label.text = "🍚 점심식사"
         label.textColor = .black
@@ -70,7 +70,7 @@ final class WeekdayView: UIView {
         return label
     }()
     
-    private lazy var launchTimeLabel: UILabel = {
+    private lazy var lunchTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "11:30 ~ 13:30"
         label.textColor = UIColor(hex: "#606060")
@@ -79,20 +79,20 @@ final class WeekdayView: UIView {
         return label
     }()
     
-    private lazy var launchStackView: UIStackView = {
+    private lazy var lunchStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 12.0
         stackView.distribution = .fill
         [
-            launchLabel,
-            launchTimeLabel
+            lunchLabel,
+            lunchTimeLabel
         ].forEach { stackView.addArrangedSubview($0) }
         
         return stackView
     }()
     
-    private lazy var launchView: UIView = {
+    private lazy var lunchView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10.0
         view.backgroundColor = .white
@@ -100,6 +100,71 @@ final class WeekdayView: UIView {
         
         return view
     }()
+    
+    private lazy var lunchButton1: UIButton = {
+        let button = UIButton()
+        button.tag = 2001
+        button.setTitleColor(.weekLunchActiveColor, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15.0)
+        button.setTitle("한식코너", for: .normal)
+        
+        return button
+    }()
+    
+    private lazy var lunchButton2: UIButton = {
+        let button = UIButton()
+        button.tag = 2002
+        button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15.0)
+        button.setTitle("일품코너", for: .normal)
+        
+        return button
+    }()
+    
+    private lazy var lunchButton3: UIButton = {
+        let button = UIButton()
+        button.tag = 2003
+        button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15.0)
+        button.setTitle("스낵코너", for: .normal)
+        
+        return button
+    }()
+    
+    private lazy var lunchButton4: UIButton = {
+        let button = UIButton()
+        button.tag = 2004
+        button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15.0)
+        button.setTitle("교직원", for: .normal)
+        
+        return button
+    }()
+    
+    private lazy var lunchButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.heightAnchor.constraint(equalToConstant: 52.0).isActive = true
+        [
+            lunchButton1,
+            lunchButton2,
+            lunchButton3,
+            lunchButton4
+        ].forEach { stackView.addArrangedSubview($0) }
+        
+        return stackView
+    }()
+    
+    private lazy var lunchLineView: UIView = {
+        let view = UIView()
+        view.heightAnchor.constraint(equalToConstant: 1.28).isActive = true
+        view.backgroundColor = UIColor(hex: "#DBDBDC").withAlphaComponent(0.5)
+        
+        return view
+    }()
+    
+    private let lunchTableView = WeekLunchTableView()
     
     private lazy var dinnerLabel: UILabel = {
         let label = UILabel()
@@ -141,6 +206,8 @@ final class WeekdayView: UIView {
         return view
     }()
     
+    private let dinnerTableView = WeekDinnerTableView()
+    
     private lazy var infoReportButton: UIButton = {
         let button = UIButton()
         button.setTitle("메뉴 정보가 잘못되었나요?", for: .normal)
@@ -175,10 +242,15 @@ private extension WeekdayView {
         [
             morningStackView,
             morningView,
-            launchStackView,
-            launchView,
+            morningTableView,
+            lunchStackView,
+            lunchView,
+            lunchButtonStackView,
+            lunchLineView,
+            lunchTableView,
             dinnerStackView,
             dinnerView,
+            dinnerTableView,
             infoReportButton
         ].forEach { addSubview($0) }
 
@@ -187,44 +259,65 @@ private extension WeekdayView {
             morningStackView.topAnchor.constraint(equalTo: topAnchor, constant: 35.0),
             morningStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.0)
         ])
+        
+        morningTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            morningTableView.topAnchor.constraint(equalTo: morningStackView.bottomAnchor, constant: 15.0),
+            morningTableView.leadingAnchor.constraint(equalTo: morningStackView.leadingAnchor),
+            morningTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.0),
+        ])
+        
+        lunchStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lunchStackView.topAnchor.constraint(equalTo: morningTableView.bottomAnchor, constant: 36.0),
+            lunchStackView.leadingAnchor.constraint(equalTo: morningStackView.leadingAnchor)
+        ])
+        
+        lunchView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lunchView.topAnchor.constraint(equalTo: lunchStackView.bottomAnchor, constant: 15.0),
+            lunchView.leadingAnchor.constraint(equalTo: lunchStackView.leadingAnchor),
+            lunchView.trailingAnchor.constraint(equalTo: morningTableView.trailingAnchor),
+        ])
+        
+        lunchButtonStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lunchButtonStackView.topAnchor.constraint(equalTo: lunchView.topAnchor),
+            lunchButtonStackView.leadingAnchor.constraint(equalTo: lunchView.leadingAnchor),
+            lunchButtonStackView.trailingAnchor.constraint(equalTo: lunchView.trailingAnchor)
+        ])
+        
+        lunchLineView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lunchLineView.topAnchor.constraint(equalTo: lunchView.topAnchor, constant: 53.78),
+            lunchLineView.leadingAnchor.constraint(equalTo: lunchView.leadingAnchor),
+            lunchLineView.trailingAnchor.constraint(equalTo: lunchView.trailingAnchor)
+        ])
+        
+        lunchTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lunchTableView.topAnchor.constraint(equalTo: lunchLineView.bottomAnchor, constant: 17.0),
+            lunchTableView.leadingAnchor.constraint(equalTo: lunchView.leadingAnchor),
+            lunchTableView.trailingAnchor.constraint(equalTo: lunchView.trailingAnchor),
+        ])
 
-        morningView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            morningView.leadingAnchor.constraint(equalTo: morningStackView.leadingAnchor),
-            morningView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.0),
-            morningView.topAnchor.constraint(equalTo: morningStackView.bottomAnchor, constant: 10.0),
-        ])
-        
-        launchStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            launchStackView.topAnchor.constraint(equalTo: morningView.bottomAnchor, constant: 36.0),
-            launchStackView.leadingAnchor.constraint(equalTo: morningStackView.leadingAnchor)
-        ])
-        
-        launchView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            launchView.topAnchor.constraint(equalTo: launchStackView.bottomAnchor, constant: 10.0),
-            launchView.leadingAnchor.constraint(equalTo: launchStackView.leadingAnchor),
-            launchView.trailingAnchor.constraint(equalTo: morningView.trailingAnchor),
-        ])
-        
         dinnerStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            dinnerStackView.topAnchor.constraint(equalTo: launchView.bottomAnchor, constant: 36.0),
+            dinnerStackView.topAnchor.constraint(equalTo: lunchTableView.bottomAnchor, constant: 36.0),
             dinnerStackView.leadingAnchor.constraint(equalTo: morningStackView.leadingAnchor)
         ])
         
-        dinnerView.translatesAutoresizingMaskIntoConstraints = false
+        dinnerTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            dinnerView.topAnchor.constraint(equalTo: dinnerStackView.bottomAnchor, constant: 10.0),
-            dinnerView.leadingAnchor.constraint(equalTo: dinnerStackView.leadingAnchor),
-            dinnerView.trailingAnchor.constraint(equalTo: morningView.trailingAnchor)
+            dinnerTableView.topAnchor.constraint(equalTo: dinnerStackView.bottomAnchor, constant: 15.0),
+            dinnerTableView.leadingAnchor.constraint(equalTo: dinnerStackView.leadingAnchor),
+            dinnerTableView.trailingAnchor.constraint(equalTo: morningTableView.trailingAnchor),
         ])
         
         infoReportButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            infoReportButton.topAnchor.constraint(equalTo: dinnerView.bottomAnchor, constant: 32.0),
-            infoReportButton.centerXAnchor.constraint(equalTo: dinnerView.centerXAnchor)
+            infoReportButton.topAnchor.constraint(equalTo: dinnerTableView.bottomAnchor, constant: 32.0),
+            infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
         ])
     }
     

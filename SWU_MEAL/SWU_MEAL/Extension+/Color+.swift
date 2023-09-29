@@ -19,5 +19,8 @@ extension UIColor {
     
     static let reportActiveColor = UIColor.black
     static let reportUnActiveColor = UIColor(hex: "#DBDBDC")
+    
+    static let weekLunchActiveColor = UIColor(hex: "#191919")
+    static let weekLunchUnActiveColor = UIColor(hex: "#BCBCBC")
 }
 

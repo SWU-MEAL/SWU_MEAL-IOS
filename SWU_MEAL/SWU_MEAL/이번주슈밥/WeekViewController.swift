@@ -79,7 +79,7 @@ private extension WeekViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
-            contentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height + 320)
+            contentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height + 500)
         ])
 
         [

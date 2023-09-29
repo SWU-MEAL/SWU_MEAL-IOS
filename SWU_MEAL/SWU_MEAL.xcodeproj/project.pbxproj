@@ -42,6 +42,10 @@
 		516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */; };
 		516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A62AC5494100F09F12 /* MenuReportViewController.swift */; };
 		516380A92AC5507800F09F12 /* WhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A82AC5507800F09F12 /* WhiteView.swift */; };
+		517EAB1F2AC708CB0059ED4C /* WeekMorningTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB1E2AC708CB0059ED4C /* WeekMorningTableView.swift */; };
+		517EAB212AC708FD0059ED4C /* WeekLunchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB202AC708FD0059ED4C /* WeekLunchTableView.swift */; };
+		517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */; };
+		517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +104,10 @@
 		516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewTabBarController.swift; sourceTree = "<group>"; };
 		516380A62AC5494100F09F12 /* MenuReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReportViewController.swift; sourceTree = "<group>"; };
 		516380A82AC5507800F09F12 /* WhiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteView.swift; sourceTree = "<group>"; };
+		517EAB1E2AC708CB0059ED4C /* WeekMorningTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMorningTableView.swift; sourceTree = "<group>"; };
+		517EAB202AC708FD0059ED4C /* WeekLunchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekLunchTableView.swift; sourceTree = "<group>"; };
+		517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDinnerTableView.swift; sourceTree = "<group>"; };
+		517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,9 +228,9 @@
 		51331EC02AC04A90006CA899 /* 이번주슈밥 */ = {
 			isa = PBXGroup;
 			children = (
-				516380A62AC5494100F09F12 /* MenuReportViewController.swift */,
 				516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */,
 				51331EC22AC04AB7006CA899 /* WeekViewController.swift */,
+				516380A62AC5494100F09F12 /* MenuReportViewController.swift */,
 				516380AA2AC5507C00F09F12 /* View */,
 			);
 			name = "이번주슈밥";
@@ -317,10 +325,31 @@
 		516380AA2AC5507C00F09F12 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5148073C2AC40C7000A96879 /* WeekdayView.swift */,
-				516380A82AC5507800F09F12 /* WhiteView.swift */,
+				517EAB262AC70C1E0059ED4C /* Model */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		517EAB1D2AC707BD0059ED4C /* 테이블뷰 */ = {
+			isa = PBXGroup;
+			children = (
+				517EAB1E2AC708CB0059ED4C /* WeekMorningTableView.swift */,
+				517EAB202AC708FD0059ED4C /* WeekLunchTableView.swift */,
+				517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */,
+				517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */,
+			);
+			name = "테이블뷰";
+			path = "테이블뷰";
+			sourceTree = "<group>";
+		};
+		517EAB262AC70C1E0059ED4C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5148073C2AC40C7000A96879 /* WeekdayView.swift */,
+				516380A82AC5507800F09F12 /* WhiteView.swift */,
+				517EAB1D2AC707BD0059ED4C /* 테이블뷰 */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,16 +504,20 @@
 				511D534B2AC201C900A688F4 /* TodayBreakfastTableView.swift in Sources */,
 				51331EC52AC04ABF006CA899 /* MyPageViewController.swift in Sources */,
 				51331EBB2AC047B4006CA899 /* TodayViewController.swift in Sources */,
+				517EAB212AC708FD0059ED4C /* WeekLunchTableView.swift in Sources */,
 				516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */,
 				516380A92AC5507800F09F12 /* WhiteView.swift in Sources */,
 				5148073D2AC40C7000A96879 /* WeekdayView.swift in Sources */,
 				51331EE52AC06A33006CA899 /* TodayBreakfastViewController.swift in Sources */,
+				517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */,
+				517EAB1F2AC708CB0059ED4C /* WeekMorningTableView.swift in Sources */,
 				51383F142AC2C9F200866891 /* MypageTableView.swift in Sources */,
 				51331EBF2AC04A68006CA899 /* TabBarController.swift in Sources */,
 				51331E8B2AC02AA1006CA899 /* AppDelegate.swift in Sources */,
 				51331EE92AC06A7E006CA899 /* TodayDinnerViewController.swift in Sources */,
 				51383F182AC2CB6300866891 /* MypageModel.swift in Sources */,
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
+				517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */,
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
 				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,
 				51331ED32AC04BA7006CA899 /* Extension+.swift in Sources */,
