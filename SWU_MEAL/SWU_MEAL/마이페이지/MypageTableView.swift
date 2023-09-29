@@ -27,6 +27,7 @@ final class MypageTableView: UITableView {
     }
     
     private func setupTableView() {
+        self.backgroundColor = .white
         self.dataSource = self
         self.rowHeight = self.cellHeight
         self.register(

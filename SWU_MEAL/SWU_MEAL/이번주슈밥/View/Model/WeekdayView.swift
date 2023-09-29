@@ -16,6 +16,14 @@ final class WeekdayView: UIView {
     // MARK: - Properties
     
     private weak var weekdayDelegate: WeekdayViewProtocol?
+    private var selectedButtonIndex = 0
+    
+    private lazy var lunchButtonSet: [UIButton] = [
+        self.lunchButton1,
+        self.lunchButton2,
+        self.lunchButton3,
+        self.lunchButton4,
+    ]
     
     // MARK: - Views
     
@@ -164,6 +172,15 @@ final class WeekdayView: UIView {
         return view
     }()
     
+    private lazy var lunchIndicatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hex: "#999999")
+        view.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 75.0).isActive = true
+        
+        return view
+    }()
+    
     private let lunchTableView = WeekLunchTableView()
     
     private lazy var dinnerLabel: UILabel = {
@@ -224,6 +241,10 @@ final class WeekdayView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor(hex: "#F6F6F6")
         self.setupLayout()
+        
+        for button in lunchButtonSet {
+            button.addTarget(self, action: #selector(didTapLunchButton(_ :)), for: .touchUpInside)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -247,6 +268,7 @@ private extension WeekdayView {
             lunchView,
             lunchButtonStackView,
             lunchLineView,
+            lunchIndicatorView,
             lunchTableView,
             dinnerStackView,
             dinnerView,
@@ -294,6 +316,12 @@ private extension WeekdayView {
             lunchLineView.trailingAnchor.constraint(equalTo: lunchView.trailingAnchor)
         ])
         
+        lunchIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lunchIndicatorView.leadingAnchor.constraint(equalTo: lunchLineView.leadingAnchor, constant: 8.0),
+            lunchIndicatorView.centerYAnchor.constraint(equalTo: lunchLineView.centerYAnchor)
+        ])
+        
         lunchTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             lunchTableView.topAnchor.constraint(equalTo: lunchLineView.bottomAnchor, constant: 17.0),
@@ -325,4 +353,22 @@ private extension WeekdayView {
         self.weekdayDelegate?.didTapInfoReport()
     }
     
+    @objc func didTapLunchButton(_ sender: UIButton) {
+        print(sender.tag)
+        sender.setTitleColor(.weekLunchActiveColor, for: .normal)
+        
+        for button in lunchButtonStackView.arrangedSubviews as! [UIButton] {
+            if button != sender {
+                button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+            }
+        }
+        
+        if let selectedIndex = lunchButtonStackView.arrangedSubviews.firstIndex(of: sender) {
+            selectedButtonIndex = selectedIndex
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.lunchIndicatorView.frame.origin.x = sender.frame.origin.x + 32.0
+        }
+    }
 }

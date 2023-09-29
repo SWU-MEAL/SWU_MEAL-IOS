@@ -68,7 +68,7 @@ final class MyPageViewController: UIViewController {
 private extension MyPageViewController {
     
     func setup() {
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .white
         [
             shadowView,
             appStackView,
