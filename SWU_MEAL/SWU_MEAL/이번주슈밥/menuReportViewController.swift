@@ -147,6 +147,7 @@ final class MenuReportViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
         button.backgroundColor = .reportUnActiveColor
         button.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+        button.isEnabled = false
         button.addTarget(self, action: #selector(didTapReportButton), for: .touchUpInside)
         
         return button
@@ -252,7 +253,18 @@ private extension MenuReportViewController {
     }
     
     @objc func didTapReportButton() {
-        self.navigationController?.popViewController(animated: true)
+        let alert = UIAlertController(title: "", message: "신고가 완료되었습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { action in
+            switch action.style{
+            case .cancel:
+                print("cancel")
+            case .destructive:
+                print("destructive")
+            case .default:
+                self.navigationController?.popViewController(animated: true)
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func didTapBackButton() {
@@ -272,7 +284,9 @@ extension MenuReportViewController : UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if textView.text.isEmpty {
+        let textWithoutWhitespace = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if textWithoutWhitespace.isEmpty {
             self.reportButton.isEnabled = false
             self.reportButton.backgroundColor = .reportUnActiveColor
         } else {

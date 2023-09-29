@@ -18,6 +18,6 @@ extension UIColor {
     static let mainGrayColor = UIColor(hex: "#2D3F51")
     
     static let reportActiveColor = UIColor.black
-    static let reportUnActiveColor = UIColor(hex: "#BCBCBC")
+    static let reportUnActiveColor = UIColor(hex: "#DBDBDC")
 }
 
