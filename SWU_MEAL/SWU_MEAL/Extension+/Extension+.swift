@@ -46,12 +46,12 @@ extension UIImage {
 // MARK: - UIFont
 
 extension UIFont {
-    static func pyeongChangLight(size: CGFloat) -> UIFont? {
-        return UIFont(name: "PyeongChangPeace-Light", size: size)
+    static func uhbee(size: CGFloat) -> UIFont? {
+        return UIFont(name: "UhBeeSe_hyun", size: size)
     }
     
-    static func pyeongChangBold(size: CGFloat) -> UIFont? {
-        return UIFont(name: "PyeongChangPeace-Bold", size: size)
+    static func uhbeeBold(size: CGFloat) -> UIFont? {
+        return UIFont(name: "UhBeeSe_hyunBold", size: size)
     }
 }
 
@@ -82,8 +82,7 @@ extension UIView{
         case bottomRight
         case bottomLeft
     }
-    
-        //multiple corners using CACornerMask
+
     func roundCorners(corners:[RoundCornersAt], radius: CGFloat) {
         self.layer.cornerRadius = radius
         self.layer.maskedCorners = [
@@ -93,6 +92,18 @@ extension UIView{
             corners.contains(.bottomLeft) ? .layerMinXMaxYCorner:.init(),
         ]
     }
-    
 }
 
+// MARK: - UIApplication
+
+extension UIApplication {
+    static var release: String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String? ?? "x.x"
+    }
+    static var build: String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String? ?? "x"
+    }
+    static var version: String {
+        return "\(release).\(build)"
+    }
+}
