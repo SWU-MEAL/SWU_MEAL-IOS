@@ -42,10 +42,15 @@
 		516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */; };
 		516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A62AC5494100F09F12 /* MenuReportViewController.swift */; };
 		516380A92AC5507800F09F12 /* WhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A82AC5507800F09F12 /* WhiteView.swift */; };
+		517B66022ACC39830086E14A /* ThuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66012ACC39830086E14A /* ThuesViewController.swift */; };
+		517B66042ACC39B70086E14A /* WednsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66032ACC39B70086E14A /* WednsViewController.swift */; };
+		517B66062ACC39DF0086E14A /* ThursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66052ACC39DF0086E14A /* ThursViewController.swift */; };
+		517B66082ACC39FA0086E14A /* FriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66072ACC39FA0086E14A /* FriViewController.swift */; };
 		517EAB1F2AC708CB0059ED4C /* WeekMorningTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB1E2AC708CB0059ED4C /* WeekMorningTableView.swift */; };
 		517EAB212AC708FD0059ED4C /* WeekLunchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB202AC708FD0059ED4C /* WeekLunchTableView.swift */; };
 		517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */; };
 		517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */; };
+		517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB292AC751970059ED4C /* MondayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,10 +109,15 @@
 		516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewTabBarController.swift; sourceTree = "<group>"; };
 		516380A62AC5494100F09F12 /* MenuReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReportViewController.swift; sourceTree = "<group>"; };
 		516380A82AC5507800F09F12 /* WhiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteView.swift; sourceTree = "<group>"; };
+		517B66012ACC39830086E14A /* ThuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThuesViewController.swift; sourceTree = "<group>"; };
+		517B66032ACC39B70086E14A /* WednsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WednsViewController.swift; sourceTree = "<group>"; };
+		517B66052ACC39DF0086E14A /* ThursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThursViewController.swift; sourceTree = "<group>"; };
+		517B66072ACC39FA0086E14A /* FriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriViewController.swift; sourceTree = "<group>"; };
 		517EAB1E2AC708CB0059ED4C /* WeekMorningTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMorningTableView.swift; sourceTree = "<group>"; };
 		517EAB202AC708FD0059ED4C /* WeekLunchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekLunchTableView.swift; sourceTree = "<group>"; };
 		517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDinnerTableView.swift; sourceTree = "<group>"; };
 		517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
+		517EAB292AC751970059ED4C /* MondayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,10 +238,10 @@
 		51331EC02AC04A90006CA899 /* 이번주슈밥 */ = {
 			isa = PBXGroup;
 			children = (
-				516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */,
 				51331EC22AC04AB7006CA899 /* WeekViewController.swift */,
 				516380A62AC5494100F09F12 /* MenuReportViewController.swift */,
 				516380AA2AC5507C00F09F12 /* View */,
+				517EAB2B2AC7519B0059ED4C /* 탭바 */,
 			);
 			name = "이번주슈밥";
 			path = "이번주슈밥";
@@ -350,6 +360,20 @@
 				517EAB1D2AC707BD0059ED4C /* 테이블뷰 */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		517EAB2B2AC7519B0059ED4C /* 탭바 */ = {
+			isa = PBXGroup;
+			children = (
+				516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */,
+				517EAB292AC751970059ED4C /* MondayViewController.swift */,
+				517B66012ACC39830086E14A /* ThuesViewController.swift */,
+				517B66032ACC39B70086E14A /* WednsViewController.swift */,
+				517B66052ACC39DF0086E14A /* ThursViewController.swift */,
+				517B66072ACC39FA0086E14A /* FriViewController.swift */,
+			);
+			name = "탭바";
+			path = "탭바";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,12 +524,16 @@
 				516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */,
 				51331EED2AC0A59D006CA899 /* TodayTableViewCell.swift in Sources */,
 				51331ECD2AC04B85006CA899 /* CustomBackButton.swift in Sources */,
+				517B66082ACC39FA0086E14A /* FriViewController.swift in Sources */,
+				517B66042ACC39B70086E14A /* WednsViewController.swift in Sources */,
 				51331EC32AC04AB7006CA899 /* WeekViewController.swift in Sources */,
+				517B66022ACC39830086E14A /* ThuesViewController.swift in Sources */,
 				511D534B2AC201C900A688F4 /* TodayBreakfastTableView.swift in Sources */,
 				51331EC52AC04ABF006CA899 /* MyPageViewController.swift in Sources */,
 				51331EBB2AC047B4006CA899 /* TodayViewController.swift in Sources */,
 				517EAB212AC708FD0059ED4C /* WeekLunchTableView.swift in Sources */,
 				516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */,
+				517B66062ACC39DF0086E14A /* ThursViewController.swift in Sources */,
 				516380A92AC5507800F09F12 /* WhiteView.swift in Sources */,
 				5148073D2AC40C7000A96879 /* WeekdayView.swift in Sources */,
 				51331EE52AC06A33006CA899 /* TodayBreakfastViewController.swift in Sources */,
@@ -518,6 +546,7 @@
 				51383F182AC2CB6300866891 /* MypageModel.swift in Sources */,
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
 				517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */,
+				517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */,
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
 				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,
 				51331ED32AC04BA7006CA899 /* Extension+.swift in Sources */,

@@ -43,6 +43,8 @@ final class WeekViewController: UIViewController {
     
     private let scheduleView = WeekdayView(frame: .zero)
     
+    private let weekdayTabBarController = WeekViewTabBarController()
+    
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -79,13 +81,13 @@ private extension WeekViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
-            contentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height + 500)
+            contentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height + 550)
         ])
 
         [
             titleLabel,
             highLightView,
-            scheduleView
+            weekdayTabBarController.view
         ].forEach { contentView.addSubview($0) }
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -100,12 +102,12 @@ private extension WeekViewController {
             highLightView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -2.0)
         ])
         
-        scheduleView.translatesAutoresizingMaskIntoConstraints = false
+        weekdayTabBarController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            scheduleView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 101.0),
-            scheduleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            scheduleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            scheduleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            weekdayTabBarController.view.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 37.0),
+            weekdayTabBarController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            weekdayTabBarController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            weekdayTabBarController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     

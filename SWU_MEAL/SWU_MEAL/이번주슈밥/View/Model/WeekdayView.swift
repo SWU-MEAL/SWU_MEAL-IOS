@@ -278,7 +278,7 @@ private extension WeekdayView {
 
         morningStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            morningStackView.topAnchor.constraint(equalTo: topAnchor, constant: 35.0),
+            morningStackView.topAnchor.constraint(equalTo: topAnchor, constant: 50.0),
             morningStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.0)
         ])
         

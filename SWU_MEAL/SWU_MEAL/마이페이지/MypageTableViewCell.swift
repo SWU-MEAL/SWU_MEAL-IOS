@@ -41,9 +41,7 @@ private extension MypageTableViewCell {
         title.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.0)
+            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.0),
         ])
-        
     }
-
 }
