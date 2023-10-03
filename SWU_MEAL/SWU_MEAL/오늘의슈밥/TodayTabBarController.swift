@@ -60,6 +60,8 @@ private extension TodayTabBarController {
         bar.buttons.customize { (button) in
             button.tintColor = UIColor(hex: "#606060")
             button.selectedTintColor = UIColor(hex: "#191919")
+            button.font = .systemFont(ofSize: 16.0, weight: .regular)
+            button.selectedFont = .systemFont(ofSize: 18.0, weight: .bold)
         }
         
         bar.indicator.overscrollBehavior = .bounce
