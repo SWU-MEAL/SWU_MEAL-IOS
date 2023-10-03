@@ -63,7 +63,6 @@ final class WeekViewController: UIViewController {
 private extension WeekViewController {
     
     func setupLayout() {
-        
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -110,8 +109,9 @@ private extension WeekViewController {
             weekdayTabBarController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-    
 }
+
+// MARK: - WeekdayViewProtocol
 
 extension WeekViewController: WeekdayViewProtocol {
     func didTapInfoReport() {

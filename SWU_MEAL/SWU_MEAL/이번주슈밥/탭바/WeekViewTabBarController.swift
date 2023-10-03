@@ -31,6 +31,10 @@ class WeekViewTabBarController: TabmanViewController {
     
     // MARK: - Properties
     
+    private var tabBarOriginalY: CGFloat = 0 // 탭 바의 원래 Y 좌표
+    private var isTabBarExtended = false
+    
+    private var adjustedWeekday: Int = 0
     private let numberOfCases: Int = 5
     
     private var viewControllers = [
@@ -43,6 +47,7 @@ class WeekViewTabBarController: TabmanViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.checkDay()
         
         self.dataSource = self
         self.setupStyle()
@@ -75,6 +80,15 @@ private extension WeekViewTabBarController {
         
         addBar(bar, dataSource: self, at: .top)
     }
+    
+    func checkDay() {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: currentDate)
+        self.adjustedWeekday = (weekday + 5) % 7
+        
+        print("오늘 요일 index: \(self.adjustedWeekday)")
+    }
 }
 
 // MARK: - PageboyViewControllerDataSource, TMBarDataSource
@@ -90,14 +104,15 @@ extension WeekViewTabBarController: PageboyViewControllerDataSource, TMBarDataSo
     }
     
     func defaultPage(for pageboyViewController: Pageboy.PageboyViewController) -> Pageboy.PageboyViewController.Page? {
-        return nil
+        let adjustedWeekday = self.adjustedWeekday
+        return .at(index: adjustedWeekday)
     }
     
     func barItem(for bar: Tabman.TMBar, at index: Int) -> Tabman.TMBarItemable {
         if let tabBarTopic = WeekTabBarTopic(
             rawValue: WeekTabBarTopic.allCases[index].rawValue
         ) {
-            return TMBarItem(title: tabBarTopic.rawValue)
+            return TMBarItem(title: adjustedWeekday == index ? "오늘" : tabBarTopic.rawValue)
         } else {
             return TMBarItem(title: "Unknown")
         }
