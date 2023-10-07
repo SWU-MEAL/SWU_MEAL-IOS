@@ -31,7 +31,7 @@ class WeekViewTabBarController: TabmanViewController {
     
     // MARK: - Properties
     
-    private var tabBarOriginalY: CGFloat = 0 // 탭 바의 원래 Y 좌표
+    private var tabBarOriginalY: CGFloat = 0
     private var isTabBarExtended = false
     
     private var adjustedWeekday: Int = 0
@@ -105,7 +105,11 @@ extension WeekViewTabBarController: PageboyViewControllerDataSource, TMBarDataSo
     
     func defaultPage(for pageboyViewController: Pageboy.PageboyViewController) -> Pageboy.PageboyViewController.Page? {
         let adjustedWeekday = self.adjustedWeekday
-        return .at(index: adjustedWeekday)
+        if adjustedWeekday != 5 && adjustedWeekday != 6 {
+            return .at(index: adjustedWeekday)
+        } else {
+            return .at(index: 0)
+        }
     }
     
     func barItem(for bar: Tabman.TMBar, at index: Int) -> Tabman.TMBarItemable {
