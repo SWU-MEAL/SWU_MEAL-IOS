@@ -51,6 +51,8 @@
 		517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */; };
 		517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */; };
 		517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB292AC751970059ED4C /* MondayViewController.swift */; };
+		51E399622ACFD82200EC6ECE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51E399612ACFD82200EC6ECE /* Alamofire */; };
+		51E8053D2AD16812008D83B9 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8053C2AD16812008D83B9 /* SplashVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,7 @@
 		517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDinnerTableView.swift; sourceTree = "<group>"; };
 		517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		517EAB292AC751970059ED4C /* MondayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondayViewController.swift; sourceTree = "<group>"; };
+		51E8053C2AD16812008D83B9 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51331EE32AC0633A006CA899 /* Tabman in Frameworks */,
+				51E399622ACFD82200EC6ECE /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +187,7 @@
 				51331ECA2AC04B6B006CA899 /* Component */,
 				51331EC62AC04B27006CA899 /* Extension+ */,
 				51331EC72AC04B2F006CA899 /* Utility */,
+				51E8053B2AD16802008D83B9 /* Splash */,
 				51331EBD2AC04A3B006CA899 /* 탭바 */,
 				51331EBC2AC047B7006CA899 /* 오늘의슈밥 */,
 				51331EC02AC04A90006CA899 /* 이번주슈밥 */,
@@ -376,6 +381,14 @@
 			path = "탭바";
 			sourceTree = "<group>";
 		};
+		51E8053B2AD16802008D83B9 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				51E8053C2AD16812008D83B9 /* SplashVC.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -394,6 +407,7 @@
 			name = SWU_MEAL;
 			packageProductDependencies = (
 				51331EE22AC0633A006CA899 /* Tabman */,
+				51E399612ACFD82200EC6ECE /* Alamofire */,
 			);
 			productName = SWU_MEAL;
 			productReference = 51331E872AC02AA1006CA899 /* SWU_MEAL.app */;
@@ -469,6 +483,7 @@
 			mainGroup = 51331E7E2AC02AA0006CA899;
 			packageReferences = (
 				51331EE12AC0633A006CA899 /* XCRemoteSwiftPackageReference "Tabman" */,
+				51E399602ACFD82200EC6ECE /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 51331E882AC02AA1006CA899 /* Products */;
 			projectDirPath = "";
@@ -519,6 +534,7 @@
 				51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */,
 				51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */,
 				511D53402AC1F99E00A688F4 /* TodayLunchTableView.swift in Sources */,
+				51E8053D2AD16812008D83B9 /* SplashVC.swift in Sources */,
 				51331ED42AC04BA7006CA899 /* Color+.swift in Sources */,
 				511D53442AC1FC5500A688F4 /* TodayDinnerTableView.swift in Sources */,
 				516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */,
@@ -893,6 +909,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		51E399602ACFD82200EC6ECE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -900,6 +924,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 51331EE12AC0633A006CA899 /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
+		};
+		51E399612ACFD82200EC6ECE /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51E399602ACFD82200EC6ECE /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
