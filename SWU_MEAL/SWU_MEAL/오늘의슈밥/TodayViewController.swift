@@ -10,10 +10,17 @@ import UIKit
 final class TodayViewController: UIViewController {
     
     // MARK: - Properties
-
+    
+    private var morningTimer: Timer?
+    private var lunchTimer: Timer?
+    private var dinnerTimer: Timer?
+    
+    private var morningTargetTime: Date?
+    private var lunchTargetTime: Date?
+    private var dinnerTargetTime: Date?
     
     // MARK: - Views
-
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = """
@@ -48,7 +55,7 @@ final class TodayViewController: UIViewController {
         return label
     }()
     
-    private lazy var timeBubbleImageView: UIImageView = {
+    private lazy var b_BubbleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Bubble")?
             .resize(to: CGSize(width: 96.0, height: 28.25))
@@ -56,7 +63,7 @@ final class TodayViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var countTimeLabel: UILabel = {
+    private lazy var b_countTimeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 10.0, weight: .semibold)
@@ -65,15 +72,70 @@ final class TodayViewController: UIViewController {
         return label
     }()
     
+    private lazy var l_BubbleImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "Bubble")?
+            .resize(to: CGSize(width: 96.0, height: 28.25))
+        
+        return imageView
+    }()
+    
+    private lazy var l_countTimeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 10.0, weight: .semibold)
+        label.text = "시작까지 09:54"
+        
+        return label
+    }()
+    
+    private lazy var d_BubbleImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "Bubble")?
+            .resize(to: CGSize(width: 96.0, height: 28.25))
+        
+        return imageView
+    }()
+    
+    private lazy var d_countTimeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 10.0, weight: .semibold)
+        label.text = "시작까지 09:54"
+        
+        return label
+    }()
+    
+    private lazy var countTimeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 1.0
+        [
+            b_BubbleImageView,
+            l_BubbleImageView,
+            d_BubbleImageView
+        ].forEach { stackView.addArrangedSubview($0) }
+        
+        return stackView
+    }()
+    
     private let todayTabBarViewController = TodayTabBarController()
     
     
     // MARK: - LifeCycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         self.setupLayout()
+//        self.setupTargetTimes()
+    }
+    
+    deinit {
+        morningTimer?.invalidate()
+        lunchTimer?.invalidate()
+        dinnerTimer?.invalidate()
     }
     
 }
@@ -85,8 +147,6 @@ private extension TodayViewController {
             titleLabel,
             highLightView,
             timeLabel,
-            timeBubbleImageView,
-            countTimeLabel,
             todayTabBarViewController.view
         ].forEach { view.addSubview($0) }
         
@@ -108,29 +168,107 @@ private extension TodayViewController {
             timeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
         ])
         
-        timeBubbleImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            timeBubbleImageView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 15.0),
-            timeBubbleImageView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
-        ])
-        
-        countTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            countTimeLabel.centerXAnchor.constraint(equalTo: timeBubbleImageView.centerXAnchor),
-            countTimeLabel.centerYAnchor.constraint(equalTo: timeBubbleImageView.centerYAnchor, constant: -2.3)
-        ])
-        
         addChild(todayTabBarViewController)
         todayTabBarViewController.didMove(toParent: self)
         
         todayTabBarViewController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            todayTabBarViewController.view.topAnchor.constraint(equalTo: timeBubbleImageView.bottomAnchor, constant: 3.0),
+            todayTabBarViewController.view.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 37.0),
             todayTabBarViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             todayTabBarViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             todayTabBarViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
+    }
+    
+}
+
+// MARK: - Helper
+
+private extension TodayViewController {
+    
+    private func setupTargetTimes() {
+        
+        let currentDate = Date()
+        
+        // 아침 목표 시간 설정 (예: 아침 7시 30분)
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone.current
+        var morningComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+        morningComponents.hour = 7
+        morningComponents.minute = 30
+        morningTargetTime = calendar.date(from: morningComponents)
+        
+        // 점심 목표 시간 설정 (예: 점심 11시 30분)
+        var lunchComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+        lunchComponents.hour = 11
+        lunchComponents.minute = 30
+        lunchTargetTime = calendar.date(from: lunchComponents)
+        
+        // 저녁 목표 시간 설정 (예: 저녁 17시 10분)
+        var dinnerComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+        dinnerComponents.hour = 17
+        dinnerComponents.minute = 10
+        dinnerTargetTime = calendar.date(from: dinnerComponents)
+        
+        // 목표 시간이 현재 시간보다 이전인 경우 다음날로 설정
+        if morningTargetTime! < currentDate {
+            morningTargetTime = morningTargetTime?.addingTimeInterval(86400)  
+            // 86400초 = 24시간
+        }
+        if lunchTargetTime! < currentDate {
+            lunchTargetTime = lunchTargetTime?.addingTimeInterval(86400)
+        }
+        if dinnerTargetTime! < currentDate {
+            dinnerTargetTime = dinnerTargetTime?.addingTimeInterval(86400)
+        }
+    }
+    
+    private func startTimers() {
+        startTimer(for: b_countTimeLabel, targetTime: morningTargetTime)
+        startTimer(for: l_countTimeLabel, targetTime: lunchTargetTime)
+        startTimer(for: d_countTimeLabel, targetTime: dinnerTargetTime)
+    }
+    
+    private func startTimer(for label: UILabel, targetTime: Date?) {
+        guard let targetTime = targetTime else { return }
+        
+        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdownLabel(_:)), userInfo: label, repeats: true)
+        
+        let currentDate = Date()
+        if currentDate >= targetTime {
+            timer.invalidate()
+            label.text = "목표 시간에 도달했습니다."
+        }
+    }
+    
+    @objc private func updateCountdownLabel(_ timer: Timer) {
+        guard let targetTime = targetTime(for: timer), let label = timer.userInfo as? UILabel else { return }
+        
+        let currentDate = Date()
+        
+        let timeRemaining = Calendar.current.dateComponents([.hour, .minute, .second], from: currentDate, to: targetTime)
+        
+        // 시간 텍스트 포맷 (예: "02:30:45")
+        let timeString = String(format: "%02d:%02d:%02d", timeRemaining.hour ?? 0, timeRemaining.minute ?? 0, timeRemaining.second ?? 0)
+        
+        label.text = timeString
+        
+        if currentDate >= targetTime {
+            timer.invalidate()
+            label.text = "목표 시간에 도달했습니다."
+        }
+    }
+    
+    private func targetTime(for timer: Timer) -> Date? {
+        if timer === morningTimer {
+            return morningTargetTime
+        } else if timer === lunchTimer {
+            return lunchTargetTime
+        } else if timer === dinnerTimer {
+            return dinnerTargetTime
+        }
+        return nil
     }
     
 }
