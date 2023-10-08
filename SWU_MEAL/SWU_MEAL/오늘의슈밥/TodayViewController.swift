@@ -129,7 +129,6 @@ final class TodayViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         self.setupLayout()
-//        self.setupTargetTimes()
     }
     
     deinit {

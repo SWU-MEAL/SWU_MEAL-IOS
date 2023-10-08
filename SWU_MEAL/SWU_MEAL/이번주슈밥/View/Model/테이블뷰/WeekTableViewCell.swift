@@ -46,5 +46,4 @@ private extension WeekTableViewCell {
             contentLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
-    
 }

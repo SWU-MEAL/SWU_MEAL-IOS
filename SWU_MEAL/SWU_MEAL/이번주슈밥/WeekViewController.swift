@@ -9,13 +9,19 @@ import UIKit
 
 final class WeekViewController: UIViewController {
     
-    // MARK: - Properties
-    
     // MARK: - Views
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .mainGrayColor
+        // refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        return refreshControl
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = """
@@ -41,21 +47,19 @@ final class WeekViewController: UIViewController {
         return view
     }()
     
-    private let scheduleView = WeekdayView(frame: .zero)
-    
+    private let scheduleView = WeekdayView()
     private let weekdayTabBarController = WeekViewTabBarController()
     
     // MARK: - LifeCycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         
-        scheduleView.setupDelegate(self)
+        self.scheduleView.setupDelegate(self)
         self.scrollView.bounces = false
         self.setupLayout()
     }
-    
 }
 
 // MARK: - Extension
@@ -115,6 +119,7 @@ private extension WeekViewController {
 
 extension WeekViewController: WeekdayViewProtocol {
     func didTapInfoReport() {
+        print("didTapInfoReport")
         let vc = MenuReportViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

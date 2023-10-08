@@ -27,7 +27,7 @@ enum WeekTabBarTopic: String {
     }
 }
 
-class WeekViewTabBarController: TabmanViewController {
+final class WeekViewTabBarController: TabmanViewController {
     
     // MARK: - Properties
     
@@ -38,6 +38,7 @@ class WeekViewTabBarController: TabmanViewController {
     private let numberOfCases: Int = 5
     
     private var viewControllers = [
+        // UINavigationController(rootViewController: MondayViewController()),
         MondayViewController(),
         ThuesViewController(),
         WednsViewController(),
@@ -52,7 +53,6 @@ class WeekViewTabBarController: TabmanViewController {
         self.dataSource = self
         self.setupStyle()
     }
-    
 }
 
 private extension WeekViewTabBarController {
@@ -100,6 +100,7 @@ extension WeekViewTabBarController: PageboyViewControllerDataSource, TMBarDataSo
     }
     
     func viewController(for pageboyViewController: Pageboy.PageboyViewController, at index: Pageboy.PageboyViewController.PageIndex) -> UIViewController? {
+        
         return viewControllers[index]
     }
     

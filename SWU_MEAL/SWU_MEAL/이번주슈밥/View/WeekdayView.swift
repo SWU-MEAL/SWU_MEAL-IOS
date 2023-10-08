@@ -254,7 +254,7 @@ final class WeekdayView: UIView {
     func setupDelegate(_ delegate: WeekdayViewProtocol?) {
         self.weekdayDelegate = delegate
     }
-    
+
 }
 
 private extension WeekdayView {
@@ -350,6 +350,7 @@ private extension WeekdayView {
     }
     
     @objc func didTapInfoReport() {
+        print("WeekdayView didTapInfoReport")
         self.weekdayDelegate?.didTapInfoReport()
     }
     
