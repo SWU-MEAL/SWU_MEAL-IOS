@@ -27,7 +27,6 @@ final class WeekLunchTableView: UITableView {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.reloadData()
-                print("WeekLunchTableView Data : \(self?.l_itemsArray ?? [])")
             }
         }
     }

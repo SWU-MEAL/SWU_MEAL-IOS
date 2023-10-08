@@ -20,7 +20,6 @@ class APIManager {
     ) -> Void) {
 
         let url = "\(baseURL)/v1/menu?date=\(date)"
-        // print("요청 URL = \(url)")
 
         AF.request(url, method: .get).responseDecodable(of: WeekMealModel.self) { response in
             switch response.result {
@@ -45,6 +44,7 @@ class APIManager {
         return nil
     }
     
+    /// 이번주 슈밥 - 점심 메뉴 데이터 불러오기
     func getLunchMenuListForDate(
         date: String,
         time: String,
@@ -64,7 +64,6 @@ class APIManager {
                 }
                 return false
             }
-            print("filteredMenus: \(filteredMenus)")
             return filteredMenus
         }
         return nil

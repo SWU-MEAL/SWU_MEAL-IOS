@@ -235,8 +235,6 @@ final class MondayViewController: UIViewController {
         return button
     }()
     
-    private let mondayView = WeekdayView(frame: .zero)
-    
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -353,7 +351,6 @@ private extension MondayViewController {
     
     @objc func didTapLunchButton(_ sender: UIButton) {
         if let corner = sender.titleLabel?.text {
-            print("코너 : \(corner)")
             switch corner {
             case "한식코너":
                 setupLunchServer(date: "2023-10-12", type: "샬롬", corner: "한식")
@@ -404,7 +401,7 @@ private extension MondayViewController {
             }
         }
     }
-    
+
     /// 이번주 슈밥 - 중식 API
     private func setupLunchServer(date: String, type: String, corner: String) {
         apiManager.weekdayMealGetData(date: date, time: "중식") { [weak self] result in
@@ -428,7 +425,6 @@ private extension MondayViewController {
         }
     }
 
-    
     /// 이번주 슈밥 - 석식 API
     private func setupDinnerServer(date: String) {
         apiManager.weekdayMealGetData(date: date, time: "석식") { [weak self] result in
