@@ -427,7 +427,7 @@ private extension MondayViewController {
                     self?.morningTableView.b_itemsArray = menuList.flatMap { $0.items }
                     self?.morningTableView.b_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
-                    print("메뉴 리스트를 찾을 수 없습니다.")
+                    print("아침 메뉴 리스트를 찾을 수 없습니다.")
                     self?.showEmptyView()
                 }
             case .failure(let error):
@@ -451,7 +451,8 @@ private extension MondayViewController {
                     self?.lunchTableView.l_itemsArray = menuList.flatMap { $0.items }
                     self?.lunchTableView.l_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
-                    print("메뉴 리스트를 찾을 수 없습니다.")
+                    print("중식 메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
@@ -472,7 +473,8 @@ private extension MondayViewController {
                     self?.dinnerTableView.d_itemsArray = menuList.flatMap { $0.items }
                     self?.dinnerTableView.d_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
-                    print("메뉴 리스트를 찾을 수 없습니다.")
+                    print("저녁 메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")

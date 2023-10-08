@@ -236,6 +236,13 @@ final class WednsViewController: UIViewController {
         return button
     }()
     
+    private let emptyView: EmptyMealView = {
+        let view = EmptyMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+    
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -379,6 +386,13 @@ private extension WednsViewController {
         }
     }
 
+    func showEmptyView() {
+       self.emptyView.isHidden = false
+    }
+
+   func hideEmptyView() {
+       self.emptyView.isHidden = true
+   }
     
     // MARK: - Helper
 
@@ -396,6 +410,7 @@ private extension WednsViewController {
                     self?.morningTableView.b_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
@@ -419,6 +434,7 @@ private extension WednsViewController {
                     self?.lunchTableView.l_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
@@ -440,6 +456,7 @@ private extension WednsViewController {
                     self?.dinnerTableView.d_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
