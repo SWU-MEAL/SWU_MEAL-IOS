@@ -10,8 +10,8 @@ import UIKit
 final class ThuesViewController: UIViewController {
     
     // MARK: - Properties
-    
     private let apiManager = APIManager()
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 2)
 
     // MARK: - Views
 
@@ -245,10 +245,10 @@ final class ThuesViewController: UIViewController {
         for button in lunchButtonSet {
             button.addTarget(self, action: #selector(didTapLunchButton(_ :)), for: .touchUpInside)
         }
-        
-        self.setupMorningServer(date: "2023-10-10")
-        self.setupLunchServer(date: "2023-10-10", type: "샬롬", corner: "한식")
-        self.setupDinnerServer(date: "2023-10-10")
+    
+        self.setupMorningServer(date: selectedDate)
+        self.setupLunchServer(date: selectedDate, type: "샬롬", corner: "한식")
+        self.setupDinnerServer(date: selectedDate)
     }
 }
 
@@ -353,13 +353,13 @@ private extension ThuesViewController {
         if let corner = sender.titleLabel?.text {
             switch corner {
             case "한식코너":
-                setupLunchServer(date: "2023-10-10", type: "샬롬", corner: "한식")
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "한식")
             case "일품코너":
-                setupLunchServer(date: "2023-10-10", type: "샬롬", corner: "일품")
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "일품")
             case "스낵코너":
-                setupLunchServer(date: "2023-10-10", type: "샬롬", corner: "스낵")
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "스낵")
             case "교직원":
-                setupLunchServer(date: "2023-10-10", type: "교직원", corner: "")
+                setupLunchServer(date: selectedDate, type: "교직원", corner: "")
             default:
                 print("nil")
             }
@@ -376,6 +376,7 @@ private extension ThuesViewController {
         if let selectedIndex = lunchButtonStackView.arrangedSubviews.firstIndex(of: sender) {
             selectedButtonIndex = selectedIndex
         }
+
     }
 
     

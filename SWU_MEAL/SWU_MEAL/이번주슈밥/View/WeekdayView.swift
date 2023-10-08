@@ -316,12 +316,6 @@ private extension WeekdayView {
             lunchLineView.trailingAnchor.constraint(equalTo: lunchView.trailingAnchor)
         ])
         
-        lunchIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            lunchIndicatorView.leadingAnchor.constraint(equalTo: lunchLineView.leadingAnchor, constant: 8.0),
-            lunchIndicatorView.centerYAnchor.constraint(equalTo: lunchLineView.centerYAnchor)
-        ])
-        
         lunchTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             lunchTableView.topAnchor.constraint(equalTo: lunchLineView.bottomAnchor, constant: 17.0),

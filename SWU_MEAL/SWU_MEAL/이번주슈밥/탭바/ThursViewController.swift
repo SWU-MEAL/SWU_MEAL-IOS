@@ -12,7 +12,8 @@ final class ThursViewController: UIViewController {
     // MARK: - Properties
     
     private let apiManager = APIManager()
-
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 4)
+    
     // MARK: - Views
 
     private weak var weekdayDelegate: WeekdayViewProtocol?

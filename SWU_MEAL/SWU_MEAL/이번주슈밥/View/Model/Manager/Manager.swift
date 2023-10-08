@@ -68,6 +68,24 @@ class APIManager {
         }
         return nil
     }
-
-
+    
+    /// 날자 계산
+    func calculateDate(forDayOfWeek dayOfWeek: Int) -> String {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let currentWeekday = calendar.component(.weekday, from: currentDate)
+        
+        // 선택한 요일에 해당하는 날짜를 계산합니다.
+        let daysUntilSelectedDay = (7 - currentWeekday + (dayOfWeek + 1)) % 7
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+        dateComponents.day! += daysUntilSelectedDay
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let selectedDate = dateFormatter.string(from: calendar.date(from: dateComponents)!)
+        
+        return selectedDate
+    }
+    
 }

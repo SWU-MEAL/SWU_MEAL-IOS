@@ -12,6 +12,7 @@ final class FriViewController: UIViewController {
     // MARK: - Properties
     
     private let apiManager = APIManager()
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 5)
 
     // MARK: - Views
 

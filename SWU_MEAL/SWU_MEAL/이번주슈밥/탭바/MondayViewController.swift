@@ -12,7 +12,8 @@ final class MondayViewController: UIViewController {
     // MARK: - Properties
     
     private let apiManager = APIManager()
-
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 1)
+    
     // MARK: - Views
 
     private weak var weekdayDelegate: WeekdayViewProtocol?
@@ -235,6 +236,13 @@ final class MondayViewController: UIViewController {
         return button
     }()
     
+    private let emptyView: EmptyMealView = {
+        let view = EmptyMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+    
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -246,9 +254,9 @@ final class MondayViewController: UIViewController {
             button.addTarget(self, action: #selector(didTapLunchButton(_ :)), for: .touchUpInside)
         }
         
-        self.setupMorningServer(date: "2023-10-12")
-        self.setupLunchServer(date: "2023-10-12", type: "샬롬", corner: "한식")
-        self.setupDinnerServer(date: "2023-10-12")
+        self.setupMorningServer(date: selectedDate)
+        self.setupLunchServer(date: selectedDate, type: "샬롬", corner: "한식")
+        self.setupDinnerServer(date: selectedDate)
     }
 }
 
@@ -268,7 +276,8 @@ private extension MondayViewController {
             dinnerStackView,
             dinnerView,
             dinnerTableView,
-            infoReportButton
+            infoReportButton,
+            emptyView
         ].forEach { view.addSubview($0) }
 
         morningStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -342,43 +351,67 @@ private extension MondayViewController {
             infoReportButton.topAnchor.constraint(equalTo: dinnerTableView.bottomAnchor, constant: 32.0),
             infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
         ])
+        
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
     }
     
+    // MARK: - Func
+
+    func setupIndiator(senderX: CGFloat) {
+        self.lunchIndicatorView.frame.origin.x = senderX
+    }
+
+     func showEmptyView() {
+        self.emptyView.isHidden = false
+     }
+
+    func hideEmptyView() {
+        self.emptyView.isHidden = true
+    }
+    
+    // MARK: - @objc
+
     @objc func didTapInfoReport() {
         print("WeekdayView didTapInfoReport")
         self.weekdayDelegate?.didTapInfoReport()
     }
     
     @objc func didTapLunchButton(_ sender: UIButton) {
-        if let corner = sender.titleLabel?.text {
-            switch corner {
-            case "한식코너":
-                setupLunchServer(date: "2023-10-12", type: "샬롬", corner: "한식")
-            case "일품코너":
-                setupLunchServer(date: "2023-10-12", type: "샬롬", corner: "일품")
-            case "스낵코너":
-                setupLunchServer(date: "2023-10-12", type: "샬롬", corner: "스낵")
-            case "교직원":
-                setupLunchServer(date: "2023-10-12", type: "교직원", corner: "")
-            default:
-                print("nil")
-            }
-        }
-        
         sender.setTitleColor(.weekLunchActiveColor, for: .normal)
-        
-        for button in lunchButtonStackView.arrangedSubviews as! [UIButton] {
+        for button in self.lunchButtonSet {
             if button != sender {
                 button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
             }
         }
         
-        if let selectedIndex = lunchButtonStackView.arrangedSubviews.firstIndex(of: sender) {
-            selectedButtonIndex = selectedIndex
+        // 애니메이션을 적용합니다.
+        UIView.animate(withDuration: 0.3) {
+            self.setupIndiator(senderX: sender.frame.origin.x + 32.0)
+        }
+        
+        if let corner = sender.titleLabel?.text {
+            switch corner {
+            case "한식코너":
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "한식")
+            case "일품코너":
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "일품")
+            case "스낵코너":
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "스낵")
+            case "교직원":
+                setupLunchServer(date: selectedDate, type: "교직원", corner: "")
+            default:
+                print("nil")
+            }
         }
     }
 
-    
     // MARK: - Helper
 
     /// 이번주 슈밥 - 조식 API
@@ -395,6 +428,7 @@ private extension MondayViewController {
                     self?.morningTableView.b_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")

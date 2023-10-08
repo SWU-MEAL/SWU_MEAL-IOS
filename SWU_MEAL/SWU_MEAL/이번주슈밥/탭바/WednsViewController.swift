@@ -12,7 +12,8 @@ final class WednsViewController: UIViewController {
     // MARK: - Properties
     
     private let apiManager = APIManager()
-
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 3)
+    
     // MARK: - Views
 
     private weak var weekdayDelegate: WeekdayViewProtocol?

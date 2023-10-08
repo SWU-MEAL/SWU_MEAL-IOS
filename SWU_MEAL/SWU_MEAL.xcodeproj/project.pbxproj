@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5108BADA2AD31EFE00A32BB7 /* EmptyMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */; };
 		511D53402AC1F99E00A688F4 /* TodayLunchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D533F2AC1F99E00A688F4 /* TodayLunchTableView.swift */; };
 		511D53442AC1FC5500A688F4 /* TodayDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D53432AC1FC5500A688F4 /* TodayDinnerTableView.swift */; };
 		511D534B2AC201C900A688F4 /* TodayBreakfastTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D534A2AC201C900A688F4 /* TodayBreakfastTableView.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMealView.swift; sourceTree = "<group>"; };
 		511D533F2AC1F99E00A688F4 /* TodayLunchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLunchTableView.swift; sourceTree = "<group>"; };
 		511D53432AC1FC5500A688F4 /* TodayDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDinnerTableView.swift; sourceTree = "<group>"; };
 		511D534A2AC201C900A688F4 /* TodayBreakfastTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayBreakfastTableView.swift; path = "SWU_MEAL/오늘의슈밥/조식/TodayBreakfastTableView.swift"; sourceTree = SOURCE_ROOT; };
@@ -249,6 +251,7 @@
 			children = (
 				51331EC22AC04AB7006CA899 /* WeekViewController.swift */,
 				516380A62AC5494100F09F12 /* MenuReportViewController.swift */,
+				5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */,
 				516380AA2AC5507C00F09F12 /* View */,
 				517EAB2B2AC7519B0059ED4C /* 탭바 */,
 			);
@@ -574,6 +577,7 @@
 				51383F142AC2C9F200866891 /* MypageTableView.swift in Sources */,
 				51331EBF2AC04A68006CA899 /* TabBarController.swift in Sources */,
 				51331E8B2AC02AA1006CA899 /* AppDelegate.swift in Sources */,
+				5108BADA2AD31EFE00A32BB7 /* EmptyMealView.swift in Sources */,
 				51331EE92AC06A7E006CA899 /* TodayDinnerViewController.swift in Sources */,
 				51383F182AC2CB6300866891 /* MypageModel.swift in Sources */,
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
