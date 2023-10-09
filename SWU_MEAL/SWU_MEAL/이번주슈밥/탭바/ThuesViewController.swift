@@ -58,15 +58,6 @@ final class ThuesViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var morningView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10.0
-        view.backgroundColor = .white
-        view.heightAnchor.constraint(equalToConstant: 220.0).isActive = true
-        
-        return view
-    }()
-    
     private let morningTableView = WeekMorningTableView()
     
     private lazy var lunchLabel: UILabel = {
@@ -213,16 +204,7 @@ final class ThuesViewController: UIViewController {
         
         return stackView
     }()
-    
-    private lazy var dinnerView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10.0
-        view.backgroundColor = .white
-        view.heightAnchor.constraint(equalToConstant: 220.0).isActive = true
-        
-        return view
-    }()
-    
+
     private let dinnerTableView = WeekDinnerTableView()
     
     private lazy var infoReportButton: UIButton = {
@@ -265,7 +247,6 @@ private extension ThuesViewController {
     func setupLayout() {
         [
             morningStackView,
-            morningView,
             morningTableView,
             lunchStackView,
             lunchView,
@@ -274,7 +255,6 @@ private extension ThuesViewController {
             lunchIndicatorView,
             lunchTableView,
             dinnerStackView,
-            dinnerView,
             dinnerTableView,
             infoReportButton
         ].forEach { view.addSubview($0) }
@@ -374,17 +354,22 @@ private extension ThuesViewController {
         }
         
         sender.setTitleColor(.weekLunchActiveColor, for: .normal)
+           
+       for button in lunchButtonStackView.arrangedSubviews as! [UIButton] {
+           if button != sender {
+               button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+           }
+       }
+       
+       /// 현재 위치
+       let targetX = sender.frame.origin.x + 32.0
+       print("targetX : \(targetX)")
         
-        for button in lunchButtonStackView.arrangedSubviews as! [UIButton] {
-            if button != sender {
-                button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
-            }
-        }
+       UIView.animate(withDuration: 0.4, delay: 0.0, options: .allowUserInteraction, animations: {
+           self.lunchIndicatorView.frame.origin.x = targetX
+           print("indicator: \(self.lunchIndicatorView.frame.origin.x)")
+       }, completion: nil)
         
-        if let selectedIndex = lunchButtonStackView.arrangedSubviews.firstIndex(of: sender) {
-            selectedButtonIndex = selectedIndex
-        }
-
     }
     
     func showEmptyView() {

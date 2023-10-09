@@ -15,16 +15,22 @@ final class EmptyMealView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.image = UIImage(named: "Logo")?
-            .resize(to: CGSize(width: 66.0, height: 66.0))
+            .withTintColor(UIColor(hex: "#191919"))
+            .resize(to: CGSize(width: 58.26, height: 58.26))
         
         return imageView
     }()
     
     private lazy var emptyLabel: UILabel = {
         let label = UILabel()
-        label.text = "텅.."
-        label.font = .uhbeeBold(size: 30.0)
-        label.textColor = .mainOrangeColor
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.text = """
+오늘은 공휴일🐤
+급식을 진행하지 않아요
+"""
+        label.font = .uhbeeBold(size: 16.0)
+        label.textColor = UIColor(hex: "#191919")
         
         return label
     }()
@@ -41,6 +47,14 @@ final class EmptyMealView: UIView {
         ].forEach { stackView.addArrangedSubview($0) }
         
         return stackView
+    }()
+    
+    private lazy var coverView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white.withAlphaComponent(0.85)
+        view.layer.cornerRadius = 10.0
+        
+        return view
     }()
     
     // MARK: - Init
@@ -61,11 +75,30 @@ final class EmptyMealView: UIView {
 private extension EmptyMealView {
     
     func setupLayout() {
-        addSubview(stackView)
+        [
+            stackView,
+            coverView
+        ].forEach { addSubview($0)}
+        
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+//        ])
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 250.0),
-            stackView.centerXAnchor.constraint(equalTo: centerXAnchor)
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 200.0),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ])
+        
+        coverView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            coverView.topAnchor.constraint(equalTo: topAnchor),
+            coverView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            coverView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            coverView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

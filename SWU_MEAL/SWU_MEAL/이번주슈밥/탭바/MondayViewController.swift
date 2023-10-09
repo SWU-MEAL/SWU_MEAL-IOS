@@ -59,15 +59,6 @@ final class MondayViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var morningView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10.0
-        view.backgroundColor = .white
-        view.heightAnchor.constraint(equalToConstant: 220.0).isActive = true
-        
-        return view
-    }()
-    
     private let morningTableView = WeekMorningTableView()
     
     private lazy var lunchLabel: UILabel = {
@@ -215,15 +206,6 @@ final class MondayViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var dinnerView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10.0
-        view.backgroundColor = .white
-        view.heightAnchor.constraint(equalToConstant: 220.0).isActive = true
-        
-        return view
-    }()
-    
     private let dinnerTableView = WeekDinnerTableView()
     
     private lazy var infoReportButton: UIButton = {
@@ -236,7 +218,21 @@ final class MondayViewController: UIViewController {
         return button
     }()
     
-    private let emptyView: EmptyMealView = {
+    private let b_emptyView: EmptyMealView = {
+        let view = EmptyMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+    
+    private let l_emptyView: EmptyMealView = {
+        let view = EmptyMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+    
+    private let d_emptyView: EmptyMealView = {
         let view = EmptyMealView()
         view.isHidden = true
         
@@ -265,7 +261,6 @@ private extension MondayViewController {
     func setupLayout() {
         [
             morningStackView,
-            morningView,
             morningTableView,
             lunchStackView,
             lunchView,
@@ -274,10 +269,9 @@ private extension MondayViewController {
             lunchIndicatorView,
             lunchTableView,
             dinnerStackView,
-            dinnerView,
             dinnerTableView,
             infoReportButton,
-            emptyView
+            b_emptyView
         ].forEach { view.addSubview($0) }
 
         morningStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -352,12 +346,12 @@ private extension MondayViewController {
             infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
         ])
         
-        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        b_emptyView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
-            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            b_emptyView.topAnchor.constraint(equalTo: view.topAnchor),
+            b_emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            b_emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            b_emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
     }
@@ -369,11 +363,11 @@ private extension MondayViewController {
     }
 
      func showEmptyView() {
-        self.emptyView.isHidden = false
+        self.b_emptyView.isHidden = false
      }
 
     func hideEmptyView() {
-        self.emptyView.isHidden = true
+        self.b_emptyView.isHidden = true
     }
     
     // MARK: - @objc

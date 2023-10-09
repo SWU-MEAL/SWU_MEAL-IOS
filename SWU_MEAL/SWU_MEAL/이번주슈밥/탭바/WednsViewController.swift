@@ -59,15 +59,6 @@ final class WednsViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var morningView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10.0
-        view.backgroundColor = .white
-        view.heightAnchor.constraint(equalToConstant: 220.0).isActive = true
-        
-        return view
-    }()
-    
     private let morningTableView = WeekMorningTableView()
     
     private lazy var lunchLabel: UILabel = {
@@ -215,15 +206,6 @@ final class WednsViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var dinnerView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10.0
-        view.backgroundColor = .white
-        view.heightAnchor.constraint(equalToConstant: 220.0).isActive = true
-        
-        return view
-    }()
-    
     private let dinnerTableView = WeekDinnerTableView()
     
     private lazy var infoReportButton: UIButton = {
@@ -254,9 +236,9 @@ final class WednsViewController: UIViewController {
             button.addTarget(self, action: #selector(didTapLunchButton(_ :)), for: .touchUpInside)
         }
         
-        self.setupMorningServer(date: "2023-10-11")
-        self.setupLunchServer(date: "2023-10-11", type: "샬롬", corner: "한식")
-        self.setupDinnerServer(date: "2023-10-11")
+        self.setupMorningServer(date: selectedDate)
+        self.setupLunchServer(date: selectedDate, type: "샬롬", corner: "한식")
+        self.setupDinnerServer(date: selectedDate)
     }
 }
 
@@ -265,7 +247,6 @@ private extension WednsViewController {
     func setupLayout() {
         [
             morningStackView,
-            morningView,
             morningTableView,
             lunchStackView,
             lunchView,
@@ -274,7 +255,6 @@ private extension WednsViewController {
             lunchIndicatorView,
             lunchTableView,
             dinnerStackView,
-            dinnerView,
             dinnerTableView,
             infoReportButton
         ].forEach { view.addSubview($0) }
@@ -361,13 +341,13 @@ private extension WednsViewController {
         if let corner = sender.titleLabel?.text {
             switch corner {
             case "한식코너":
-                setupLunchServer(date: "2023-10-11", type: "샬롬", corner: "한식")
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "한식")
             case "일품코너":
-                setupLunchServer(date: "2023-10-11", type: "샬롬", corner: "일품")
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "일품")
             case "스낵코너":
-                setupLunchServer(date: "2023-10-11", type: "샬롬", corner: "스낵")
+                setupLunchServer(date: selectedDate, type: "샬롬", corner: "스낵")
             case "교직원":
-                setupLunchServer(date: "2023-10-11", type: "교직원", corner: "")
+                setupLunchServer(date: selectedDate, type: "교직원", corner: "")
             default:
                 print("nil")
             }
