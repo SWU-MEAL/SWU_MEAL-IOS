@@ -43,6 +43,7 @@
 		516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */; };
 		516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A62AC5494100F09F12 /* MenuReportViewController.swift */; };
 		516380A92AC5507800F09F12 /* WhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A82AC5507800F09F12 /* WhiteView.swift */; };
+		516491D32AD3D34F00AC48F7 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */; };
 		517B66022ACC39830086E14A /* ThuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66012ACC39830086E14A /* ThuesViewController.swift */; };
 		517B66042ACC39B70086E14A /* WednsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66032ACC39B70086E14A /* WednsViewController.swift */; };
 		517B66062ACC39DF0086E14A /* ThursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66052ACC39DF0086E14A /* ThursViewController.swift */; };
@@ -115,6 +116,7 @@
 		516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewTabBarController.swift; sourceTree = "<group>"; };
 		516380A62AC5494100F09F12 /* MenuReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReportViewController.swift; sourceTree = "<group>"; };
 		516380A82AC5507800F09F12 /* WhiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteView.swift; sourceTree = "<group>"; };
+		516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		517B66012ACC39830086E14A /* ThuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThuesViewController.swift; sourceTree = "<group>"; };
 		517B66032ACC39B70086E14A /* WednsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WednsViewController.swift; sourceTree = "<group>"; };
 		517B66052ACC39DF0086E14A /* ThursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThursViewController.swift; sourceTree = "<group>"; };
@@ -263,9 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				51331EC42AC04ABF006CA899 /* MyPageViewController.swift */,
-				51383F132AC2C9F200866891 /* MypageTableView.swift */,
-				51383F152AC2CA0700866891 /* MypageTableViewCell.swift */,
-				51383F172AC2CB6300866891 /* MypageModel.swift */,
+				516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */,
+				516491D12AD3D31900AC48F7 /* Views */,
+				516491D02AD3D31400AC48F7 /* Model */,
 			);
 			name = "마이페이지";
 			path = "마이페이지";
@@ -290,6 +292,7 @@
 		51331ECA2AC04B6B006CA899 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				516380A82AC5507800F09F12 /* WhiteView.swift */,
 				51331ECB2AC04B85006CA899 /* CustomBackButton.swift */,
 				51331ECC2AC04B85006CA899 /* DividerView.swift */,
 				51331EF02AC0AC2B006CA899 /* TagButton.swift */,
@@ -347,11 +350,27 @@
 		516380AA2AC5507C00F09F12 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				516380A82AC5507800F09F12 /* WhiteView.swift */,
 				5148073C2AC40C7000A96879 /* WeekdayView.swift */,
 				517EAB262AC70C1E0059ED4C /* Model */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		516491D02AD3D31400AC48F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				51383F172AC2CB6300866891 /* MypageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		516491D12AD3D31900AC48F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				51383F132AC2C9F200866891 /* MypageTableView.swift */,
+				51383F152AC2CA0700866891 /* MypageTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		517EAB1D2AC707BD0059ED4C /* 테이블뷰 */ = {
@@ -586,6 +605,7 @@
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
 				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,
 				51331ED32AC04BA7006CA899 /* Extension+.swift in Sources */,
+				516491D32AD3D34F00AC48F7 /* InquiryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

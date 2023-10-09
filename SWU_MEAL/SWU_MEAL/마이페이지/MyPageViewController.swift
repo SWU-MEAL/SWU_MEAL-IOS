@@ -54,6 +54,8 @@ final class MyPageViewController: UIViewController {
         
         return stackView
     }()
+    
+    private let wrapperView = UIView()
 
     private let mypageTableView = MypageTableView(frame: .zero)
     
@@ -61,41 +63,59 @@ final class MyPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         self.setup()
+        self.setupNavigation()
+        self.mypageTableView.setupDelegate(delegate: self)
     }
 }
 
 private extension MyPageViewController {
     
+    func setupNavigation() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = UIColor.white
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+       
+        } else {
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+        }
+    
+        let leftItem = UIBarButtonItem(customView: wrapperView)
+        navigationItem.leftBarButtonItem = leftItem
+    }
+    
     func setup() {
         view.backgroundColor = .white
         [
-            shadowView,
-            appStackView,
             mypageTableView
         ].forEach { view.addSubview($0) }
 
-        appStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            appStackView.bottomAnchor.constraint(equalTo: shadowView.topAnchor, constant: -16.0),
-            appStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25.0)
-        ])
-
-        shadowView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            shadowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            shadowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            shadowView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-
         mypageTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mypageTableView.topAnchor.constraint(equalTo: shadowView.bottomAnchor),
+            mypageTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mypageTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mypageTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mypageTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
+        wrapperView.addSubview(appStackView)
+        appStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            appStackView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: 5.0),
+            appStackView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 8.0),
+        ])
+        
     }
     
+}
+
+extension MyPageViewController: MyPageProtocol {
+
+    func didTapInquries() {
+        let vc = InquiryViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
 }

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol MyPageProtocol: AnyObject {
+    func didTapInquries()
+}
+
 final class MypageTableView: UITableView {
+    
+    private weak var mypageDelegate: MyPageProtocol?
     
     private let cellHeight: CGFloat = 56.0
     
@@ -28,6 +34,7 @@ final class MypageTableView: UITableView {
     
     private func setupTableView() {
         self.backgroundColor = .white
+        self.delegate = self
         self.dataSource = self
         self.rowHeight = self.cellHeight
         self.register(
@@ -35,9 +42,34 @@ final class MypageTableView: UITableView {
             forCellReuseIdentifier: MypageTableViewCell.identifier
         )
       }
+    
+    func setupDelegate(delegate: MyPageProtocol) {
+        self.mypageDelegate = delegate
+    }
+    
 }
 
+// MARK: - UITableViewDelegate
+
+extension MypageTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            print(indexPath.row)
+        case 1:
+            print(indexPath.row)
+        case 2:
+            self.didTapInquries()
+        default:
+            print("Default")
+        }
+    }
+}
+
+// MARK: - UITableViewDataSource
+
 extension MypageTableView: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mypageModel.count
     }
@@ -54,4 +86,12 @@ extension MypageTableView: UITableViewDataSource {
         
         return cell
     }
+}
+
+private extension MypageTableView {
+    
+    func didTapInquries() {
+        self.mypageDelegate?.didTapInquries()
+    }
+    
 }
