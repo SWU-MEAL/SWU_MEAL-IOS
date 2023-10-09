@@ -208,15 +208,15 @@ final class FriViewController: UIViewController {
     
     private let dinnerTableView = WeekDinnerTableView()
     
-    private lazy var infoReportButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("메뉴 정보가 잘못되었나요?", for: .normal)
-        button.setTitleColor(UIColor(hex: "#606060"), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
-        // button.addTarget(self, action: #selector(didTapInfoReport), for: .touchUpInside)
-
-        return button
-    }()
+//    private lazy var infoReportButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("메뉴 정보가 잘못되었나요?", for: .normal)
+//        button.setTitleColor(UIColor(hex: "#606060"), for: .normal)
+//        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
+//        // button.addTarget(self, action: #selector(didTapInfoReport), for: .touchUpInside)
+//
+//        return button
+//    }()
     
     private let emptyView: EmptyMealView = {
         let view = EmptyMealView()
@@ -256,7 +256,7 @@ private extension FriViewController {
             lunchTableView,
             dinnerStackView,
             dinnerTableView,
-            infoReportButton
+            // infoReportButton
         ].forEach { view.addSubview($0) }
 
         morningStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -325,11 +325,11 @@ private extension FriViewController {
             dinnerTableView.trailingAnchor.constraint(equalTo: morningTableView.trailingAnchor),
         ])
         
-        infoReportButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            infoReportButton.topAnchor.constraint(equalTo: dinnerTableView.bottomAnchor, constant: 32.0),
-            infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
-        ])
+//        infoReportButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            infoReportButton.topAnchor.constraint(equalTo: dinnerTableView.bottomAnchor, constant: 32.0),
+//            infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
+//        ])
     }
     
     @objc func didTapInfoReport() {

@@ -9,6 +9,7 @@ import UIKit
 
 protocol MyPageProtocol: AnyObject {
     func didTapInquries()
+    func didTapTerms()
 }
 
 final class MypageTableView: UITableView {
@@ -55,11 +56,11 @@ extension MypageTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            print(indexPath.row)
+            self.didTapTerms()
         case 1:
             print(indexPath.row)
         case 2:
-            self.didTapInquries()
+            print(indexPath.row)
         default:
             print("Default")
         }
@@ -92,6 +93,10 @@ private extension MypageTableView {
     
     func didTapInquries() {
         self.mypageDelegate?.didTapInquries()
+    }
+    
+    func didTapTerms() {
+        self.mypageDelegate?.didTapTerms()
     }
     
 }

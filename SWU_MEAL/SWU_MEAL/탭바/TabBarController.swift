@@ -59,7 +59,7 @@ final class TabBarController: UITabBarController {
         tabBar.isTranslucent = false
         tabBar.tintColor = .tabBarActiveColor
         tabBar.unselectedItemTintColor = .tabBarInActiveColor
-        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 5)
+       // UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 5)
         
         UITabBarItem.appearance().setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)

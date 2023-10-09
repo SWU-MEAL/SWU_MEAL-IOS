@@ -38,7 +38,6 @@ final class WeekViewTabBarController: TabmanViewController {
     private let numberOfCases: Int = 5
     
     private var viewControllers = [
-        // UINavigationController(rootViewController: MondayViewController()),
         MondayViewController(),
         ThuesViewController(),
         WednsViewController(),

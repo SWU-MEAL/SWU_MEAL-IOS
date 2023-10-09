@@ -112,6 +112,12 @@ private extension MyPageViewController {
 }
 
 extension MyPageViewController: MyPageProtocol {
+    
+    func didTapTerms() {
+        let vc = TermsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 
     func didTapInquries() {
         let vc = InquiryViewController()

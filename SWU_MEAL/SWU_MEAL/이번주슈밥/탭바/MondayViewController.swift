@@ -208,16 +208,16 @@ final class MondayViewController: UIViewController {
     
     private let dinnerTableView = WeekDinnerTableView()
     
-    private lazy var infoReportButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("메뉴 정보가 잘못되었나요?", for: .normal)
-        button.setTitleColor(UIColor(hex: "#606060"), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
-        // button.addTarget(self, action: #selector(didTapInfoReport), for: .touchUpInside)
-
-        return button
-    }()
-    
+//    private lazy var infoReportButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("메뉴 정보가 잘못되었나요?", for: .normal)
+//        button.setTitleColor(UIColor(hex: "#606060"), for: .normal)
+//        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
+//        // button.addTarget(self, action: #selector(didTapInfoReport), for: .touchUpInside)
+//
+//        return button
+//    }()
+//    
     private let b_emptyView: EmptyMealView = {
         let view = EmptyMealView()
         view.isHidden = true
@@ -270,7 +270,7 @@ private extension MondayViewController {
             lunchTableView,
             dinnerStackView,
             dinnerTableView,
-            infoReportButton,
+            // infoReportButton,
             b_emptyView
         ].forEach { view.addSubview($0) }
 
@@ -340,11 +340,11 @@ private extension MondayViewController {
             dinnerTableView.trailingAnchor.constraint(equalTo: morningTableView.trailingAnchor),
         ])
         
-        infoReportButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            infoReportButton.topAnchor.constraint(equalTo: dinnerTableView.bottomAnchor, constant: 32.0),
-            infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
-        ])
+//        infoReportButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            infoReportButton.topAnchor.constraint(equalTo: dinnerTableView.bottomAnchor, constant: 32.0),
+//            infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
+//        ])
         
         b_emptyView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

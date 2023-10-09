@@ -22,5 +22,7 @@ extension UIColor {
     
     static let weekLunchActiveColor = UIColor(hex: "#191919")
     static let weekLunchUnActiveColor = UIColor(hex: "#BCBCBC")
+    
+    static let textColor3 = UIColor(hex: "#878787")
 }
 

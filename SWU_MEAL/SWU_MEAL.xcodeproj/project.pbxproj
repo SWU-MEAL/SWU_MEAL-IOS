@@ -54,6 +54,7 @@
 		517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */; };
 		517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB292AC751970059ED4C /* MondayViewController.swift */; };
 		51E399622ACFD82200EC6ECE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51E399612ACFD82200EC6ECE /* Alamofire */; };
+		51E7BF962AD446890032AE72 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7BF952AD446890032AE72 /* TermsViewController.swift */; };
 		51E8053D2AD16812008D83B9 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8053C2AD16812008D83B9 /* SplashVC.swift */; };
 		51E805402AD1959F008D83B9 /* WeekMealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */; };
 		51E805422AD19763008D83B9 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E805412AD19763008D83B9 /* Manager.swift */; };
@@ -126,6 +127,7 @@
 		517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDinnerTableView.swift; sourceTree = "<group>"; };
 		517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		517EAB292AC751970059ED4C /* MondayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondayViewController.swift; sourceTree = "<group>"; };
+		51E7BF952AD446890032AE72 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		51E8053C2AD16812008D83B9 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMealModel.swift; sourceTree = "<group>"; };
 		51E805412AD19763008D83B9 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				51331EC42AC04ABF006CA899 /* MyPageViewController.swift */,
+				51E7BF952AD446890032AE72 /* TermsViewController.swift */,
 				516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */,
 				516491D12AD3D31900AC48F7 /* Views */,
 				516491D02AD3D31400AC48F7 /* Model */,
@@ -599,6 +602,7 @@
 				5108BADA2AD31EFE00A32BB7 /* EmptyMealView.swift in Sources */,
 				51331EE92AC06A7E006CA899 /* TodayDinnerViewController.swift in Sources */,
 				51383F182AC2CB6300866891 /* MypageModel.swift in Sources */,
+				51E7BF962AD446890032AE72 /* TermsViewController.swift in Sources */,
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
 				517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */,
 				517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */,

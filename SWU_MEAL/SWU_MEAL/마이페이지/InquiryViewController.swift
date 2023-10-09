@@ -11,6 +11,9 @@ final class InquiryViewController: UIViewController {
     
     // MARK: - Views
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
     private lazy var xmarkButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -21,16 +24,35 @@ final class InquiryViewController: UIViewController {
         
         return button
     }()
+    
+    private let sortView = WhiteView(frame: .zero, height: 52.0)
 
     
-    // MARK: - LifeCycle
+    private let infoView = WhiteView(frame: .zero, height: 250.0)
 
+    private let fileView = WhiteView(frame: .zero, height: 52.0)
+    
+    private let emailView = WhiteView(frame: .zero, height: 52.0)
+    
+    private lazy var registerButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .reportUnActiveColor
+        button.layer.cornerRadius = 10.0
+        button.setTitle("문의 접수하기", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .regular)
+        button.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+        
+        return button
+    }()
+    
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavigation()
-        self.setupLayout()
+        //self.setupNavigation()
+        //self.setupLayout()
         
-       
     }
     
 }
@@ -51,7 +73,49 @@ private extension InquiryViewController {
     }
     
     func setupLayout() {
-       
+        [
+            sortView,
+            infoView,
+            fileView,
+            emailView,
+            registerButton
+        ].forEach { view.addSubview($0) }
+        
+        sortView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sortView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32.0),
+            sortView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0),
+            sortView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0)
+        ])
+        
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoView.topAnchor.constraint(equalTo: sortView.bottomAnchor, constant: 14.0),
+            infoView.leadingAnchor.constraint(equalTo: sortView.leadingAnchor),
+            infoView.trailingAnchor.constraint(equalTo: sortView.trailingAnchor)
+        ])
+        
+        fileView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            fileView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 14.0),
+            fileView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            fileView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
+        
+        emailView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emailView.topAnchor.constraint(equalTo: fileView.bottomAnchor, constant: 14.0),
+            emailView.leadingAnchor.constraint(equalTo: fileView.leadingAnchor),
+            emailView.trailingAnchor.constraint(equalTo: fileView.trailingAnchor)
+        ])
+        
+        registerButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            registerButton.leadingAnchor.constraint(equalTo: sortView.leadingAnchor),
+            registerButton.trailingAnchor.constraint(equalTo: sortView.trailingAnchor),
+            registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32.0)
+        ])
+        
     }
     
     @objc func didTapBackButton() {
