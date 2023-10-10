@@ -14,8 +14,6 @@ final class MondayViewController: UIViewController {
     private let apiManager = APIManager()
     private let selectedDate = APIManager().calculateDate(forDayOfWeek: 1)
     
-    // MARK: - Views
-
     private weak var weekdayDelegate: WeekdayViewProtocol?
     private var selectedButtonIndex = 0
     
@@ -27,6 +25,13 @@ final class MondayViewController: UIViewController {
     ]
     
     // MARK: - Views
+    
+    private lazy var  customActivityIndicatorView: CustomActivityIndicatorView = {
+        let indicator = CustomActivityIndicatorView()
+        indicator.isHidden = true
+        
+        return indicator
+    }()
     
     private lazy var morningLabel: UILabel = {
         let label = UILabel()
@@ -218,22 +223,15 @@ final class MondayViewController: UIViewController {
 //        return button
 //    }()
 //    
-    private let b_emptyView: EmptyMealView = {
+    private lazy var b_emptyView: EmptyMealView = {
         let view = EmptyMealView()
         view.isHidden = true
         
         return view
     }()
-    
-    private let l_emptyView: EmptyMealView = {
-        let view = EmptyMealView()
-        view.isHidden = true
-        
-        return view
-    }()
-    
-    private let d_emptyView: EmptyMealView = {
-        let view = EmptyMealView()
+
+    private lazy var errorView: ServerErrorMealView = {
+        let view = ServerErrorMealView()
         view.isHidden = true
         
         return view
@@ -271,7 +269,9 @@ private extension MondayViewController {
             dinnerStackView,
             dinnerTableView,
             // infoReportButton,
-            b_emptyView
+            b_emptyView,
+            errorView,
+            customActivityIndicatorView
         ].forEach { view.addSubview($0) }
 
         morningStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -354,12 +354,37 @@ private extension MondayViewController {
             b_emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        customActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customActivityIndicatorView.topAnchor.constraint(equalTo: view.topAnchor),
+            customActivityIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customActivityIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customActivityIndicatorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     // MARK: - Func
 
     func setupIndiator(senderX: CGFloat) {
         self.lunchIndicatorView.frame.origin.x = senderX
+    }
+    
+    func showIndicator() {
+        self.customActivityIndicatorView.startAnimating()
+        self.customActivityIndicatorView.isHidden = false
+    }
+    
+    func hideIndicator() {
+        self.customActivityIndicatorView.stopAnimating()
+        self.customActivityIndicatorView.isHidden = true
     }
 
      func showEmptyView() {
@@ -368,6 +393,14 @@ private extension MondayViewController {
 
     func hideEmptyView() {
         self.b_emptyView.isHidden = true
+    }
+    
+    func showErrorView() {
+        self.errorView.isHidden = false
+    }
+    
+    func hideErrorView() {
+        self.errorView.isHidden = true
     }
     
     // MARK: - @objc
@@ -410,7 +443,13 @@ private extension MondayViewController {
 
     /// 이번주 슈밥 - 조식 API
     private func setupMorningServer(date: String) {
+        
+        self.showIndicator()
+        
         apiManager.weekdayMealGetData(date: date, time: "조식") { [weak self] result in
+
+            self?.hideIndicator()
+            
             switch result {
             case .success(let weekMealModel):
                 if let menuList = self?.apiManager.getMenuListForDate(
@@ -418,6 +457,10 @@ private extension MondayViewController {
                     time: "조식",
                     weekMealModel: weekMealModel
                 ) {
+                    self?.hideErrorView()
+                    self?.hideEmptyView()
+                    self?.hideIndicator()
+                    
                     self?.morningTableView.b_itemsArray = menuList.flatMap { $0.items }
                     self?.morningTableView.b_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
@@ -426,6 +469,7 @@ private extension MondayViewController {
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
+                self?.showErrorView()
             }
         }
     }
@@ -446,7 +490,6 @@ private extension MondayViewController {
                     self?.lunchTableView.l_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("중식 메뉴 리스트를 찾을 수 없습니다.")
-                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
@@ -468,7 +511,6 @@ private extension MondayViewController {
                     self?.dinnerTableView.d_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("저녁 메뉴 리스트를 찾을 수 없습니다.")
-                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")

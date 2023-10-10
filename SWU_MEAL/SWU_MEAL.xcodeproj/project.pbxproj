@@ -40,6 +40,8 @@
 		51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51383F152AC2CA0700866891 /* MypageTableViewCell.swift */; };
 		51383F182AC2CB6300866891 /* MypageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51383F172AC2CB6300866891 /* MypageModel.swift */; };
 		5148073D2AC40C7000A96879 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5148073C2AC40C7000A96879 /* WeekdayView.swift */; };
+		515736C92AD520FE0061F0B2 /* ServerErrorMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */; };
+		515736CB2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */; };
 		516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */; };
 		516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A62AC5494100F09F12 /* MenuReportViewController.swift */; };
 		516380A92AC5507800F09F12 /* WhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A82AC5507800F09F12 /* WhiteView.swift */; };
@@ -114,6 +116,8 @@
 		51383F152AC2CA0700866891 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		51383F172AC2CB6300866891 /* MypageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageModel.swift; sourceTree = "<group>"; };
 		5148073C2AC40C7000A96879 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
+		515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMealView.swift; sourceTree = "<group>"; };
+		515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
 		516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewTabBarController.swift; sourceTree = "<group>"; };
 		516380A62AC5494100F09F12 /* MenuReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReportViewController.swift; sourceTree = "<group>"; };
 		516380A82AC5507800F09F12 /* WhiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteView.swift; sourceTree = "<group>"; };
@@ -255,7 +259,6 @@
 			children = (
 				51331EC22AC04AB7006CA899 /* WeekViewController.swift */,
 				516380A62AC5494100F09F12 /* MenuReportViewController.swift */,
-				5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */,
 				516380AA2AC5507C00F09F12 /* View */,
 				517EAB2B2AC7519B0059ED4C /* 탭바 */,
 			);
@@ -353,6 +356,9 @@
 		516380AA2AC5507C00F09F12 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */,
+				5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */,
+				515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */,
 				5148073C2AC40C7000A96879 /* WeekdayView.swift */,
 				517EAB262AC70C1E0059ED4C /* Model */,
 			);
@@ -572,6 +578,7 @@
 				51331ECE2AC04B85006CA899 /* DividerView.swift in Sources */,
 				51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */,
 				51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */,
+				515736CB2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift in Sources */,
 				511D53402AC1F99E00A688F4 /* TodayLunchTableView.swift in Sources */,
 				51E8053D2AD16812008D83B9 /* SplashVC.swift in Sources */,
 				51331ED42AC04BA7006CA899 /* Color+.swift in Sources */,
@@ -606,6 +613,7 @@
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
 				517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */,
 				517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */,
+				515736C92AD520FE0061F0B2 /* ServerErrorMealView.swift in Sources */,
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
 				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,
 				51331ED32AC04BA7006CA899 /* Extension+.swift in Sources */,

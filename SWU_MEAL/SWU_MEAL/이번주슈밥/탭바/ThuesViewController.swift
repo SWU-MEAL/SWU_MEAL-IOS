@@ -13,8 +13,6 @@ final class ThuesViewController: UIViewController {
     private let apiManager = APIManager()
     private let selectedDate = APIManager().calculateDate(forDayOfWeek: 2)
 
-    // MARK: - Views
-
     private weak var weekdayDelegate: WeekdayViewProtocol?
     private var selectedButtonIndex = 0
     
@@ -26,6 +24,20 @@ final class ThuesViewController: UIViewController {
     ]
     
     // MARK: - Views
+    
+    private lazy var  customActivityIndicatorView: CustomActivityIndicatorView = {
+        let indicator = CustomActivityIndicatorView()
+        indicator.isHidden = true
+        
+        return indicator
+    }()
+    
+    private lazy var errorView: ServerErrorMealView = {
+        let view = ServerErrorMealView()
+        view.isHidden = true
+        
+        return view
+    }()
     
     private lazy var morningLabel: UILabel = {
         let label = UILabel()
@@ -217,7 +229,6 @@ final class ThuesViewController: UIViewController {
 //        return button
 //    }()
     
-    
     private let emptyView: EmptyMealView = {
         let view = EmptyMealView()
         view.isHidden = true
@@ -257,6 +268,9 @@ private extension ThuesViewController {
             dinnerStackView,
             dinnerTableView,
            // infoReportButton
+            emptyView,
+            errorView,
+            customActivityIndicatorView
         ].forEach { view.addSubview($0) }
 
         morningStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -330,6 +344,30 @@ private extension ThuesViewController {
 //            infoReportButton.topAnchor.constraint(equalTo: dinnerTableView.bottomAnchor, constant: 32.0),
 //            infoReportButton.centerXAnchor.constraint(equalTo: dinnerTableView.centerXAnchor),
 //        ])
+        
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        customActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customActivityIndicatorView.topAnchor.constraint(equalTo: view.topAnchor),
+            customActivityIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customActivityIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customActivityIndicatorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     @objc func didTapInfoReport() {
@@ -372,6 +410,16 @@ private extension ThuesViewController {
         
     }
     
+    func showIndicator() {
+        self.customActivityIndicatorView.startAnimating()
+        self.customActivityIndicatorView.isHidden = false
+    }
+    
+    func hideIndicator() {
+        self.customActivityIndicatorView.stopAnimating()
+        self.customActivityIndicatorView.isHidden = true
+    }
+    
     func showEmptyView() {
        self.emptyView.isHidden = false
     }
@@ -380,12 +428,25 @@ private extension ThuesViewController {
        self.emptyView.isHidden = true
    }
 
+    func showErrorView() {
+        self.errorView.isHidden = false
+    }
+    
+    func hideErrorView() {
+        self.errorView.isHidden = true
+    }
     
     // MARK: - Helper
 
     /// 이번주 슈밥 - 조식 API
     private func setupMorningServer(date: String) {
+        
+        self.showIndicator()
+        
         apiManager.weekdayMealGetData(date: date, time: "조식") { [weak self] result in
+            
+            self?.hideIndicator()
+            
             switch result {
             case .success(let weekMealModel):
                 if let menuList = self?.apiManager.getMenuListForDate(
@@ -393,6 +454,10 @@ private extension ThuesViewController {
                     time: "조식",
                     weekMealModel: weekMealModel
                 ) {
+                    self?.hideErrorView()
+                    self?.hideEmptyView()
+                    self?.hideIndicator()
+                    
                     self?.morningTableView.b_itemsArray = menuList.flatMap { $0.items }
                     self?.morningTableView.b_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
@@ -401,6 +466,7 @@ private extension ThuesViewController {
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
+                self?.showErrorView()
             }
         }
     }
@@ -421,7 +487,6 @@ private extension ThuesViewController {
                     self?.lunchTableView.l_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
-                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
@@ -443,7 +508,6 @@ private extension ThuesViewController {
                     self?.dinnerTableView.d_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
-                    self?.showEmptyView()
                 }
             case .failure(let error):
                 print("요청 실패: \(error.localizedDescription)")
