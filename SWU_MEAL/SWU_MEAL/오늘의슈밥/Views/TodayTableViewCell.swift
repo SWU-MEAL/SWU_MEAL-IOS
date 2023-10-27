@@ -25,12 +25,10 @@ final class TodayTableViewCell: UITableViewCell {
         return label
     }()
 
-    
-    func setup(model: TodayMealModel) {
+    func setup(content: String) {
         self.backgroundColor = .white
         self.setupLayout()
-        
-        contentLabel.text = model.content
+        self.contentLabel.text = content
     }
     
 }

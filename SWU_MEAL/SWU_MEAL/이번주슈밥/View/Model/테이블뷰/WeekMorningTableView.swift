@@ -13,16 +13,25 @@ final class WeekMorningTableView: UITableView {
 
     private let cellHeight: CGFloat = 32.0
     private let headerHeight: CGFloat = 26.0
-
-    private let todayMeal: [TodayMealModel] = [
-        TodayMealModel(content: "미니밥"),
-        TodayMealModel(content: "잔치국수"),
-        TodayMealModel(content: "메밀전병"),
-        TodayMealModel(content: "비엔나케찹조림"),
-        TodayMealModel(content: "그린샐러드"),
-        TodayMealModel(content: "오징어무생채"),
-        TodayMealModel(content: "배추김치"),
-    ]
+    
+    var b_itemsArray: [String]? {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.reloadData()
+//                print("WeekmorningTableView Data : \(self?.b_itemsArray ?? [])")
+            }
+        }
+    }
+    
+    var b_itemsCount: Int = 1 {
+        didSet {
+            DispatchQueue.main.async {
+                self.heightAnchor.constraint(
+                    equalToConstant: self.cellHeight * CGFloat(self.b_itemsCount) + (self.headerHeight * 2)
+                ).isActive = true
+            }
+        }
+    }
 
     // MARK: - init
 
@@ -41,27 +50,21 @@ final class WeekMorningTableView: UITableView {
         self.separatorStyle = .none
         self.layer.cornerRadius = 10.0
         self.rowHeight = cellHeight
-        self.heightAnchor.constraint(
-            equalToConstant: cellHeight * CGFloat(todayMeal.count) + (headerHeight * 2)
-        ).isActive = true
         self.dataSource = self
-        
         self.register(
             WeekTableViewCell.self,
             forCellReuseIdentifier: WeekTableViewCell.identifier
         )
-        
         let emptyHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: headerHeight))
         self.tableHeaderView = emptyHeaderView
         self.tableFooterView = emptyHeaderView
     }
-    
+
 }
 
 extension WeekMorningTableView: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todayMeal.count
+        return b_itemsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,8 +73,9 @@ extension WeekMorningTableView: UITableViewDataSource {
             for: indexPath
         ) as? WeekTableViewCell else { return UITableViewCell() }
         
-        let model = todayMeal[indexPath.row]
-        cell.setup(model: model)
+        if let item = b_itemsArray?[indexPath.row] {
+            cell.setup(content: item)
+        }
         cell.selectionStyle = .none
         
         return cell

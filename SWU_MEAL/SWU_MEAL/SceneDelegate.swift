@@ -11,11 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else{ return }
           window = UIWindow(windowScene: scene)
-          window?.backgroundColor = .systemBackground
           
           let rootVC = TabBarController()
           let rootNavigationVC = UINavigationController(rootViewController: rootVC)
@@ -26,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if #available(iOS 13.0, *) {
           self.window?.overrideUserInterfaceStyle = .light
         }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

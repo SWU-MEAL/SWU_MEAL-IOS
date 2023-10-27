@@ -9,7 +9,19 @@ import UIKit
 
 final class TodayLunchViewController: UIViewController {
     
+    // MARK: - Properties
+
+    private let apiManager = APIManager()
+    private let todayDate: String = APIManager().calculateTodayDate()
+    
     // MARK: - Views
+    
+    private lazy var  customActivityIndicatorView: CustomActivityIndicatorView = {
+        let indicator = CustomActivityIndicatorView()
+        indicator.isHidden = true
+        
+        return indicator
+    }()
     
     private lazy var menuView: UIView = {
         let view = UIView()
@@ -42,6 +54,20 @@ final class TodayLunchViewController: UIViewController {
     
     private let launchTableView = TodayLunchTableView(frame: .zero)
     
+    private lazy var emptyView: EmptyTodayMealView = {
+        let view = EmptyTodayMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+
+    private lazy var errorView: ServerErrorMealView = {
+        let view = ServerErrorMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+    
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -49,7 +75,7 @@ final class TodayLunchViewController: UIViewController {
         view.backgroundColor = UIColor(hex: "#F6F6F6")
         self.setupLayout()
         self.buttonFunction()
-        
+        self.setupLunchServer(date: todayDate, type: "샬롬", corner: "한식")
         buttonBundle = [
             button1, 
             button2,
@@ -57,6 +83,7 @@ final class TodayLunchViewController: UIViewController {
             button4
         ]
     }
+    
 }
 
 // MARK: - Extension
@@ -67,7 +94,10 @@ private extension TodayLunchViewController {
         [
             buttonStackView,
             menuView,
-            launchTableView
+            launchTableView,
+            emptyView,
+            errorView,
+            customActivityIndicatorView
         ].forEach { view.addSubview($0) }
 
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +121,30 @@ private extension TodayLunchViewController {
             launchTableView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
             launchTableView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
         ])
+        
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        customActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customActivityIndicatorView.topAnchor.constraint(equalTo: view.topAnchor),
+            customActivityIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customActivityIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customActivityIndicatorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 
     func buttonFunction() {
@@ -107,7 +161,6 @@ private extension TodayLunchViewController {
         self.button1.backgroundColor = .black
         self.button1.setTitleColor(.white, for: .normal)
         self.button1.titleLabel?.font = .systemFont(ofSize: 13.0, weight: .semibold)
-    
     }
     
     func checkButtonTag(tag: Int) {
@@ -122,13 +175,85 @@ private extension TodayLunchViewController {
                 button.backgroundColor = UIColor(hex: "#F6F6F6")
             }
         }
+        
+        switch tag {
+        case 1001:
+            self.setupLunchServer(date: todayDate, type: "샬롬", corner: "한식")
+        case 1002:
+            self.setupLunchServer(date: todayDate, type: "샬롬", corner: "일품")
+        case 1003:
+            self.setupLunchServer(date: todayDate, type: "샬롬", corner: "스낵")
+        case 1004:
+            self.setupLunchServer(date: todayDate, type: "교직원", corner: "")
+        default:
+            print("default")
+        }
     }
-   
+    
+    // MARK: - Func
+    
+    func showIndicator() {
+        self.customActivityIndicatorView.startAnimating()
+        self.customActivityIndicatorView.isHidden = false
+    }
+    
+    func hideIndicator() {
+        self.customActivityIndicatorView.stopAnimating()
+        self.customActivityIndicatorView.isHidden = true
+    }
+
+     func showEmptyView() {
+        self.emptyView.isHidden = false
+     }
+
+    func hideEmptyView() {
+        self.emptyView.isHidden = true
+    }
+    
+    func showErrorView() {
+        self.errorView.isHidden = false
+    }
+    
+    func hideErrorView() {
+        self.errorView.isHidden = true
+    }
+    
+    // MARK: - Helper
+
+    /// 이번주 슈밥 - 중식 API
+    private func setupLunchServer(date: String, type: String, corner: String) {
+        self.showIndicator()
+        apiManager.weekdayMealGetData(date: date, time: "중식") { [weak self] result in
+            self?.hideIndicator()
+            switch result {
+            case .success(let weekMealModel):
+                if let menuList = self?.apiManager.getLunchMenuListForDate(
+                    date: date,
+                    time: "중식",
+                    type: type,
+                    corner: corner,
+                    weekMealModel: weekMealModel
+                ) {
+                    self?.hideErrorView()
+                    self?.hideEmptyView()
+                    self?.hideIndicator()
+                    
+                    self?.launchTableView.itemsArray = menuList.flatMap { $0.items }
+                    self?.launchTableView.itemsCount = menuList.map { $0.items.count }.reduce(0, +)
+                } else {
+                    print("중식 메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
+                }
+            case .failure(let error):
+                print("요청 실패: \(error.localizedDescription)")
+                self?.showErrorView()
+            }
+        }
+    }
 }
 
 extension TodayLunchViewController: TagButtonProtocol {
     func didTapTagButton(buttonTag: UIButton) {
         self.checkButtonTag(tag: buttonTag.tag)
-        print("TagButton Tag : \(buttonTag.tag)")
     }
 }

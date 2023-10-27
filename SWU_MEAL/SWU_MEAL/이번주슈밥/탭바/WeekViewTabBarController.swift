@@ -27,7 +27,7 @@ enum WeekTabBarTopic: String {
     }
 }
 
-class WeekViewTabBarController: TabmanViewController {
+final class WeekViewTabBarController: TabmanViewController {
     
     // MARK: - Properties
     
@@ -52,7 +52,6 @@ class WeekViewTabBarController: TabmanViewController {
         self.dataSource = self
         self.setupStyle()
     }
-    
 }
 
 private extension WeekViewTabBarController {
@@ -86,8 +85,6 @@ private extension WeekViewTabBarController {
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: currentDate)
         self.adjustedWeekday = (weekday + 5) % 7
-        
-        print("오늘 요일 index: \(self.adjustedWeekday)")
     }
 }
 
@@ -100,6 +97,7 @@ extension WeekViewTabBarController: PageboyViewControllerDataSource, TMBarDataSo
     }
     
     func viewController(for pageboyViewController: Pageboy.PageboyViewController, at index: Pageboy.PageboyViewController.PageIndex) -> UIViewController? {
+        
         return viewControllers[index]
     }
     

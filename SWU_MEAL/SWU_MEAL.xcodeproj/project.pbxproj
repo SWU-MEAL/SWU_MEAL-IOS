@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5108BADA2AD31EFE00A32BB7 /* EmptyMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */; };
 		511D53402AC1F99E00A688F4 /* TodayLunchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D533F2AC1F99E00A688F4 /* TodayLunchTableView.swift */; };
 		511D53442AC1FC5500A688F4 /* TodayDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D53432AC1FC5500A688F4 /* TodayDinnerTableView.swift */; };
 		511D534B2AC201C900A688F4 /* TodayBreakfastTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D534A2AC201C900A688F4 /* TodayBreakfastTableView.swift */; };
@@ -39,9 +40,14 @@
 		51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51383F152AC2CA0700866891 /* MypageTableViewCell.swift */; };
 		51383F182AC2CB6300866891 /* MypageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51383F172AC2CB6300866891 /* MypageModel.swift */; };
 		5148073D2AC40C7000A96879 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5148073C2AC40C7000A96879 /* WeekdayView.swift */; };
+		515736C92AD520FE0061F0B2 /* ServerErrorMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */; };
+		515736CB2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */; };
+		515736D02AD52DDF0061F0B2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736CF2AD52DDF0061F0B2 /* SplashViewController.swift */; };
+		515736D12AD52E5F0061F0B2 /* SplashVideo.mp4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 515736CE2AD52CC60061F0B2 /* SplashVideo.mp4.mp4 */; };
 		516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */; };
 		516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A62AC5494100F09F12 /* MenuReportViewController.swift */; };
 		516380A92AC5507800F09F12 /* WhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A82AC5507800F09F12 /* WhiteView.swift */; };
+		516491D32AD3D34F00AC48F7 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */; };
 		517B66022ACC39830086E14A /* ThuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66012ACC39830086E14A /* ThuesViewController.swift */; };
 		517B66042ACC39B70086E14A /* WednsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66032ACC39B70086E14A /* WednsViewController.swift */; };
 		517B66062ACC39DF0086E14A /* ThursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B66052ACC39DF0086E14A /* ThursViewController.swift */; };
@@ -51,8 +57,12 @@
 		517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */; };
 		517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */; };
 		517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB292AC751970059ED4C /* MondayViewController.swift */; };
+		51D6DB592AEC105B005767BA /* EmptyTodayMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */; };
 		51E399622ACFD82200EC6ECE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51E399612ACFD82200EC6ECE /* Alamofire */; };
+		51E7BF962AD446890032AE72 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7BF952AD446890032AE72 /* TermsViewController.swift */; };
 		51E8053D2AD16812008D83B9 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8053C2AD16812008D83B9 /* SplashVC.swift */; };
+		51E805402AD1959F008D83B9 /* WeekMealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */; };
+		51E805422AD19763008D83B9 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E805412AD19763008D83B9 /* Manager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMealView.swift; sourceTree = "<group>"; };
 		511D533F2AC1F99E00A688F4 /* TodayLunchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLunchTableView.swift; sourceTree = "<group>"; };
 		511D53432AC1FC5500A688F4 /* TodayDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDinnerTableView.swift; sourceTree = "<group>"; };
 		511D534A2AC201C900A688F4 /* TodayBreakfastTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayBreakfastTableView.swift; path = "SWU_MEAL/오늘의슈밥/조식/TodayBreakfastTableView.swift"; sourceTree = SOURCE_ROOT; };
@@ -108,9 +119,14 @@
 		51383F152AC2CA0700866891 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		51383F172AC2CB6300866891 /* MypageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageModel.swift; sourceTree = "<group>"; };
 		5148073C2AC40C7000A96879 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
+		515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMealView.swift; sourceTree = "<group>"; };
+		515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
+		515736CE2AD52CC60061F0B2 /* SplashVideo.mp4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SplashVideo.mp4.mp4; sourceTree = "<group>"; };
+		515736CF2AD52DDF0061F0B2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewTabBarController.swift; sourceTree = "<group>"; };
 		516380A62AC5494100F09F12 /* MenuReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReportViewController.swift; sourceTree = "<group>"; };
 		516380A82AC5507800F09F12 /* WhiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteView.swift; sourceTree = "<group>"; };
+		516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		517B66012ACC39830086E14A /* ThuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThuesViewController.swift; sourceTree = "<group>"; };
 		517B66032ACC39B70086E14A /* WednsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WednsViewController.swift; sourceTree = "<group>"; };
 		517B66052ACC39DF0086E14A /* ThursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThursViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +136,11 @@
 		517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDinnerTableView.swift; sourceTree = "<group>"; };
 		517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		517EAB292AC751970059ED4C /* MondayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondayViewController.swift; sourceTree = "<group>"; };
+		51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTodayMealView.swift; sourceTree = "<group>"; };
+		51E7BF952AD446890032AE72 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		51E8053C2AD16812008D83B9 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMealModel.swift; sourceTree = "<group>"; };
+		51E805412AD19763008D83B9 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,14 +170,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		511D53482AC1FF7F00A688F4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		51331E7E2AC02AA0006CA899 = {
 			isa = PBXGroup;
 			children = (
@@ -181,12 +193,13 @@
 		51331E892AC02AA1006CA899 /* SWU_MEAL */ = {
 			isa = PBXGroup;
 			children = (
+				515736CC2AD52CA10061F0B2 /* VideoPlayer */,
 				51331E8A2AC02AA1006CA899 /* AppDelegate.swift */,
 				51331E8C2AC02AA1006CA899 /* SceneDelegate.swift */,
 				51331ED72AC05136006CA899 /* UhBeeSe_hyun */,
+				51E8053E2AD19581008D83B9 /* Manager */,
 				51331ECA2AC04B6B006CA899 /* Component */,
 				51331EC62AC04B27006CA899 /* Extension+ */,
-				51331EC72AC04B2F006CA899 /* Utility */,
 				51E8053B2AD16802008D83B9 /* Splash */,
 				51331EBD2AC04A3B006CA899 /* 탭바 */,
 				51331EBC2AC047B7006CA899 /* 오늘의슈밥 */,
@@ -222,7 +235,6 @@
 				51331EDF2AC052BA006CA899 /* TodayTabBarController.swift */,
 				51331EBA2AC047B4006CA899 /* TodayViewController.swift */,
 				5148073E2AC41A6200A96879 /* Views */,
-				511D53482AC1FF7F00A688F4 /* Model */,
 				51331EDE2AC0528D006CA899 /* 석식 */,
 				51331EDD2AC05284006CA899 /* 중식 */,
 				51331EDC2AC05211006CA899 /* 조식 */,
@@ -256,9 +268,10 @@
 			isa = PBXGroup;
 			children = (
 				51331EC42AC04ABF006CA899 /* MyPageViewController.swift */,
-				51383F132AC2C9F200866891 /* MypageTableView.swift */,
-				51383F152AC2CA0700866891 /* MypageTableViewCell.swift */,
-				51383F172AC2CB6300866891 /* MypageModel.swift */,
+				51E7BF952AD446890032AE72 /* TermsViewController.swift */,
+				516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */,
+				516491D12AD3D31900AC48F7 /* Views */,
+				516491D02AD3D31400AC48F7 /* Model */,
 			);
 			name = "마이페이지";
 			path = "마이페이지";
@@ -273,19 +286,17 @@
 			path = "Extension+";
 			sourceTree = "<group>";
 		};
-		51331EC72AC04B2F006CA899 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
 		51331ECA2AC04B6B006CA899 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */,
+				5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */,
+				515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */,
+				516380A82AC5507800F09F12 /* WhiteView.swift */,
 				51331ECB2AC04B85006CA899 /* CustomBackButton.swift */,
 				51331ECC2AC04B85006CA899 /* DividerView.swift */,
 				51331EF02AC0AC2B006CA899 /* TagButton.swift */,
+				51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -337,12 +348,38 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		515736CC2AD52CA10061F0B2 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				515736CE2AD52CC60061F0B2 /* SplashVideo.mp4.mp4 */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
 		516380AA2AC5507C00F09F12 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5148073C2AC40C7000A96879 /* WeekdayView.swift */,
 				517EAB262AC70C1E0059ED4C /* Model */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		516491D02AD3D31400AC48F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				51383F172AC2CB6300866891 /* MypageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		516491D12AD3D31900AC48F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				51383F132AC2C9F200866891 /* MypageTableView.swift */,
+				51383F152AC2CA0700866891 /* MypageTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		517EAB1D2AC707BD0059ED4C /* 테이블뷰 */ = {
@@ -360,8 +397,6 @@
 		517EAB262AC70C1E0059ED4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5148073C2AC40C7000A96879 /* WeekdayView.swift */,
-				516380A82AC5507800F09F12 /* WhiteView.swift */,
 				517EAB1D2AC707BD0059ED4C /* 테이블뷰 */,
 			);
 			path = Model;
@@ -385,8 +420,19 @@
 			isa = PBXGroup;
 			children = (
 				51E8053C2AD16812008D83B9 /* SplashVC.swift */,
+				515736CF2AD52DDF0061F0B2 /* SplashViewController.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		51E8053E2AD19581008D83B9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */,
+				51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */,
+				51E805412AD19763008D83B9 /* Manager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,6 +547,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				515736D12AD52E5F0061F0B2 /* SplashVideo.mp4.mp4 in Resources */,
 				51331E972AC02AA2006CA899 /* LaunchScreen.storyboard in Resources */,
 				51331E942AC02AA2006CA899 /* Assets.xcassets in Resources */,
 				51331EDA2AC05136006CA899 /* UhBee Se_hyun.ttf in Resources */,
@@ -530,12 +577,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				51331EF12AC0AC2B006CA899 /* TagButton.swift in Sources */,
+				51D6DB592AEC105B005767BA /* EmptyTodayMealView.swift in Sources */,
 				51331ECE2AC04B85006CA899 /* DividerView.swift in Sources */,
 				51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */,
 				51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */,
+				515736CB2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift in Sources */,
 				511D53402AC1F99E00A688F4 /* TodayLunchTableView.swift in Sources */,
 				51E8053D2AD16812008D83B9 /* SplashVC.swift in Sources */,
 				51331ED42AC04BA7006CA899 /* Color+.swift in Sources */,
+				51E805422AD19763008D83B9 /* Manager.swift in Sources */,
 				511D53442AC1FC5500A688F4 /* TodayDinnerTableView.swift in Sources */,
 				516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */,
 				51331EED2AC0A59D006CA899 /* TodayTableViewCell.swift in Sources */,
@@ -553,19 +603,25 @@
 				516380A92AC5507800F09F12 /* WhiteView.swift in Sources */,
 				5148073D2AC40C7000A96879 /* WeekdayView.swift in Sources */,
 				51331EE52AC06A33006CA899 /* TodayBreakfastViewController.swift in Sources */,
+				51E805402AD1959F008D83B9 /* WeekMealModel.swift in Sources */,
 				517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */,
 				517EAB1F2AC708CB0059ED4C /* WeekMorningTableView.swift in Sources */,
 				51383F142AC2C9F200866891 /* MypageTableView.swift in Sources */,
 				51331EBF2AC04A68006CA899 /* TabBarController.swift in Sources */,
 				51331E8B2AC02AA1006CA899 /* AppDelegate.swift in Sources */,
+				5108BADA2AD31EFE00A32BB7 /* EmptyMealView.swift in Sources */,
 				51331EE92AC06A7E006CA899 /* TodayDinnerViewController.swift in Sources */,
 				51383F182AC2CB6300866891 /* MypageModel.swift in Sources */,
+				51E7BF962AD446890032AE72 /* TermsViewController.swift in Sources */,
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
 				517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */,
 				517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */,
+				515736D02AD52DDF0061F0B2 /* SplashViewController.swift in Sources */,
+				515736C92AD520FE0061F0B2 /* ServerErrorMealView.swift in Sources */,
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
 				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,
 				51331ED32AC04BA7006CA899 /* Extension+.swift in Sources */,
+				516491D32AD3D34F00AC48F7 /* InquiryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

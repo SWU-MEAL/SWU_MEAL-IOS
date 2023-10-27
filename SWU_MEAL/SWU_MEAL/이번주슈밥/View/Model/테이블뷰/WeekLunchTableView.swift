@@ -12,16 +12,21 @@ final class WeekLunchTableView: UITableView {
     // MARK: - Properties
 
     private let cellHeight: CGFloat = 32.0
-    private let footerHeight: CGFloat = 26.0
+    private let footerHeight: CGFloat = 18.0
     
-    private let todayMeal: [TodayMealModel] = [
-        TodayMealModel(content: "중식풍쇠고기볶음밥"),
-        TodayMealModel(content: "얼큰콩나물국"),
-        TodayMealModel(content: "탕수육&후르츠S"),
-        TodayMealModel(content: "볶음짬뽕"),
-        TodayMealModel(content: "단무지부추무침"),
-        TodayMealModel(content: "그린샐러드")
-    ]
+    var itemsArray: [String]? {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.reloadData()
+            }
+        }
+    }
+    
+    var itemsCount: Int = 1 {
+        didSet {
+           
+        }
+    }
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -40,14 +45,12 @@ final class WeekLunchTableView: UITableView {
         self.layer.cornerRadius = 10.0
         self.rowHeight = cellHeight
         self.heightAnchor.constraint(
-            equalToConstant: (cellHeight * CGFloat(todayMeal.count)) + footerHeight
-        ).isActive = true
-        
+                    equalToConstant: (cellHeight * CGFloat(7)) + footerHeight
+                ).isActive = true
         self.register(
             WeekTableViewCell.self,
             forCellReuseIdentifier: WeekTableViewCell.identifier
         )
-        
         let emptyHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: footerHeight))
         self.tableFooterView = emptyHeaderView
     }
@@ -56,7 +59,7 @@ final class WeekLunchTableView: UITableView {
 
 extension WeekLunchTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todayMeal.count
+        return itemsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,8 +68,9 @@ extension WeekLunchTableView: UITableViewDataSource {
             for: indexPath
         ) as? WeekTableViewCell else { return UITableViewCell() }
         
-        let model = todayMeal[indexPath.row]
-        cell.setup(model: model)
+        if let item = itemsArray?[indexPath.row] {
+            cell.setup(content: item)
+        }
         cell.selectionStyle = .none
         
         return cell

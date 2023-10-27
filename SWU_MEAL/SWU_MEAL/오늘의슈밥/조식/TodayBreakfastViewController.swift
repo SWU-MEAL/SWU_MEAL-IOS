@@ -9,7 +9,19 @@ import UIKit
 
 final class TodayBreakfastViewController: UIViewController {
     
+    // MARK: - Properties
+
+    private let apiManager = APIManager()
+    private let todayDate: String = APIManager().calculateTodayDate()
+    
     // MARK: - Views
+    
+    private lazy var  customActivityIndicatorView: CustomActivityIndicatorView = {
+        let indicator = CustomActivityIndicatorView()
+        indicator.isHidden = true
+        
+        return indicator
+    }()
     
     private lazy var menuView: UIView = {
         let view = UIView()
@@ -21,12 +33,27 @@ final class TodayBreakfastViewController: UIViewController {
     
     private let menuTableView = TodayBreakfastTableView(frame: .zero)
     
+    private lazy var emptyView: EmptyTodayMealView = {
+        let view = EmptyTodayMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+
+    private lazy var errorView: ServerErrorMealView = {
+        let view = ServerErrorMealView()
+        view.isHidden = true
+        
+        return view
+    }()
+    
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#F6F6F6")
         self.setupLayout()
+        self.setupMorningServer(date: todayDate)
     }
     
 }
@@ -39,7 +66,10 @@ private extension TodayBreakfastViewController {
     
         [
             menuView,
-            menuTableView
+            menuTableView,
+            emptyView,
+            errorView,
+            customActivityIndicatorView
         ].forEach { view.addSubview($0) }
         
         menuView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +86,93 @@ private extension TodayBreakfastViewController {
             menuTableView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
             menuTableView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
         ])
+        
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        customActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customActivityIndicatorView.topAnchor.constraint(equalTo: view.topAnchor),
+            customActivityIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customActivityIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customActivityIndicatorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
+    // MARK: - Func
+    
+    func showIndicator() {
+        self.customActivityIndicatorView.startAnimating()
+        self.customActivityIndicatorView.isHidden = false
+    }
+    
+    func hideIndicator() {
+        self.customActivityIndicatorView.stopAnimating()
+        self.customActivityIndicatorView.isHidden = true
+    }
+
+     func showEmptyView() {
+        self.emptyView.isHidden = false
+     }
+
+    func hideEmptyView() {
+        self.emptyView.isHidden = true
+    }
+    
+    func showErrorView() {
+        self.errorView.isHidden = false
+    }
+    
+    func hideErrorView() {
+        self.errorView.isHidden = true
+    }
+    
+    
+    // MARK: - Helper
+
+    /// 이번주 슈밥 - 조식 API
+    private func setupMorningServer(date: String) {
+        
+        self.showIndicator()
+        
+        apiManager.todayMealGetData(date: date, time: "b") { [weak self] result in
+
+            self?.hideIndicator()
+            
+            switch result {
+            case .success(let todayMealModel):
+                if let menuList = self?.apiManager.todayGetMenuListForDate(
+                    date: date,
+                    time: "b",
+                    todayMealModel: todayMealModel
+                ) {
+                    self?.hideErrorView()
+                    self?.hideEmptyView()
+                    self?.hideIndicator()
+                    
+                    self?.menuTableView.itemsArray = menuList.flatMap { $0.items }
+                    self?.menuTableView.itemsCount = menuList.map { $0.items.count }.reduce(0, +)
+                } else {
+                    print("아침 메뉴 리스트를 찾을 수 없습니다.")
+                    self?.showEmptyView()
+                }
+            case .failure(let error):
+                print("요청 실패: \(error.localizedDescription)")
+                self?.showErrorView()
+            }
+        }
+    }
 }
