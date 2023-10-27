@@ -13,13 +13,10 @@ struct WeekMealModel: Codable {
     let data: DataClass?
     
     struct DataClass: Codable {
-        /// 년-월-일  EX) 2023-10-10
         let date: String
-        /// 해당 date 의 결과값
         let result: [Result]
         
         struct Result: Codable {
-            /// 조식, 중식, 석식
             let time: String
             let menuList: [MenuList]
             

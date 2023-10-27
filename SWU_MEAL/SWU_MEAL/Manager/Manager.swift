@@ -12,6 +12,65 @@ class APIManager {
     
     private let baseURL = "http://15.164.192.106:10000"
     
+    ///  오늘의 슈밥 데이터 불러오기
+    func todayMealGetData(
+        date: String,
+        time: String,
+        completion: @escaping (Result<TodayMealModel, Error>
+        ) -> Void) {
+        
+        let url = "\(baseURL)/v1/menu/today?time=\(time)"
+
+        AF.request(url, method: .get).responseDecodable(of: TodayMealModel.self) { response in
+            switch response.result {
+            case .success(let todayMealModel):
+                completion(.success(todayMealModel))
+            case .failure(let error):
+                print("요청 실패: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    /// 오늘의 슈밥 -  메뉴 데이터
+    func todayGetMenuListForDate(
+        date: String,
+        time: String,
+        todayMealModel: TodayMealModel
+    ) -> [TodayMealModel.TodayMealDataClass.TodayMealResult]? {
+        if let result = todayMealModel.data?.result.first {
+            return todayMealModel.data?.result
+        }
+        return nil
+    }
+
+    /// 오늘의 슈밥 - 점심 메뉴 데이터 불러오기 함수
+    func todayGetLunchMenuListForDate(
+        date: String,
+        time: String,
+        type: String,
+        corner: String?,
+        todayMealModel: TodayMealModel
+    ) -> [String]? {
+        if let result = todayMealModel.data?.result.first {
+            let filteredMenus = result.items.filter { item in
+                if result.type == type {
+                    if let resultCorner = result.corner {
+                        if let corner = corner {
+                            return resultCorner == corner
+                        }
+                        return false
+                    }
+                    return true
+                }
+                return false
+            }
+            return filteredMenus
+        }
+        return nil
+    }
+
+
     /// 이번주 슈밥 데이터 불러오기
     func weekdayMealGetData(
         date: String,
@@ -32,6 +91,7 @@ class APIManager {
         }
     }
     
+    /// 이번주 슈밥 - 메뉴 데이터 불러오기
     func getMenuListForDate(
         date: String,
         time: String,
@@ -44,7 +104,7 @@ class APIManager {
         return nil
     }
     
-    /// 이번주 슈밥 - 점심 메뉴 데이터 불러오기
+    /// 이번주 슈밥 - 점심 메뉴 데이터 불러오기 함수
     func getLunchMenuListForDate(
         date: String,
         time: String,
@@ -80,15 +140,27 @@ class APIManager {
             currentWeekday = 7
         }
         
-        // 만약 오늘이 주말인 경우, 다음주 월요일로 이동하자.
+        // 만약 오늘이 주말인 경우, 다음주 월요일로 이동
         if currentWeekday >= 6 {
-            date = calendar.date(byAdding: .day, value: 8 - currentWeekday, to: date)!
+            date = calendar.date(byAdding: .day, value: currentWeekday + 1, to: date)!
         }
 
         let daysUntilSelectedDay = dayOfWeek - currentWeekday
         
         let daysToAdd = daysUntilSelectedDay - 1
         date = calendar.date(byAdding: .day, value: daysToAdd, to: date)!
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let selectedDate = dateFormatter.string(from: date)
+        
+        return selectedDate
+    }
+    
+    /// 오늘 날짜를 원하는 포맷으로 변경해서 출력하기
+    func calculateTodayDate() -> String {
+        var date = Date()
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")

@@ -57,6 +57,7 @@
 		517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */; };
 		517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */; };
 		517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB292AC751970059ED4C /* MondayViewController.swift */; };
+		51D6DB592AEC105B005767BA /* EmptyTodayMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */; };
 		51E399622ACFD82200EC6ECE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51E399612ACFD82200EC6ECE /* Alamofire */; };
 		51E7BF962AD446890032AE72 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7BF952AD446890032AE72 /* TermsViewController.swift */; };
 		51E8053D2AD16812008D83B9 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8053C2AD16812008D83B9 /* SplashVC.swift */; };
@@ -135,6 +136,7 @@
 		517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDinnerTableView.swift; sourceTree = "<group>"; };
 		517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		517EAB292AC751970059ED4C /* MondayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondayViewController.swift; sourceTree = "<group>"; };
+		51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTodayMealView.swift; sourceTree = "<group>"; };
 		51E7BF952AD446890032AE72 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		51E8053C2AD16812008D83B9 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMealModel.swift; sourceTree = "<group>"; };
@@ -168,14 +170,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		511D53482AC1FF7F00A688F4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		51331E7E2AC02AA0006CA899 = {
 			isa = PBXGroup;
 			children = (
@@ -203,9 +197,9 @@
 				51331E8A2AC02AA1006CA899 /* AppDelegate.swift */,
 				51331E8C2AC02AA1006CA899 /* SceneDelegate.swift */,
 				51331ED72AC05136006CA899 /* UhBeeSe_hyun */,
+				51E8053E2AD19581008D83B9 /* Manager */,
 				51331ECA2AC04B6B006CA899 /* Component */,
 				51331EC62AC04B27006CA899 /* Extension+ */,
-				51331EC72AC04B2F006CA899 /* Utility */,
 				51E8053B2AD16802008D83B9 /* Splash */,
 				51331EBD2AC04A3B006CA899 /* 탭바 */,
 				51331EBC2AC047B7006CA899 /* 오늘의슈밥 */,
@@ -241,7 +235,6 @@
 				51331EDF2AC052BA006CA899 /* TodayTabBarController.swift */,
 				51331EBA2AC047B4006CA899 /* TodayViewController.swift */,
 				5148073E2AC41A6200A96879 /* Views */,
-				511D53482AC1FF7F00A688F4 /* Model */,
 				51331EDE2AC0528D006CA899 /* 석식 */,
 				51331EDD2AC05284006CA899 /* 중식 */,
 				51331EDC2AC05211006CA899 /* 조식 */,
@@ -293,20 +286,17 @@
 			path = "Extension+";
 			sourceTree = "<group>";
 		};
-		51331EC72AC04B2F006CA899 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
 		51331ECA2AC04B6B006CA899 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */,
+				5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */,
+				515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */,
 				516380A82AC5507800F09F12 /* WhiteView.swift */,
 				51331ECB2AC04B85006CA899 /* CustomBackButton.swift */,
 				51331ECC2AC04B85006CA899 /* DividerView.swift */,
 				51331EF02AC0AC2B006CA899 /* TagButton.swift */,
+				51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -369,9 +359,6 @@
 		516380AA2AC5507C00F09F12 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */,
-				5108BAD92AD31EFE00A32BB7 /* EmptyMealView.swift */,
-				515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */,
 				5148073C2AC40C7000A96879 /* WeekdayView.swift */,
 				517EAB262AC70C1E0059ED4C /* Model */,
 			);
@@ -411,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				517EAB1D2AC707BD0059ED4C /* 테이블뷰 */,
-				51E8053E2AD19581008D83B9 /* Manager */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,6 +428,7 @@
 		51E8053E2AD19581008D83B9 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */,
 				51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */,
 				51E805412AD19763008D83B9 /* Manager.swift */,
 			);
@@ -590,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51331EF12AC0AC2B006CA899 /* TagButton.swift in Sources */,
+				51D6DB592AEC105B005767BA /* EmptyTodayMealView.swift in Sources */,
 				51331ECE2AC04B85006CA899 /* DividerView.swift in Sources */,
 				51383F162AC2CA0700866891 /* MypageTableViewCell.swift in Sources */,
 				51331EEF2AC0A65A006CA899 /* TodayMealModel.swift in Sources */,

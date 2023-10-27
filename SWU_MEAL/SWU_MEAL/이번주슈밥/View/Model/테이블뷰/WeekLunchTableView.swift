@@ -12,18 +12,9 @@ final class WeekLunchTableView: UITableView {
     // MARK: - Properties
 
     private let cellHeight: CGFloat = 32.0
-    private let footerHeight: CGFloat = 26.0
+    private let footerHeight: CGFloat = 18.0
     
-    private let todayMeal: [TodayMealModel] = [
-        TodayMealModel(content: "중식풍쇠고기볶음밥"),
-        TodayMealModel(content: "얼큰콩나물국"),
-        TodayMealModel(content: "탕수육&후르츠S"),
-        TodayMealModel(content: "볶음짬뽕"),
-        TodayMealModel(content: "단무지부추무침"),
-        TodayMealModel(content: "그린샐러드")
-    ]
-    
-    var l_itemsArray: [String]? {
+    var itemsArray: [String]? {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.reloadData()
@@ -31,7 +22,7 @@ final class WeekLunchTableView: UITableView {
         }
     }
     
-    var l_itemsCount: Int = 1 {
+    var itemsCount: Int = 1 {
         didSet {
            
         }
@@ -54,8 +45,8 @@ final class WeekLunchTableView: UITableView {
         self.layer.cornerRadius = 10.0
         self.rowHeight = cellHeight
         self.heightAnchor.constraint(
-            equalToConstant: (cellHeight * CGFloat(6.5)) + footerHeight
-        ).isActive = true
+                    equalToConstant: (cellHeight * CGFloat(7)) + footerHeight
+                ).isActive = true
         self.register(
             WeekTableViewCell.self,
             forCellReuseIdentifier: WeekTableViewCell.identifier
@@ -68,7 +59,7 @@ final class WeekLunchTableView: UITableView {
 
 extension WeekLunchTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return l_itemsCount
+        return itemsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,9 +68,8 @@ extension WeekLunchTableView: UITableViewDataSource {
             for: indexPath
         ) as? WeekTableViewCell else { return UITableViewCell() }
         
-        if let item = l_itemsArray?[indexPath.row] {
-            let model = TodayMealModel(content: item)
-            cell.setup(model: model)
+        if let item = itemsArray?[indexPath.row] {
+            cell.setup(content: item)
         }
         cell.selectionStyle = .none
         

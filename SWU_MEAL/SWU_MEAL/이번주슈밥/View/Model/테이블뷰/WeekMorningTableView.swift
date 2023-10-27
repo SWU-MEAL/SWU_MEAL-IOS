@@ -74,8 +74,7 @@ extension WeekMorningTableView: UITableViewDataSource {
         ) as? WeekTableViewCell else { return UITableViewCell() }
         
         if let item = b_itemsArray?[indexPath.row] {
-            let model = TodayMealModel(content: item)
-            cell.setup(model: model)
+            cell.setup(content: item)
         }
         cell.selectionStyle = .none
         

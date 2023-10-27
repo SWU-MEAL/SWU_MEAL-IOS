@@ -10,6 +10,14 @@ import UIKit
 final class EmptyMealView: UIView {
     
     // MARK: - Views
+    
+    private lazy var whiteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10.0
+        
+        return view
+    }()
 
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
@@ -26,8 +34,8 @@ final class EmptyMealView: UIView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.text = """
-오늘은 공휴일🐤
-급식을 진행하지 않아요
+아직 업데이트가 안 됐어요!
+조금만 기달려주세요 :)
 """
         label.font = .uhbeeBold(size: 16.0)
         label.textColor = UIColor(hex: "#191919")
@@ -37,7 +45,7 @@ final class EmptyMealView: UIView {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 10.0
+        stackView.spacing = 15.0
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center
@@ -52,7 +60,6 @@ final class EmptyMealView: UIView {
     private lazy var coverView: UIView = {
         let view = UIView()
         view.backgroundColor = .white.withAlphaComponent(0.85)
-        view.layer.cornerRadius = 10.0
         
         return view
     }()
@@ -61,7 +68,7 @@ final class EmptyMealView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(hex: "#F6F6F6")
+        self.backgroundColor = UIColor(hex: "#BCBCBC")
         
         self.setupLayout()
     }
@@ -69,28 +76,29 @@ final class EmptyMealView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 private extension EmptyMealView {
     
     func setupLayout() {
         [
+            whiteView,
             stackView,
             coverView
         ].forEach { addSubview($0)}
         
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
-//        ])
+        whiteView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            whiteView.topAnchor.constraint(equalTo: topAnchor, constant: 90.0),
+            whiteView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.0),
+            whiteView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.0),
+            whiteView.heightAnchor.constraint(equalToConstant: 320.0)
+        ])
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 200.0),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: whiteView.centerYAnchor)
         ])
         
         coverView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,5 +109,4 @@ private extension EmptyMealView {
             coverView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
 }

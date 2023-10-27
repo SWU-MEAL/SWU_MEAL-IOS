@@ -483,8 +483,8 @@ private extension ThuesViewController {
                     corner: corner,
                     weekMealModel: weekMealModel
                 ) {
-                    self?.lunchTableView.l_itemsArray = menuList.flatMap { $0.items }
-                    self?.lunchTableView.l_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
+                    self?.lunchTableView.itemsArray = menuList.flatMap { $0.items }
+                    self?.lunchTableView.itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
                 }
@@ -504,8 +504,8 @@ private extension ThuesViewController {
                     time: "석식",
                     weekMealModel: weekMealModel
                 ) {
-                    self?.dinnerTableView.d_itemsArray = menuList.flatMap { $0.items }
-                    self?.dinnerTableView.d_itemsCount = menuList.map { $0.items.count }.reduce(0, +)
+                    self?.dinnerTableView.itemsArray = menuList.flatMap { $0.items }
+                    self?.dinnerTableView.itemsCount = menuList.map { $0.items.count }.reduce(0, +)
                 } else {
                     print("메뉴 리스트를 찾을 수 없습니다.")
                 }

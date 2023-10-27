@@ -26,11 +26,10 @@ final class WeekTableViewCell: UITableViewCell {
     }()
 
     
-    func setup(model: TodayMealModel) {
+    func setup(content: String) {
         self.backgroundColor = .white
         self.setupLayout()
-        
-        contentLabel.text = model.content
+        self.contentLabel.text = content
     }
     
 }

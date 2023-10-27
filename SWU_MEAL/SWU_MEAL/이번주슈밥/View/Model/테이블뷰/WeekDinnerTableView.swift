@@ -12,7 +12,7 @@ final class WeekDinnerTableView: UITableView {
     private let cellHeight: CGFloat = 32.0
     private let headerHeight: CGFloat = 26.0
     
-    var d_itemsArray: [String]? {
+    var itemsArray: [String]? {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.reloadData()
@@ -21,11 +21,11 @@ final class WeekDinnerTableView: UITableView {
         }
     }
     
-    var d_itemsCount: Int = 1 {
+    var itemsCount: Int = 1 {
         didSet {
             DispatchQueue.main.async {
                 self.heightAnchor.constraint(
-                    equalToConstant: self.cellHeight * CGFloat(self.d_itemsCount) + (self.headerHeight * 2)
+                    equalToConstant: self.cellHeight * CGFloat(self.itemsCount) + (self.headerHeight * 2)
                 ).isActive = true
             }
         }
@@ -60,7 +60,7 @@ final class WeekDinnerTableView: UITableView {
 
 extension WeekDinnerTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return d_itemsCount
+        return itemsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,9 +69,8 @@ extension WeekDinnerTableView: UITableViewDataSource {
             for: indexPath
         ) as? WeekTableViewCell else { return UITableViewCell() }
         
-        if let item = d_itemsArray?[indexPath.row] {
-            let model = TodayMealModel(content: item)
-            cell.setup(model: model)
+        if let item = itemsArray?[indexPath.row] {
+            cell.setup(content: item)
         }
         cell.selectionStyle = .none
         

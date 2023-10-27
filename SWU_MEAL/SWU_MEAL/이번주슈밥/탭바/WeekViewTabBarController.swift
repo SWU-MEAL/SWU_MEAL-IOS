@@ -85,8 +85,6 @@ private extension WeekViewTabBarController {
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: currentDate)
         self.adjustedWeekday = (weekday + 5) % 7
-        
-        print("오늘 요일 index: \(self.adjustedWeekday)")
     }
 }
 
