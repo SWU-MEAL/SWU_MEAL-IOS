@@ -12,7 +12,7 @@ final class MondayViewController: UIViewController {
     // MARK: - Properties
     
     private let apiManager = APIManager()
-    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 1)
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 2)
     
     private weak var weekdayDelegate: WeekdayViewProtocol?
     private var selectedButtonIndex = 0
@@ -247,7 +247,7 @@ final class MondayViewController: UIViewController {
         for button in lunchButtonSet {
             button.addTarget(self, action: #selector(didTapLunchButton(_ :)), for: .touchUpInside)
         }
-        
+        print(selectedDate)
         self.setupMorningServer(date: selectedDate)
         self.setupLunchServer(date: selectedDate, type: "샬롬", corner: "한식")
         self.setupDinnerServer(date: selectedDate)

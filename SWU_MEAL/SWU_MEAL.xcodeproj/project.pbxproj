@@ -42,6 +42,8 @@
 		5148073D2AC40C7000A96879 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5148073C2AC40C7000A96879 /* WeekdayView.swift */; };
 		515736C92AD520FE0061F0B2 /* ServerErrorMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */; };
 		515736CB2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */; };
+		515736D02AD52DDF0061F0B2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515736CF2AD52DDF0061F0B2 /* SplashViewController.swift */; };
+		515736D12AD52E5F0061F0B2 /* SplashVideo.mp4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 515736CE2AD52CC60061F0B2 /* SplashVideo.mp4.mp4 */; };
 		516380A52AC5488C00F09F12 /* WeekViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */; };
 		516380A72AC5494100F09F12 /* MenuReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A62AC5494100F09F12 /* MenuReportViewController.swift */; };
 		516380A92AC5507800F09F12 /* WhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516380A82AC5507800F09F12 /* WhiteView.swift */; };
@@ -118,6 +120,8 @@
 		5148073C2AC40C7000A96879 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
 		515736C82AD520FE0061F0B2 /* ServerErrorMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMealView.swift; sourceTree = "<group>"; };
 		515736CA2AD523DA0061F0B2 /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
+		515736CE2AD52CC60061F0B2 /* SplashVideo.mp4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SplashVideo.mp4.mp4; sourceTree = "<group>"; };
+		515736CF2AD52DDF0061F0B2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		516380A42AC5488C00F09F12 /* WeekViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewTabBarController.swift; sourceTree = "<group>"; };
 		516380A62AC5494100F09F12 /* MenuReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReportViewController.swift; sourceTree = "<group>"; };
 		516380A82AC5507800F09F12 /* WhiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 		51331E892AC02AA1006CA899 /* SWU_MEAL */ = {
 			isa = PBXGroup;
 			children = (
+				515736CC2AD52CA10061F0B2 /* VideoPlayer */,
 				51331E8A2AC02AA1006CA899 /* AppDelegate.swift */,
 				51331E8C2AC02AA1006CA899 /* SceneDelegate.swift */,
 				51331ED72AC05136006CA899 /* UhBeeSe_hyun */,
@@ -353,6 +358,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		515736CC2AD52CA10061F0B2 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				515736CE2AD52CC60061F0B2 /* SplashVideo.mp4.mp4 */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
 		516380AA2AC5507C00F09F12 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				51E8053C2AD16812008D83B9 /* SplashVC.swift */,
+				515736CF2AD52DDF0061F0B2 /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -546,6 +560,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				515736D12AD52E5F0061F0B2 /* SplashVideo.mp4.mp4 in Resources */,
 				51331E972AC02AA2006CA899 /* LaunchScreen.storyboard in Resources */,
 				51331E942AC02AA2006CA899 /* Assets.xcassets in Resources */,
 				51331EDA2AC05136006CA899 /* UhBee Se_hyun.ttf in Resources */,
@@ -613,6 +628,7 @@
 				51331EE02AC052BA006CA899 /* TodayTabBarController.swift in Sources */,
 				517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */,
 				517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */,
+				515736D02AD52DDF0061F0B2 /* SplashViewController.swift in Sources */,
 				515736C92AD520FE0061F0B2 /* ServerErrorMealView.swift in Sources */,
 				51331E8D2AC02AA1006CA899 /* SceneDelegate.swift in Sources */,
 				51331EE72AC06A76006CA899 /* TodayLunchViewController.swift in Sources */,

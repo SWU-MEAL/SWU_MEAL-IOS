@@ -10,17 +10,17 @@ import Foundation
 
 class APIManager {
     
-    private let baseURL = "http://54.180.103.35:10000"
-
+    private let baseURL = "http://15.164.192.106:10000"
+    
     /// 이번주 슈밥 데이터 불러오기
     func weekdayMealGetData(
         date: String,
         time: String,
         completion: @escaping (Result<WeekMealModel, Error>
-    ) -> Void) {
-
+        ) -> Void) {
+        
         let url = "\(baseURL)/v1/menu?date=\(date)"
-
+        
         AF.request(url, method: .get).responseDecodable(of: WeekMealModel.self) { response in
             switch response.result {
             case .success(let weekMealModel):
@@ -69,23 +69,33 @@ class APIManager {
         return nil
     }
     
-    /// 날자 계산
+    ///  이번주 슈밥 - 날짜 계산
     func calculateDate(forDayOfWeek dayOfWeek: Int) -> String {
         let calendar = Calendar.current
-        let currentDate = Date()
-        let currentWeekday = calendar.component(.weekday, from: currentDate)
+        var date = Date()
+
+        // 일요일(1) ~ 토요일(7)으로 변경하되, 월요일을 1로 시작하도록 조정
+        var currentWeekday = calendar.component(.weekday, from: date) - 1
+        if currentWeekday == 0 {
+            currentWeekday = 7
+        }
         
-        // 선택한 요일에 해당하는 날짜를 계산합니다.
-        let daysUntilSelectedDay = (7 - currentWeekday + (dayOfWeek + 1)) % 7
-        var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
-        dateComponents.day! += daysUntilSelectedDay
+        // 만약 오늘이 주말인 경우, 다음주 월요일로 이동하자.
+        if currentWeekday >= 6 {
+            date = calendar.date(byAdding: .day, value: 8 - currentWeekday, to: date)!
+        }
+
+        let daysUntilSelectedDay = dayOfWeek - currentWeekday
+        
+        let daysToAdd = daysUntilSelectedDay - 1
+        date = calendar.date(byAdding: .day, value: daysToAdd, to: date)!
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let selectedDate = dateFormatter.string(from: calendar.date(from: dateComponents)!)
+        let selectedDate = dateFormatter.string(from: date)
         
         return selectedDate
     }
-    
+
 }
