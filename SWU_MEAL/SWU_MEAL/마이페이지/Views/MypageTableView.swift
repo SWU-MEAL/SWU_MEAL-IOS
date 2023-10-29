@@ -19,7 +19,8 @@ final class MypageTableView: UITableView {
     private let cellHeight: CGFloat = 56.0
     
     private let mypageModel: [MypageModel] = [
-        MypageModel(title: "버전 정보 \(UIApplication.version)"),
+        MypageModel(title: "버전 정보 1.0.0"),
+        // MypageModel(title: "버전 정보 \(UIApplication.version)"),
         MypageModel(title: "이용약관"),
         MypageModel(title: "문의")
     ]

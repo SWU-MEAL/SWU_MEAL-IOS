@@ -47,7 +47,8 @@ final class TermsViewController: UIViewController {
     
     private lazy var versionLabel: UILabel = {
         let label = UILabel()
-        label.text = "현재 버전 \(UIApplication.version)"
+        label.text = "현재 버전 1.0.0"
+        // label.text = "현재 버전 \(UIApplication.version)"
         label.textColor = .textColor3
         label.font = .systemFont(ofSize: 12.0)
         

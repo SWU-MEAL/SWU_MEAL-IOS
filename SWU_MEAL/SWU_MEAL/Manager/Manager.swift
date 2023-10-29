@@ -160,7 +160,7 @@ class APIManager {
     
     /// 오늘 날짜를 원하는 포맷으로 변경해서 출력하기
     func calculateTodayDate() -> String {
-        var date = Date()
+        let date = Date()
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
