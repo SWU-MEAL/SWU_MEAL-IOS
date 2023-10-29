@@ -380,6 +380,19 @@ private extension ThursViewController {
     }
     
     @objc func didTapLunchButton(_ sender: UIButton) {
+        
+        UIView.animate(withDuration: 0.3) {
+            for button in self.lunchButtonStackView.arrangedSubviews as! [UIButton] {
+                if button != sender {
+                    button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+                } else {
+                    button.setTitleColor(.weekLunchActiveColor, for: .normal)
+                }
+            }
+            self.view.layoutIfNeeded()
+            self.lunchIndicatorView.frame.origin.x = sender.frame.origin.x + 32.0
+        }
+        
         if let corner = sender.titleLabel?.text {
             switch corner {
             case "한식코너":
@@ -393,18 +406,6 @@ private extension ThursViewController {
             default:
                 print("nil")
             }
-        }
-        
-        sender.setTitleColor(.weekLunchActiveColor, for: .normal)
-        
-        for button in lunchButtonStackView.arrangedSubviews as! [UIButton] {
-            if button != sender {
-                button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
-            }
-        }
-        
-        if let selectedIndex = lunchButtonStackView.arrangedSubviews.firstIndex(of: sender) {
-            selectedButtonIndex = selectedIndex
         }
     }
 
