@@ -22,7 +22,7 @@ final class MypageTableView: UITableView {
         MypageModel(title: "버전 정보 1.0.0"),
         // MypageModel(title: "버전 정보 \(UIApplication.version)"),
         MypageModel(title: "이용약관"),
-        MypageModel(title: "문의")
+        // MypageModel(title: "문의")
     ]
     
     override init(frame: CGRect, style: UITableView.Style) {

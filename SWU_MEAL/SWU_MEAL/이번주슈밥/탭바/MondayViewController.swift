@@ -26,10 +26,12 @@ final class MondayViewController: UIViewController {
     
     // MARK: - Views
     
-    private lazy var  customActivityIndicatorView: CustomActivityIndicatorView = {
-        let indicator = CustomActivityIndicatorView()
+    private lazy var customActivityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .medium
+        indicator.color = .mainGrayColor
         indicator.isHidden = true
-        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
