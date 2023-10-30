@@ -2,19 +2,30 @@
 //  TermsViewController.swift
 //  SWU_MEAL
 //
-//  Created by 목정아 on 10/9/23.
+//  Created by 목정아 on 10/31/23.
 //
 
 import UIKit
 
-enum Announcement: String {
-    case latestVersion = "최신 버전을 사용하고 있는 중입니다"
-    case updateVersion = "업데이트 해주세요."
-}
-
 final class TermsViewController: UIViewController {
+
+    // MARK: - Properties
+
+    private let apiManager = APIManager()
     
     // MARK: - Views
+    
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
+    private lazy var customActivityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .medium
+        indicator.color = .mainGrayColor
+        indicator.isHidden = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
 
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -27,67 +38,46 @@ final class TermsViewController: UIViewController {
         return button
     }()
     
-    private lazy var logoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "AppLogo")?
-            .resize(to: CGSize(width: 86.0, height: 86.0))
-        
-        return imageView
-    }()
-    
-    private lazy var announcementLabel: UILabel = {
+    private lazy var termsTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "최신 버전을 사용하고 있는 중입니다"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 16.0)
+        label.text = ""
+        label.font = .systemFont(ofSize: 15.0)
+        label.textColor = UIColor(hex: "#606060")
+        label.textAlignment = .justified
+        label.numberOfLines = 0
         
         return label
-    }()
-    
-    private lazy var versionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "현재 버전 1.0.0"
-        // label.text = "현재 버전 \(UIApplication.version)"
-        label.textColor = .textColor3
-        label.font = .systemFont(ofSize: 12.0)
-        
-        return label
-    }()
-    
-    private lazy var labelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 8.0
-        stackView.alignment = .center
-        stackView.axis = .vertical
-        [
-            announcementLabel,
-            versionLabel
-        ].forEach { stackView.addArrangedSubview($0) }
-        
-        return stackView
-    }()
-    
-    private lazy var allStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 24.0
-        stackView.alignment = .center
-        stackView.axis = .vertical
-        [
-            logoImageView,
-            labelStackView
-        ].forEach { stackView.addArrangedSubview($0) }
-        
-        return stackView
     }()
     
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(hex: "#F6F6F6")
+        view.backgroundColor = .white
+        
         self.setupNavigation()
         self.setupLayout()
+        self.customActivityIndicatorView.startAnimating()
+        apiManager.getTermsData(completion: { [weak self] result in
+            guard let self = self else { return }
+            self.customActivityIndicatorView.stopAnimating()
+            self.customActivityIndicatorView.removeFromSuperview()
+            switch result {
+            case let .success(result):
+                self.termsTextLabel.text = """
+○ 이용약관 : 
+
+\(result.data.terms)
+
+○ 개인정보 처리방침 :
+
+\(result.data.policy)
+
+"""
+            case let .failure(error):
+              print("ERROR : \(error)")
+            }
+          })
     }
     
 }
@@ -100,21 +90,59 @@ private extension TermsViewController {
         let customBackButtonItem = UIBarButtonItem(customView: backButton)
         self.navigationItem.leftBarButtonItem = customBackButtonItem
         self.navigationController?.navigationBar.titleTextAttributes = [
-            .font: UIFont.systemFont(ofSize: 16.0, weight: .bold),
+            .font: UIFont.systemFont(ofSize: 15.0, weight: .bold),
             .foregroundColor: UIColor.black
         ]
-        self.navigationItem.title = "버전 정보"
+        self.navigationItem.title = "이용 약관"
     }
     
     func setupLayout() {
-        view.addSubview(allStackView)
-        allStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            allStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            allStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50.0)
+          scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+          scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+          scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+          scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+          contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+          contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+          contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+          contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+          contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
+          contentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height +  6600.0)
+        ])
+        
+        [
+            customActivityIndicatorView,
+            termsTextLabel
+        ].forEach { contentView.addSubview($0) }
+        
+        customActivityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customActivityIndicatorView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            customActivityIndicatorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        ])
+        
+        termsTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            termsTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.0),
+            termsTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10.0),
+            termsTextLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10.0),
         ])
     }
     
+}
+
+private extension TermsViewController {
+    
+    // MARK: - @objc
+
     @objc func didTapBackButton() {
         self.navigationController?.popViewController(animated: true)
     }
