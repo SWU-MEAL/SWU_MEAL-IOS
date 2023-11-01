@@ -11,6 +11,7 @@ final class WeekTableViewCell: UITableViewCell {
     
     // MARK: - Properties
 
+    private let deviceManager = DeviceManager()
     static let identifier = "WeekTableViewCell"
     
     // MARK: - Views
@@ -20,7 +21,9 @@ final class WeekTableViewCell: UITableViewCell {
         label.text = "???"
         label.textColor = .black
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14.0)
+        label.font = .systemFont(
+            ofSize: deviceManager.calculateWeekDynamicFontSize(fontSize: 14.0)
+        )
         
         return label
     }()
