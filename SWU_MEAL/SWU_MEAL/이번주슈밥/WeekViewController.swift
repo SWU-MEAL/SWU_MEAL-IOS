@@ -11,6 +11,7 @@ final class WeekViewController: UIViewController {
     
     // MARK: - Views
     
+    private let deviceManager = DeviceManager()
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -31,7 +32,10 @@ final class WeekViewController: UIViewController {
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 28.0, weight: .semibold)
+        label.font = .systemFont(
+            ofSize: deviceManager.calculateTodayDynamicFontSize(fontSize: 28.0)
+            , weight: .semibold
+        )
         
         return label
     }()
@@ -85,7 +89,7 @@ private extension WeekViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
             contentView.heightAnchor.constraint(
-                equalToConstant: UIScreen.main.bounds.size.height + 600
+                equalToConstant: calculateDynamicHeight()
             )
         ])
 
@@ -114,6 +118,42 @@ private extension WeekViewController {
             weekdayTabBarController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             weekdayTabBarController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+}
+
+// MARK: - Func
+
+private extension WeekViewController {
+    func calculateDynamicHeight() -> CGFloat {
+        let bounds = UIScreen.main.bounds
+        let height = bounds.size.height
+        print(height)
+
+        switch height {
+        case 480.0: // iPhone 3, 4S -> 예측값
+            return UIScreen.main.bounds.size.height + 650.0
+        case 568.0: // iPhone 5, SE -> 예측값
+            return UIScreen.main.bounds.size.height + 620.0
+        case 667.0: // iPhone 6, 6s, 7, 8
+            return UIScreen.main.bounds.size.height + 600.0
+        case 736.0: // iPhone 6s+, 6+, 7+, 8+ -> 예측값
+            return UIScreen.main.bounds.size.height + 500.0
+        case 812.0: // iPhone X, XS => 5.8 inch
+            return UIScreen.main.bounds.size.height + 470.0
+        case 844.0: // iphone 14, iPhone 13 Pro, iPhone 13, iPhone 12 Pro, iPhone 12
+            return UIScreen.main.bounds.size.height + 440.0
+        case 852.0: // iPhone 15 Pro, iPhone 15, iPhone 14 Pro
+            return UIScreen.main.bounds.size.height + 400.0
+        case 896.0: // iPhone 11 Pro Max, iPhone 11, iPhone XS Max, iPhone XR
+            return UIScreen.main.bounds.size.height + 380.0
+        case 926.0: // iPhone 13 Pro Max, iPhone 12 Pro Max
+            return UIScreen.main.bounds.size.height + 360.0
+        case 932.0: // iphone 15 max, iPhone 15 Plus, iPhone 14 Pro Max
+            return UIScreen.main.bounds.size.height + 350.0
+        default:
+            print("Not an iPhone")
+            return UIScreen.main.bounds.size.height + 650.0
+        }
     }
 }
 

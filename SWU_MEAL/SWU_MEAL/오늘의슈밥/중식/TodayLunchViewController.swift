@@ -85,7 +85,6 @@ final class TodayLunchViewController: UIViewController {
             button4
         ]
     }
-    
 }
 
 // MARK: - Extension
@@ -114,14 +113,15 @@ private extension TodayLunchViewController {
             menuView.topAnchor.constraint(equalTo: button1.bottomAnchor, constant: 27.0),
             menuView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0),
             menuView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0),
-            menuView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -72.0)
+            menuView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30.0)
         ])
 
         launchTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            launchTableView.centerYAnchor.constraint(equalTo: menuView.centerYAnchor),
+            launchTableView.topAnchor.constraint(equalTo: menuView.topAnchor, constant: 10.0),
             launchTableView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
             launchTableView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+            launchTableView.bottomAnchor.constraint(equalTo: menuView.bottomAnchor, constant: 0)
         ])
         
         emptyView.translatesAutoresizingMaskIntoConstraints = false

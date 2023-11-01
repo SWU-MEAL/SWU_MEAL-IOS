@@ -59,6 +59,7 @@
 		517EAB232AC709050059ED4C /* WeekDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */; };
 		517EAB252AC70B130059ED4C /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */; };
 		517EAB2A2AC751970059ED4C /* MondayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAB292AC751970059ED4C /* MondayViewController.swift */; };
+		51869B952AF258C5005B1E14 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51869B942AF258C5005B1E14 /* DeviceManager.swift */; };
 		51D6DB592AEC105B005767BA /* EmptyTodayMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */; };
 		51E399622ACFD82200EC6ECE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51E399612ACFD82200EC6ECE /* Alamofire */; };
 		51E7BF962AD446890032AE72 /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7BF952AD446890032AE72 /* VersionViewController.swift */; };
@@ -140,6 +141,7 @@
 		517EAB222AC709050059ED4C /* WeekDinnerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDinnerTableView.swift; sourceTree = "<group>"; };
 		517EAB242AC70B130059ED4C /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
 		517EAB292AC751970059ED4C /* MondayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondayViewController.swift; sourceTree = "<group>"; };
+		51869B942AF258C5005B1E14 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		51D6DB582AEC105B005767BA /* EmptyTodayMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTodayMealView.swift; sourceTree = "<group>"; };
 		51E7BF952AD446890032AE72 /* VersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
 		51E8053C2AD16812008D83B9 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
@@ -274,9 +276,9 @@
 				51331EC42AC04ABF006CA899 /* MyPageViewController.swift */,
 				51E7BF952AD446890032AE72 /* VersionViewController.swift */,
 				516491D22AD3D34F00AC48F7 /* InquiryViewController.swift */,
+				515A20312AF007EB00DD08B3 /* TermsViewController.swift */,
 				516491D12AD3D31900AC48F7 /* Views */,
 				516491D02AD3D31400AC48F7 /* Model */,
-				515A20312AF007EB00DD08B3 /* TermsViewController.swift */,
 			);
 			name = "마이페이지";
 			path = "마이페이지";
@@ -436,6 +438,7 @@
 				515A20332AF00BFB00DD08B3 /* TermsModel.swift */,
 				51331EEE2AC0A65A006CA899 /* TodayMealModel.swift */,
 				51E8053F2AD1959F008D83B9 /* WeekMealModel.swift */,
+				51869B942AF258C5005B1E14 /* DeviceManager.swift */,
 				51E805412AD19763008D83B9 /* Manager.swift */,
 			);
 			path = Manager;
@@ -582,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51869B952AF258C5005B1E14 /* DeviceManager.swift in Sources */,
 				51331EF12AC0AC2B006CA899 /* TagButton.swift in Sources */,
 				51D6DB592AEC105B005767BA /* EmptyTodayMealView.swift in Sources */,
 				51331ECE2AC04B85006CA899 /* DividerView.swift in Sources */,

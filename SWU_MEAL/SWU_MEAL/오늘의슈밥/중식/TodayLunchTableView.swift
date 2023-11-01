@@ -18,16 +18,12 @@ final class TodayLunchTableView: UITableView {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.reloadData()
-//                print("WeekmorningTableView Data : \(self?.b_itemsArray ?? [])")
             }
         }
     }
     
     var itemsCount: Int = 1 {
         didSet {
-            self.heightAnchor.constraint(
-                equalToConstant: self.cellHeight * CGFloat(self.itemsCount) + (self.headerHeight * 2)
-            ).isActive = true
         }
     }
     
@@ -44,22 +40,19 @@ final class TodayLunchTableView: UITableView {
         self.dataSource = self
         self.isScrollEnabled = false
         self.separatorStyle = .none
-        self.layer.cornerRadius = 10.0
         self.rowHeight = cellHeight
         self.register(
             TodayTableViewCell.self,
             forCellReuseIdentifier: TodayTableViewCell.identifier
         )
-        let emptyHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: headerHeight))
-        self.tableHeaderView = emptyHeaderView
-        self.tableFooterView = emptyHeaderView
     }
     
 }
 
 extension TodayLunchTableView: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemsCount
+        return itemsArray?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

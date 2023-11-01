@@ -11,6 +11,8 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let deviceManager = DeviceManager()
+    
     private var morningTimer: Timer?
     private var lunchTimer: Timer?
     private var dinnerTimer: Timer?
@@ -23,14 +25,14 @@ final class TodayViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = """
-오늘의
-아침 밥상은?
-"""
+        label.text = getTimeOfDay()
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 28.0, weight: .semibold)
+        label.font = .systemFont(
+            ofSize: deviceManager.calculateTodayDynamicFontSize(fontSize: 28.0)
+            , weight: .semibold
+        )
         
         return label
     }()
@@ -48,7 +50,7 @@ final class TodayViewController: UIViewController {
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "아침시간 : 7:30~9:00"
+        label.text = getTimeTableOfDay()
         label.textColor = UIColor(hex: "#999999")
         label.font = .systemFont(ofSize: 14.0)
         
@@ -151,7 +153,7 @@ private extension TodayViewController {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: calculateDynamicHeight()),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0)
         ])
         
@@ -182,11 +184,46 @@ private extension TodayViewController {
     
 }
 
+// MARK: - func
+
+private extension TodayViewController {
+    func calculateDynamicHeight() -> CGFloat {
+        let bounds = UIScreen.main.bounds
+        let height = bounds.size.height
+
+        switch height {
+        case 480.0: // iPhone 3, 4S -> 예측값
+            return -30.0
+        case 568.0: // iPhone 5, SE -> 예측값
+            return -30.0
+        case 667.0: // iPhone 6, 6s, 7, 8, iphone SE(3rd)
+            return -20.0
+        case 736.0: // iPhone 6s+, 6+, 7+, 8+ -> 예측값
+            return 0.0
+        case 812.0: // iPhone X, XS => 5.8 inch
+            return 0.0
+        case 844.0: // iphone 14, iPhone 13 Pro, iPhone 13, iPhone 12 Pro, iPhone 12
+            return 10.0
+        case 852.0: // iPhone 15 Pro, iPhone 15, iPhone 14 Pro
+            return 0.0
+        case 896.0: // iPhone 11 Pro Max, iPhone 11, iPhone XS Max, iPhone XR
+            return 24.0
+        case 926.0: // iPhone 13 Pro Max, iPhone 12 Pro Max
+            return 48.0
+        case 932.0: // iphone 15 max, iPhone 15 Plus, iPhone 14 Pro Max
+            return 24.0
+        default:
+            print("Not an iPhone")
+            return -30.0
+        }
+    }
+}
+
 // MARK: - Helper
 
 private extension TodayViewController {
     
-    private func setupTargetTimes() {
+    func setupTargetTimes() {
         
         let currentDate = Date()
         
@@ -241,6 +278,67 @@ private extension TodayViewController {
         }
     }
     
+    func getTimeOfDay() -> String {
+        let calendar = Calendar.current
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let currentTime = formatter.string(from: now)
+        
+        if let currentTime = formatter.date(from: currentTime) {
+            // 아침: 07:30 이전
+            if calendar.compare(currentTime, to: formatter.date(from: "07:30")!, toGranularity: .minute) == .orderedAscending {
+                return """
+오늘의
+아침 밥상은?
+"""
+            }
+            // 점심: 11:30 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "11:30")!, toGranularity: .minute) == .orderedAscending {
+                return """
+오늘의
+점심 밥상은?
+"""
+            }
+            // 저녁: 17:10 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "17:10")!, toGranularity: .minute) == .orderedAscending {
+                return """
+오늘의
+저녁 밥상은?
+"""
+            }
+        }
+        return """
+오늘은 급식이
+끝났어요!
+"""
+    }
+    
+    func getTimeTableOfDay() -> String {
+        let calendar = Calendar.current
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let currentTime = formatter.string(from: now)
+
+        
+        if let currentTime = formatter.date(from: currentTime) {
+            // 아침: 07:30 이전
+            if calendar.compare(currentTime, to: formatter.date(from: "07:30")!, toGranularity: .minute) == .orderedAscending {
+                return "아침시간 : 7:30~9:00"
+            }
+            // 점심: 11:30 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "11:30")!, toGranularity: .minute) == .orderedAscending {
+                return "점심시간 : 11:30~13:30"
+            }
+            // 저녁: 17:10 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "17:10")!, toGranularity: .minute) == .orderedAscending {
+                return "저녁시간 : 17:10~18:30"
+            }
+        }
+        return "오늘 급식은 어떠셨나요?"
+    }
+    
     @objc private func updateCountdownLabel(_ timer: Timer) {
         guard let targetTime = targetTime(for: timer), let label = timer.userInfo as? UILabel else { return }
         
@@ -259,7 +357,7 @@ private extension TodayViewController {
         }
     }
     
-    private func targetTime(for timer: Timer) -> Date? {
+    func targetTime(for timer: Timer) -> Date? {
         if timer === morningTimer {
             return morningTargetTime
         } else if timer === lunchTimer {

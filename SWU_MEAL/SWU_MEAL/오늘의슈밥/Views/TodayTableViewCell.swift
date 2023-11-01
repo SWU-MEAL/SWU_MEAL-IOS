@@ -11,6 +11,7 @@ final class TodayTableViewCell: UITableViewCell {
     
     // MARK: - Properties
 
+    private let deviceManager = DeviceManager()
     static let identifier = "TodayBreakfastTableViewCell"
     
     // MARK: - Views
@@ -20,7 +21,9 @@ final class TodayTableViewCell: UITableViewCell {
         label.text = "???"
         label.textColor = .black
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 18.0)
+        label.font = .systemFont(
+            ofSize: deviceManager.calculateTodayDynamicFontSize(fontSize: 18.0)
+        )
         
         return label
     }()
