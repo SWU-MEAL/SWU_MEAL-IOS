@@ -10,6 +10,7 @@ import UIKit
 protocol MyPageProtocol: AnyObject {
     func didTapInquries()
     func didTapTerms()
+    func didTapVersion()
 }
 
 final class MypageTableView: UITableView {
@@ -19,9 +20,10 @@ final class MypageTableView: UITableView {
     private let cellHeight: CGFloat = 56.0
     
     private let mypageModel: [MypageModel] = [
-        MypageModel(title: "버전 정보 \(UIApplication.version)"),
+        MypageModel(title: "버전 정보 1.0.0"),
+        // MypageModel(title: "버전 정보 \(UIApplication.version)"),
         MypageModel(title: "이용약관"),
-        MypageModel(title: "문의")
+        // MypageModel(title: "문의")
     ]
     
     override init(frame: CGRect, style: UITableView.Style) {
@@ -56,9 +58,9 @@ extension MypageTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            self.didTapTerms()
+            self.didTapVersion()
         case 1:
-            print(indexPath.row)
+            self.didTapTerms()
         case 2:
             print(indexPath.row)
         default:
@@ -93,6 +95,10 @@ private extension MypageTableView {
     
     func didTapInquries() {
         self.mypageDelegate?.didTapInquries()
+    }
+    
+    func didTapVersion() {
+        self.mypageDelegate?.didTapVersion()
     }
     
     func didTapTerms() {

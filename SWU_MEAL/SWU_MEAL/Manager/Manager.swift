@@ -10,7 +10,11 @@ import Foundation
 
 class APIManager {
     
+    // MARK: - BaseURL
+    
     private let baseURL = "http://15.164.192.106:10000"
+    
+    // MARK: - 오늘의 슈밥 데이터 API
     
     ///  오늘의 슈밥 데이터 불러오기
     func todayMealGetData(
@@ -20,7 +24,7 @@ class APIManager {
         ) -> Void) {
         
         let url = "\(baseURL)/v1/menu/today?time=\(time)"
-
+        
         AF.request(url, method: .get).responseDecodable(of: TodayMealModel.self) { response in
             switch response.result {
             case .success(let todayMealModel):
@@ -38,12 +42,12 @@ class APIManager {
         time: String,
         todayMealModel: TodayMealModel
     ) -> [TodayMealModel.TodayMealDataClass.TodayMealResult]? {
-        if let result = todayMealModel.data?.result.first {
+        if (todayMealModel.data?.result.first) != nil {
             return todayMealModel.data?.result
         }
         return nil
     }
-
+    
     /// 오늘의 슈밥 - 점심 메뉴 데이터 불러오기 함수
     func todayGetLunchMenuListForDate(
         date: String,
@@ -69,8 +73,8 @@ class APIManager {
         }
         return nil
     }
-
-
+    
+    
     /// 이번주 슈밥 데이터 불러오기
     func weekdayMealGetData(
         date: String,
@@ -133,7 +137,7 @@ class APIManager {
     func calculateDate(forDayOfWeek dayOfWeek: Int) -> String {
         let calendar = Calendar.current
         var date = Date()
-
+        
         // 일요일(1) ~ 토요일(7)으로 변경하되, 월요일을 1로 시작하도록 조정
         var currentWeekday = calendar.component(.weekday, from: date) - 1
         if currentWeekday == 0 {
@@ -144,7 +148,7 @@ class APIManager {
         if currentWeekday >= 6 {
             date = calendar.date(byAdding: .day, value: currentWeekday + 1, to: date)!
         }
-
+        
         let daysUntilSelectedDay = dayOfWeek - currentWeekday
         
         let daysToAdd = daysUntilSelectedDay - 1
@@ -160,7 +164,7 @@ class APIManager {
     
     /// 오늘 날짜를 원하는 포맷으로 변경해서 출력하기
     func calculateTodayDate() -> String {
-        var date = Date()
+        let date = Date()
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
@@ -169,5 +173,24 @@ class APIManager {
         
         return selectedDate
     }
-
+    
+    // MARK: - 이용약관 API
+    
+    func getTermsData(
+        completion: @escaping (Result<TermsModel, Error>
+        ) -> Void) {
+        
+        let requestURLString = "\(baseURL)/v1/mypage/terms"
+        
+        AF.request(requestURLString, method: .get).responseDecodable(of: TermsModel.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                print("요청 실패: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

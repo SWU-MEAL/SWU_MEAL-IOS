@@ -26,10 +26,12 @@ final class MondayViewController: UIViewController {
     
     // MARK: - Views
     
-    private lazy var  customActivityIndicatorView: CustomActivityIndicatorView = {
-        let indicator = CustomActivityIndicatorView()
+    private lazy var customActivityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .medium
+        indicator.color = .mainGrayColor
         indicator.isHidden = true
-        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
@@ -375,6 +377,7 @@ private extension MondayViewController {
 
     func setupIndiator(senderX: CGFloat) {
         self.lunchIndicatorView.frame.origin.x = senderX
+        self.customActivityIndicatorView.setNeedsLayout()
     }
     
     func showIndicator() {
@@ -411,16 +414,17 @@ private extension MondayViewController {
     }
     
     @objc func didTapLunchButton(_ sender: UIButton) {
-        sender.setTitleColor(.weekLunchActiveColor, for: .normal)
-        for button in self.lunchButtonSet {
-            if button != sender {
-                button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
-            }
-        }
         
-        // 애니메이션을 적용합니다.
         UIView.animate(withDuration: 0.3) {
-            self.setupIndiator(senderX: sender.frame.origin.x + 32.0)
+            for button in self.lunchButtonStackView.arrangedSubviews as! [UIButton] {
+                if button != sender {
+                    button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+                } else {
+                    button.setTitleColor(.weekLunchActiveColor, for: .normal)
+                }
+            }
+            self.view.layoutIfNeeded()
+            self.lunchIndicatorView.frame.origin.x = sender.frame.origin.x + 32.0
         }
         
         if let corner = sender.titleLabel?.text {

@@ -25,10 +25,12 @@ final class ThuesViewController: UIViewController {
     
     // MARK: - Views
     
-    private lazy var  customActivityIndicatorView: CustomActivityIndicatorView = {
-        let indicator = CustomActivityIndicatorView()
+    private lazy var customActivityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .medium
+        indicator.color = .mainGrayColor
         indicator.isHidden = true
-        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
@@ -376,6 +378,19 @@ private extension ThuesViewController {
     }
     
     @objc func didTapLunchButton(_ sender: UIButton) {
+        
+        UIView.animate(withDuration: 0.3) {
+            for button in self.lunchButtonStackView.arrangedSubviews as! [UIButton] {
+                if button != sender {
+                    button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
+                } else {
+                    button.setTitleColor(.weekLunchActiveColor, for: .normal)
+                }
+            }
+            self.view.layoutIfNeeded()
+            self.lunchIndicatorView.frame.origin.x = sender.frame.origin.x + 32.0
+        }
+        
         if let corner = sender.titleLabel?.text {
             switch corner {
             case "한식코너":
@@ -390,24 +405,6 @@ private extension ThuesViewController {
                 print("nil")
             }
         }
-        
-        sender.setTitleColor(.weekLunchActiveColor, for: .normal)
-           
-       for button in lunchButtonStackView.arrangedSubviews as! [UIButton] {
-           if button != sender {
-               button.setTitleColor(.weekLunchUnActiveColor, for: .normal)
-           }
-       }
-       
-       /// 현재 위치
-       let targetX = sender.frame.origin.x + 32.0
-       print("targetX : \(targetX)")
-        
-       UIView.animate(withDuration: 0.4, delay: 0.0, options: .allowUserInteraction, animations: {
-           self.lunchIndicatorView.frame.origin.x = targetX
-           print("indicator: \(self.lunchIndicatorView.frame.origin.x)")
-       }, completion: nil)
-        
     }
     
     func showIndicator() {
