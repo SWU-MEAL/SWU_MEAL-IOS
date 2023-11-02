@@ -11,8 +11,8 @@ final class TodayLunchTableView: UITableView {
     
     // MARK: - Properties
 
-    private let cellHeight: CGFloat = 32.0
-    private let headerHeight: CGFloat = 26.0
+    private let cellHeight: CGFloat = DeviceManager().calculateTodayLunchTableCellSize(cellSize: 32.0)
+    private let headerHeight: CGFloat =  DeviceManager().calculateTodayLunchTableCellSize(cellSize: 10.0)
     
     var itemsArray: [String]? {
         didSet {
@@ -41,12 +41,14 @@ final class TodayLunchTableView: UITableView {
         self.isScrollEnabled = false
         self.separatorStyle = .none
         self.rowHeight = cellHeight
+        self.heightAnchor.constraint(
+                    equalToConstant: (cellHeight * CGFloat(7))
+                ).isActive = true
         self.register(
             TodayTableViewCell.self,
             forCellReuseIdentifier: TodayTableViewCell.identifier
         )
     }
-    
 }
 
 extension TodayLunchTableView: UITableViewDataSource {
