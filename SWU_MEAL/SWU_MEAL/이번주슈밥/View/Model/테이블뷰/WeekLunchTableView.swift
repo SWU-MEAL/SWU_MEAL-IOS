@@ -24,7 +24,6 @@ final class WeekLunchTableView: UITableView {
     
     var itemsCount: Int = 1 {
         didSet {
-           
         }
     }
     

@@ -23,10 +23,13 @@ enum TodayTabBarTopic: String {
     }
 }
 
+// MARK: - TabmanViewController
+
 class TodayTabBarController: TabmanViewController {
     
     // MARK: - Properties
     
+    private let deviceManager = DeviceManager()
     private let numberOfCases: Int = 3
     
     private var viewControllers = [
@@ -60,8 +63,12 @@ private extension TodayTabBarController {
         bar.buttons.customize { (button) in
             button.tintColor = UIColor(hex: "#606060")
             button.selectedTintColor = UIColor(hex: "#191919")
-            button.font = .systemFont(ofSize: 16.0, weight: .regular)
-            button.selectedFont = .systemFont(ofSize: 18.0, weight: .bold)
+            button.font = .systemFont(
+                ofSize: self.deviceManager.calculateTodayDynamicFontSize(fontSize: 16.0), weight: .regular
+            )
+            button.selectedFont = .systemFont(
+                ofSize: self.deviceManager.calculateTodayDynamicFontSize(fontSize: 18.0), weight: .bold
+            )
         }
         
         bar.indicator.overscrollBehavior = .bounce

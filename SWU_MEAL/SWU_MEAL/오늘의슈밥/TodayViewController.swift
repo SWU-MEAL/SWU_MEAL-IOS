@@ -13,10 +13,6 @@ final class TodayViewController: UIViewController {
     
     private let deviceManager = DeviceManager()
     
-    private var morningTimer: Timer?
-    private var lunchTimer: Timer?
-    private var dinnerTimer: Timer?
-    
     private var morningTargetTime: Date?
     private var lunchTargetTime: Date?
     private var dinnerTargetTime: Date?
@@ -56,74 +52,8 @@ final class TodayViewController: UIViewController {
         
         return label
     }()
-    
-    private lazy var b_BubbleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Bubble")?
-            .resize(to: CGSize(width: 96.0, height: 28.25))
-        
-        return imageView
-    }()
-    
-    private lazy var b_countTimeLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 10.0, weight: .semibold)
-        label.text = "시작까지 09:54"
-        
-        return label
-    }()
-    
-    private lazy var l_BubbleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Bubble")?
-            .resize(to: CGSize(width: 96.0, height: 28.25))
-        
-        return imageView
-    }()
-    
-    private lazy var l_countTimeLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 10.0, weight: .semibold)
-        label.text = "시작까지 09:54"
-        
-        return label
-    }()
-    
-    private lazy var d_BubbleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Bubble")?
-            .resize(to: CGSize(width: 96.0, height: 28.25))
-        
-        return imageView
-    }()
-    
-    private lazy var d_countTimeLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 10.0, weight: .semibold)
-        label.text = "시작까지 09:54"
-        
-        return label
-    }()
-    
-    private lazy var countTimeStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 1.0
-        [
-            b_BubbleImageView,
-            l_BubbleImageView,
-            d_BubbleImageView
-        ].forEach { stackView.addArrangedSubview($0) }
-        
-        return stackView
-    }()
-    
+
     private let todayTabBarViewController = TodayTabBarController()
-    
     
     // MARK: - LifeCycle
     
@@ -131,12 +61,6 @@ final class TodayViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         self.setupLayout()
-    }
-    
-    deinit {
-        morningTimer?.invalidate()
-        lunchTimer?.invalidate()
-        dinnerTimer?.invalidate()
     }
     
 }
@@ -193,25 +117,25 @@ private extension TodayViewController {
 
         switch height {
         case 480.0: // iPhone 3, 4S -> 예측값
-            return -30.0
+            return -25.0
         case 568.0: // iPhone 5, SE -> 예측값
-            return -30.0
+            return -23.0
         case 667.0: // iPhone 6, 6s, 7, 8, iphone SE(3rd)
             return -20.0
         case 736.0: // iPhone 6s+, 6+, 7+, 8+ -> 예측값
-            return 0.0
-        case 812.0: // iPhone X, XS => 5.8 inch
-            return 0.0
-        case 844.0: // iphone 14, iPhone 13 Pro, iPhone 13, iPhone 12 Pro, iPhone 12
             return 10.0
+        case 812.0: // iPhone X, XS
+            return 13.0
+        case 844.0: // iphone 14, iPhone 13 Pro, iPhone 13, iPhone 12 Pro, iPhone 12
+            return 15.0
         case 852.0: // iPhone 15 Pro, iPhone 15, iPhone 14 Pro
-            return 0.0
+            return 20.0
         case 896.0: // iPhone 11 Pro Max, iPhone 11, iPhone XS Max, iPhone XR
-            return 24.0
+            return 28.0
         case 926.0: // iPhone 13 Pro Max, iPhone 12 Pro Max
             return 48.0
         case 932.0: // iphone 15 max, iPhone 15 Plus, iPhone 14 Pro Max
-            return 24.0
+            return 48.0
         default:
             print("Not an iPhone")
             return -30.0
@@ -257,24 +181,6 @@ private extension TodayViewController {
         }
         if dinnerTargetTime! < currentDate {
             dinnerTargetTime = dinnerTargetTime?.addingTimeInterval(86400)
-        }
-    }
-    
-    private func startTimers() {
-        startTimer(for: b_countTimeLabel, targetTime: morningTargetTime)
-        startTimer(for: l_countTimeLabel, targetTime: lunchTargetTime)
-        startTimer(for: d_countTimeLabel, targetTime: dinnerTargetTime)
-    }
-    
-    private func startTimer(for label: UILabel, targetTime: Date?) {
-        guard let targetTime = targetTime else { return }
-        
-        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdownLabel(_:)), userInfo: label, repeats: true)
-        
-        let currentDate = Date()
-        if currentDate >= targetTime {
-            timer.invalidate()
-            label.text = "목표 시간에 도달했습니다."
         }
     }
     
@@ -338,34 +244,4 @@ private extension TodayViewController {
         }
         return "오늘 급식은 어떠셨나요?"
     }
-    
-    @objc private func updateCountdownLabel(_ timer: Timer) {
-        guard let targetTime = targetTime(for: timer), let label = timer.userInfo as? UILabel else { return }
-        
-        let currentDate = Date()
-        
-        let timeRemaining = Calendar.current.dateComponents([.hour, .minute, .second], from: currentDate, to: targetTime)
-        
-        // 시간 텍스트 포맷 (예: "02:30:45")
-        let timeString = String(format: "%02d:%02d:%02d", timeRemaining.hour ?? 0, timeRemaining.minute ?? 0, timeRemaining.second ?? 0)
-        
-        label.text = timeString
-        
-        if currentDate >= targetTime {
-            timer.invalidate()
-            label.text = "목표 시간에 도달했습니다."
-        }
-    }
-    
-    func targetTime(for timer: Timer) -> Date? {
-        if timer === morningTimer {
-            return morningTargetTime
-        } else if timer === lunchTimer {
-            return lunchTargetTime
-        } else if timer === dinnerTimer {
-            return dinnerTargetTime
-        }
-        return nil
-    }
-    
 }

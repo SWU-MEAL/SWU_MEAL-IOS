@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else{ return }
           window = UIWindow(windowScene: scene)
         
+//        let rootVC = TabBarController()
           let rootVC = SplashVC()
           let rootNavigationVC = UINavigationController(rootViewController: rootVC)
           
