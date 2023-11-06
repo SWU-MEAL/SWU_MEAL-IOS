@@ -175,7 +175,9 @@ final class MondayViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor(hex: "#999999")
         view.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 75.0).isActive = true
+        view.widthAnchor.constraint(
+            equalToConstant: UIScreen.main.bounds.size.width / 5.8
+        ).isActive = true
         
         return view
     }()
