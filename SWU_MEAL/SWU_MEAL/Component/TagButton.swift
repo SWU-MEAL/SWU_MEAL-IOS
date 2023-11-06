@@ -35,6 +35,7 @@ final class TagButton: UIButton {
         self.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
         self.setTitleColor(UIColor(hex: "#B3B3B3"), for: .normal)
         self.titleLabel?.font = .systemFont(ofSize: 13.0)
+        self.titleLabel?.numberOfLines = 0
         self.setTitle(title, for: .normal)
         self.addTarget(self, action: #selector(didTapTagButton), for: .touchUpInside)
     }
