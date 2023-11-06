@@ -3,4 +3,22 @@
    uuid = "44313C03-4B22-4264-A503-021CE43D3C7C"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4ED643D2-53FC-408E-876D-011DA016CBC8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SWU_MEAL/&#x1106;&#x1161;&#x110b;&#x1175;&#x1111;&#x1166;&#x110b;&#x1175;&#x110c;&#x1175;/TermsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "termsTextLabel"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
