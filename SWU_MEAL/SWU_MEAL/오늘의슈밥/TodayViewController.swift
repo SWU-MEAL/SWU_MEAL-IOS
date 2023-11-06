@@ -198,6 +198,12 @@ private extension TodayViewController {
 오늘의
 아침 밥상은?
 """
+            } // 점심: 9:00 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "9:00")!, toGranularity: .minute) == .orderedAscending {
+                return """
+오늘의
+아침 밥상은?
+"""
             }
             // 점심: 11:30 이전
             else if calendar.compare(currentTime, to: formatter.date(from: "11:30")!, toGranularity: .minute) == .orderedAscending {
@@ -206,8 +212,22 @@ private extension TodayViewController {
 점심 밥상은?
 """
             }
+            // 점심: 13:30 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "13:30")!, toGranularity: .minute) == .orderedAscending {
+                return """
+오늘의
+점심 밥상은?
+"""
+            }
             // 저녁: 17:10 이전
             else if calendar.compare(currentTime, to: formatter.date(from: "17:10")!, toGranularity: .minute) == .orderedAscending {
+                return """
+오늘의
+저녁 밥상은?
+"""
+            } 
+            // 저녁: 18:30 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "18:30")!, toGranularity: .minute) == .orderedAscending {
                 return """
 오늘의
 저녁 밥상은?
@@ -233,12 +253,24 @@ private extension TodayViewController {
             if calendar.compare(currentTime, to: formatter.date(from: "07:30")!, toGranularity: .minute) == .orderedAscending {
                 return "아침시간 : 7:30~9:00"
             }
+            // 아침: 09:00 이전
+            if calendar.compare(currentTime, to: formatter.date(from: "09:00")!, toGranularity: .minute) == .orderedAscending {
+                return "아침시간 : 7:30~9:00"
+            }
             // 점심: 11:30 이전
             else if calendar.compare(currentTime, to: formatter.date(from: "11:30")!, toGranularity: .minute) == .orderedAscending {
                 return "점심시간 : 11:30~13:30"
             }
+            // 점심: 13:30 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "13:30")!, toGranularity: .minute) == .orderedAscending {
+                return "점심시간 : 11:30~13:30"
+            }
             // 저녁: 17:10 이전
             else if calendar.compare(currentTime, to: formatter.date(from: "17:10")!, toGranularity: .minute) == .orderedAscending {
+                return "저녁시간 : 17:10~18:30"
+            }
+            // 저녁: 18:10 이전
+            else if calendar.compare(currentTime, to: formatter.date(from: "18:30")!, toGranularity: .minute) == .orderedAscending {
                 return "저녁시간 : 17:10~18:30"
             }
         }

@@ -9,7 +9,7 @@ import UIKit
 
 enum Announcement: String {
     case latestVersion = "최신 버전을 사용하고 있는 중입니다"
-    case updateVersion = "업데이트 해주세요."
+    case updateVersion = "최신 버전으로 업데이트 해주세요."
 }
 
 final class VersionViewController: UIViewController {
@@ -38,7 +38,16 @@ final class VersionViewController: UIViewController {
     
     private lazy var announcementLabel: UILabel = {
         let label = UILabel()
-        label.text = "최신 버전을 사용하고 있는 중입니다"
+        if let shortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+           let currentAppVersion = "\(shortVersion).\(buildNumber)"
+            if buildNumber != "2"{
+                label.text = Announcement.updateVersion.rawValue
+            } else {
+                label.text = Announcement.latestVersion.rawValue
+            }
+            print(currentAppVersion)
+        }
         label.textColor = .black
         label.font = .systemFont(ofSize: 16.0)
         
@@ -47,8 +56,15 @@ final class VersionViewController: UIViewController {
     
     private lazy var versionLabel: UILabel = {
         let label = UILabel()
-        label.text = "현재 버전 1.0.0"
-        // label.text = "현재 버전 \(UIApplication.version)"
+        if let shortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+           let currentAppVersion = "\(shortVersion).\(buildNumber)"
+            if buildNumber != "2"{
+                label.text =  "최신 버전 \(currentAppVersion)"
+            } else {
+                label.text =  "현재 버전 \(currentAppVersion)"
+            }
+        }
         label.textColor = .textColor3
         label.font = .systemFont(ofSize: 12.0)
         

@@ -41,10 +41,11 @@ final class TermsViewController: UIViewController {
     private lazy var termsTextLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = .systemFont(ofSize: 15.0)
         label.textColor = UIColor(hex: "#606060")
         label.textAlignment = .justified
         label.numberOfLines = 0
+        
         return label
     }()
     
@@ -128,7 +129,6 @@ private extension TermsViewController {
             customActivityIndicatorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
         
-        termsTextLabel.adjustsFontForContentSizeCategory = true
         termsTextLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             termsTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.0),
