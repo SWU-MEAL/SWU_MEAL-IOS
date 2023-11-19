@@ -138,17 +138,24 @@ class APIManager {
         let calendar = Calendar.current
         var date = Date()
         
-        // 일요일(1) ~ 토요일(7)으로 변경하되, 월요일을 1로 시작하도록 조정
-        var currentWeekday = calendar.component(.weekday, from: date) - 1
-        if currentWeekday == 0 {
-            currentWeekday = 7
-        }
+        // 현재 시간대의 날짜 및 시간 가져오기
+        let components = calendar.dateComponents(in: calendar.timeZone, from: date)
+        date = calendar.date(from: components)!
         
+        print(date.description)
+
+        // 일요일(1) ~ 토요일(7)으로 변경하되, 월요일을 1로 시작하도록 조정
+        var currentWeekday = calendar.component(.weekday, from: date)
+        if currentWeekday == 1 {
+            currentWeekday = 7
+        } else {
+            currentWeekday -= 1
+        }
+
         // 만약 오늘이 주말인 경우, 다음주 월요일로 이동
         if currentWeekday >= 6 {
             date = calendar.date(byAdding: .day, value: currentWeekday + 1, to: date)!
         }
-        
         let daysUntilSelectedDay = dayOfWeek - currentWeekday
         
         let daysToAdd = daysUntilSelectedDay - 1
