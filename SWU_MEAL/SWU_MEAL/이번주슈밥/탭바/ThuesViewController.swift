@@ -11,7 +11,7 @@ final class ThuesViewController: UIViewController {
     
     // MARK: - Properties
     private let apiManager = APIManager()
-    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 3)
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 2)
 
     private weak var weekdayDelegate: WeekdayViewProtocol?
     private var selectedButtonIndex = 0

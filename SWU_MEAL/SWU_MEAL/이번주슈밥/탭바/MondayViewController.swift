@@ -12,7 +12,7 @@ final class MondayViewController: UIViewController {
     // MARK: - Properties
     
     private let apiManager = APIManager()
-    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 2)
+    private let selectedDate = APIManager().calculateDate(forDayOfWeek: 1)
     
     private weak var weekdayDelegate: WeekdayViewProtocol?
     private var selectedButtonIndex = 0
