@@ -41,7 +41,7 @@ final class VersionViewController: UIViewController {
         if let shortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
            let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
            let currentAppVersion = "\(shortVersion).\(buildNumber)"
-            if buildNumber != "2"{
+            if buildNumber != "3"{
                 label.text = Announcement.updateVersion.rawValue
             } else {
                 label.text = Announcement.latestVersion.rawValue
